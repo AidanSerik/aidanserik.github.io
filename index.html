@@ -1,177 +1,1032 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Aidan Serik | Film Editor</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aidan Serik — Film Editor & Director</title>
+  <meta name="description" content="Film editor and director working across feature films, trailers, documentaries, and high-end narrative storytelling." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --bg-soft: #111214;
+      --panel: rgba(255,255,255,0.04);
+      --panel-strong: rgba(255,255,255,0.07);
+      --line: rgba(255,255,255,0.10);
+      --text: #f5f1ea;
+      --muted: rgba(245,241,234,0.70);
+      --muted-2: rgba(245,241,234,0.48);
+      --accent: #d6b27a;
+      --accent-2: #8d6b3f;
+      --shadow: 0 24px 80px rgba(0,0,0,0.35);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --max: 1240px;
+      --ease: 320ms cubic-bezier(.2,.7,.2,1);
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(214,178,122,0.12), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(214,178,122,0.08), transparent 20%),
+        linear-gradient(180deg, #0a0a0b 0%, #0b0b0c 38%, #111214 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
 
-<style>
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input, textarea { font: inherit; }
 
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #0a0a0a;
-    color: #ffffff;
-}
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
 
-/* NAV */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-nav {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-between;
-    background: rgba(10,10,10,0.8);
-    backdrop-filter: blur(10px);
-}
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent));
+    }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 14px;
-}
+    .section {
+      padding: 96px 0;
+      position: relative;
+    }
 
-/* HERO */
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 0 40px;
-}
+    .section-title {
+      margin: 16px 0 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
 
-.hero h1 {
-    font-size: 64px;
-    max-width: 700px;
-    line-height: 1.1;
-}
+    .section-copy {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 16px;
+    }
 
-.hero p {
-    color: #aaa;
-    margin-top: 20px;
-}
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(11,11,12,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
-/* VIDEO */
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-.section {
-    padding: 120px 40px;
-    max-width: 1200px;
-    margin: auto;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
 
-.video iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-}
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 24px rgba(214,178,122,0.7);
+    }
 
-/* WORK GRID */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-}
+    .nav-links a {
+      transition: color var(--ease), opacity var(--ease);
+    }
 
-.card iframe {
-    width: 100%;
-    height: 200px;
-    border: none;
-}
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+    }
 
-.card h3 {
-    margin-top: 10px;
-}
+    .nav-cta {
+      padding: 11px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      transition: background var(--ease), border-color var(--ease), transform var(--ease);
+    }
 
-/* ABOUT */
+    .nav-cta:hover { background: rgba(255,255,255,0.05); transform: translateY(-1px); }
 
-.about {
-    max-width: 700px;
-}
+    .hero {
+      padding: 72px 0 36px;
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+    }
 
-/* FOOTER */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
 
-footer {
-    padding: 60px 40px;
-    border-top: 1px solid #222;
-}
+    .hero-copy {
+      padding: 26px 0;
+    }
 
-</style>
+    .hero-title {
+      margin: 20px 0 18px;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      font-size: clamp(54px, 7vw, 104px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      max-width: 840px;
+    }
+
+    .hero-title .accent {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 34px 0 44px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: transform var(--ease), background var(--ease), border-color var(--ease), color var(--ease);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #f0d5ad);
+      color: #171411;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 740px;
+    }
+
+    .fact {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 7px;
+    }
+
+    .fact span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 18px;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)),
+        rgba(11,11,12,0.85);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 670px;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 24%, rgba(214,178,122,0.05));
+      pointer-events: none;
+    }
+
+    .hero-media {
+      position: relative;
+      height: 100%;
+      min-height: 620px;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.72)),
+        radial-gradient(circle at 30% 20%, rgba(214,178,122,0.34), transparent 24%),
+        url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=80') center/cover;
+    }
+
+    .floating-note {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      width: min(300px, calc(100% - 44px));
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(10,10,11,0.76);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .floating-note strong { display: block; margin-bottom: 6px; font-size: 14px; }
+    .floating-note p { margin: 0; font-size: 13px; color: var(--muted); }
+
+    .logo-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .logo-chip {
+      min-height: 58px;
+      display: grid;
+      place-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .feature-band {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      padding: 26px 0;
+    }
+
+    .feature-grid .item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px 16px;
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-grid .item:first-child { border-left: 0; padding-left: 0; }
+
+    .feature-grid strong { font-size: 14px; }
+    .feature-grid span { color: var(--muted); font-size: 14px; }
+
+    .reel-shell {
+      padding: 18px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+    }
+
+    .reel-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #090909;
+      aspect-ratio: 16 / 9;
+    }
+
+    .reel-frame iframe,
+    .project-media iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .reel-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+      transition: transform var(--ease), border-color var(--ease), background var(--ease);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(214,178,122,0.35);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    }
+
+    .project-media {
+      aspect-ratio: 16 / 10;
+      background: #090909;
+    }
+
+    .project-body {
+      padding: 22px;
+    }
+
+    .project-type {
+      display: inline-flex;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .project-title {
+      margin: 0 0 10px;
+      font-size: 24px;
+      letter-spacing: -0.03em;
+    }
+
+    .project-copy {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .awards-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .quote-card,
+    .panel-card {
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+    }
+
+    .quote-card {
+      padding: 32px;
+      min-height: 100%;
+    }
+
+    .quote-mark {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 72px;
+      line-height: 0.8;
+      color: var(--accent);
+    }
+
+    .quote-card p {
+      margin: 12px 0 0;
+      font-size: clamp(24px, 4vw, 40px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 520px;
+    }
+
+    .awards-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .award-row {
+      display: grid;
+      grid-template-columns: 92px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .award-row:last-child { border-bottom: 0; }
+    .award-year { color: var(--accent); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; }
+    .award-title { font-size: 18px; margin-bottom: 4px; }
+    .award-copy { color: var(--muted); font-size: 14px; }
+    .award-chip {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .about-main,
+    .about-side,
+    .services-grid .service-card,
+    .contact-card {
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      box-shadow: var(--shadow);
+    }
+
+    .about-main,
+    .about-side {
+      padding: 30px;
+    }
+
+    .about-main p,
+    .about-side p { color: var(--muted); margin: 0; font-size: 16px; }
+
+    .about-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .mini-stat {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-stat:first-child { border-top: 0; padding-top: 0; }
+    .mini-stat strong {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 40px;
+      line-height: 0.9;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .mini-stat span { color: var(--muted); font-size: 14px; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card { padding: 24px; }
+    .service-card h3 {
+      margin: 0 0 14px;
+      font-size: 21px;
+      letter-spacing: -0.03em;
+    }
+    .service-card p { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
+    .service-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .service-card li {
+      position: relative;
+      padding-left: 18px;
+    }
+    .service-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 32px;
+    }
+
+    .contact-card h2 {
+      margin: 16px 0 12px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 600;
+    }
+
+    .contact-card p {
+      max-width: 560px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .contact-link {
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      transition: transform var(--ease), background var(--ease), border-color var(--ease);
+    }
+
+    .contact-link:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(214,178,122,0.35);
+    }
+
+    footer {
+      padding: 28px 0 46px;
+      color: var(--muted-2);
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 800ms ease, transform 800ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .awards-wrap,
+      .about-grid,
+      .contact-card { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .services-grid,
+      .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-card { min-height: 520px; }
+      .hero-media { min-height: 460px; }
+      .feature-grid .item:nth-child(3) { border-left: 0; padding-left: 0; }
+    }
+
+    @media (max-width: 760px) {
+      .section { padding: 76px 0; }
+      nav { min-height: 70px; }
+      .nav-links { display: none; }
+      .hero { min-height: auto; padding-top: 36px; }
+      .hero-title { font-size: clamp(46px, 15vw, 70px); }
+      .hero-facts,
+      .logo-row,
+      .projects-grid,
+      .services-grid,
+      .feature-grid { grid-template-columns: 1fr; }
+      .feature-grid .item { border-left: 0; padding-left: 0; padding-right: 0; }
+      .award-row { grid-template-columns: 1fr; }
+      .reel-meta,
+      .section-head { flex-direction: column; align-items: start; }
+      .contact-card { padding: 24px; }
+      .btn { width: 100%; }
+      .hero-actions { width: 100%; }
+      .hero-card { min-height: 440px; }
+      .hero-media { min-height: 400px; }
+      .floating-note { position: static; width: 100%; margin-top: 16px; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top" aria-label="Aidan Serik home">
+          <span class="brand-mark"></span>
+          <span>Aidan Serik</span>
+        </a>
+        <div class="nav-links">
+          <a href="#work">Work</a>
+          <a href="#recognition">Recognition</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a class="nav-cta" href="#contact">Get in touch</a>
+        </div>
+      </nav>
+    </div>
+  </div>
 
-<nav>
-<div>Aidan Serik</div>
-<div>
-<a href="#work">Work</a>
-<a href="#about">About</a>
-<a href="#contact">Contact</a>
-</div>
-</nav>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Feature film editor · trailer-led portfolio</span>
+          <h1 class="hero-title">Crafting <span class="accent">cinematic rhythm</span> for feature films, trailers, and emotionally precise stories.</h1>
+          <p class="hero-text">
+            I am a film editor and director with a decade in cinema and 5+ years focused on editing. My work spans feature films, documentaries, and narrative projects recognized on the festival circuit. Because many projects are feature-length, this portfolio highlights trailers and selected excerpts rather than full films.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#reel">Watch selected trailer work</a>
+            <a class="btn btn-secondary" href="mailto:aidan.serik@gmail.com">Email for full materials</a>
+          </div>
+          <div class="hero-facts">
+            <div class="fact">
+              <strong>10 years in film</strong>
+              <span>Across directing, editing, documentary, set and post-production roles.</span>
+            </div>
+            <div class="fact">
+              <strong>5+ years editing</strong>
+              <span>Feature films, trailers, documentaries, interviews, and commercial storytelling.</span>
+            </div>
+            <div class="fact">
+              <strong>Festival-caliber work</strong>
+              <span>Portfolio positioned around completed films recognized at top-tier festivals.</span>
+            </div>
+          </div>
+          <div class="logo-row" aria-label="Positioning highlights">
+            <div class="logo-chip">Feature Films</div>
+            <div class="logo-chip">Documentaries</div>
+            <div class="logo-chip">Trailer Editing</div>
+            <div class="logo-chip">Director’s Eye</div>
+          </div>
+        </div>
+        <div class="hero-card reveal">
+          <div class="hero-media">
+            <div class="floating-note">
+              <strong>Portfolio note</strong>
+              <p>Full features are not published here. This site is intentionally built around trailers, excerpts, and concise case framing for producers and clients.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="hero">
-<div>
-<h1>
-Film Editor & Director crafting cinematic storytelling
-</h1>
-<p>
-Feature films, documentaries and award-winning projects
-</p>
-</div>
-</section>
+    <section class="feature-band">
+      <div class="container feature-grid reveal">
+        <div class="item">
+          <strong>Narrative first</strong>
+          <span>Performance, pacing, and emotional continuity drive every cut.</span>
+        </div>
+        <div class="item">
+          <strong>Director + editor</strong>
+          <span>A creative partner who understands both structure and execution.</span>
+        </div>
+        <div class="item">
+          <strong>Festival positioning</strong>
+          <span>Work presented with credibility, restraint, and cinematic tone.</span>
+        </div>
+        <div class="item">
+          <strong>Client-friendly delivery</strong>
+          <span>Clear communication, thoughtful notes, and professional turnaround.</span>
+        </div>
+      </div>
+    </section>
 
-<section class="section video">
-<h2>Showreel</h2>
-<iframe src="https://www.youtube.com/embed/AjeegLB0cR4"></iframe>
-</section>
+    <section class="section" id="reel">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Selected trailer work</span>
+            <h2 class="section-title">A concise reel built for serious clients.</h2>
+          </div>
+          <p class="section-copy">Use this section as your strongest first impression on Upwork, in email outreach, and for producers who need immediate proof of taste, pacing, and editorial control.</p>
+        </div>
+        <div class="reel-shell reveal">
+          <div class="reel-frame">
+            <iframe src="https://www.youtube.com/embed/AjeegLB0cR4?rel=0" title="Aidan Serik selected reel" allowfullscreen></iframe>
+          </div>
+          <div class="reel-meta">
+            <span>Lead with your strongest trailer or a dedicated 60–90 second reel.</span>
+            <span>Edit the YouTube link directly inside the code when needed.</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="section" id="work">
-<h2>Selected Work</h2>
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Portfolio</span>
+            <h2 class="section-title">Selected work</h2>
+          </div>
+          <p class="section-copy">These cards are intentionally framed as polished case snapshots, not a long resume dump. Replace the titles below with your actual film titles where you want them public.</p>
+        </div>
 
-<div class="grid">
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-media">
+              <iframe src="https://www.youtube.com/embed/KlEy8_wsREw?rel=0" title="Feature trailer 1" allowfullscreen></iframe>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Feature Film Trailer</span>
+              <h3 class="project-title">Feature project / trailer selection</h3>
+              <p class="project-copy">A trailer-centered presentation for a feature film, focused on mood, rhythm, dramatic escalation, and clean narrative signaling.</p>
+              <div class="tags">
+                <span class="tag">Narrative pacing</span>
+                <span class="tag">Trailer structure</span>
+                <span class="tag">Feature workflow</span>
+              </div>
+            </div>
+          </article>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/KlEy8_wsREw"></iframe>
-<h3>Feature Film</h3>
-</div>
+          <article class="project-card reveal">
+            <div class="project-media">
+              <iframe src="https://www.youtube.com/embed/_529dy48OWY?rel=0" title="Documentary trailer" allowfullscreen></iframe>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Documentary / Excerpt</span>
+              <h3 class="project-title">Documentary storytelling cut</h3>
+              <p class="project-copy">Editorial work shaped around character, authenticity, interview texture, and controlled emotional movement.</p>
+              <div class="tags">
+                <span class="tag">Documentary editing</span>
+                <span class="tag">Interview rhythm</span>
+                <span class="tag">Story refinement</span>
+              </div>
+            </div>
+          </article>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/_529dy48OWY"></iframe>
-<h3>Documentary</h3>
-</div>
+          <article class="project-card reveal">
+            <div class="project-media">
+              <iframe src="https://www.youtube.com/embed/mYmn1BOXJT4?rel=0" title="Short film or excerpt" allowfullscreen></iframe>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Short Film / Narrative</span>
+              <h3 class="project-title">Narrative cut with director-led sensibility</h3>
+              <p class="project-copy">Built to show command of scene construction, emotional transitions, and visual continuity without overcutting the material.</p>
+              <div class="tags">
+                <span class="tag">Scene shaping</span>
+                <span class="tag">Performance-led</span>
+                <span class="tag">Cinematic restraint</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<iframe src="https://www.youtube.com/embed/mYmn1BOXJT4"></iframe>
-<h3>Short Film</h3>
-</div>
+    <section class="section" id="recognition">
+      <div class="container awards-wrap">
+        <div class="quote-card reveal">
+          <span class="eyebrow">Positioning</span>
+          <div class="quote-mark">“</div>
+          <p>This portfolio is designed to communicate cinematic taste, festival-level credibility, and editorial precision before a client ever starts scrolling your CV.</p>
+        </div>
+        <div class="panel-card reveal">
+          <div class="awards-list">
+            <div class="award-row">
+              <div class="award-year">Edit</div>
+              <div>
+                <div class="award-title">A-class festival positioning</div>
+                <div class="award-copy">Replace this line with the real festival selection or award wording you are comfortable publishing.</div>
+              </div>
+              <div class="award-chip">Public-facing note</div>
+            </div>
+            <div class="award-row">
+              <div class="award-year">Cut</div>
+              <div>
+                <div class="award-title">Feature-first presentation</div>
+                <div class="award-copy">Because feature films often cannot be shared in full, the site is structured around trailers, excerpts, and concise project framing.</div>
+              </div>
+              <div class="award-chip">Smart portfolio strategy</div>
+            </div>
+            <div class="award-row">
+              <div class="award-year">Pitch</div>
+              <div>
+                <div class="award-title">Ready for Upwork and direct outreach</div>
+                <div class="award-copy">The language and layout are built to work for production companies, directors, producers, agencies, and premium freelance clients.</div>
+              </div>
+              <div class="award-chip">Client-facing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">About</span>
+            <h2 class="section-title">Editor’s instinct. Director’s perspective.</h2>
+          </div>
+          <p class="section-copy">Your biography on a site should read as selective and memorable, not like a full chronology. This version is intentionally curated from your broader experience in cinema.</p>
+        </div>
 
-</section>
+        <div class="about-grid">
+          <div class="about-main reveal">
+            <p>
+              I’m Aidan Serik, a film editor and director with around 10 years of experience across cinema and 5+ years working specifically in editing. My background includes feature films, documentaries, interviews, and narrative projects where story shape matters as much as technical execution.
+              <br><br>
+              I work with a strong sense of rhythm, emotional logic, and structural clarity. Whether the material is intimate and observational or dramatic and high-stakes, my focus stays the same: finding the cut that lets the story feel inevitable.
+            </p>
+          </div>
+          <div class="about-side reveal">
+            <div class="mini-stat">
+              <strong>10</strong>
+              <span>Years working in film across directing, production, costume, documentary, and post.</span>
+            </div>
+            <div class="mini-stat">
+              <strong>5+</strong>
+              <span>Years focused on editing feature films, documentary projects, interviews, and trailers.</span>
+            </div>
+            <div class="mini-stat">
+              <strong>C1</strong>
+              <span>English proficiency for international communication, notes, and collaborative workflows.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="section about" id="about">
-<h2>About</h2>
-<p>
-I’m a film editor and director with over 5 years of experience working on feature films, documentaries, and international productions.
-<br><br>
-My work has been part of projects recognized at A-class film festivals, with a strong focus on storytelling, pacing, and emotional impact.
-</p>
-</section>
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Services</span>
+            <h2 class="section-title">What clients can hire me for</h2>
+          </div>
+          <p class="section-copy">This service language is tailored to attract professional clients rather than low-budget one-off requests.</p>
+        </div>
 
-<section class="section" id="contact">
-<h2>Contact</h2>
-<p>Email: aidan.serik@gmail.com</p>
-</section>
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <h3>Feature Film Editing</h3>
+            <p>Long-form narrative editing with attention to performance, structure, and scene-to-scene momentum.</p>
+            <ul>
+              <li>Assembly to fine cut</li>
+              <li>Story and rhythm refinement</li>
+              <li>Director / producer collaboration</li>
+            </ul>
+          </article>
 
-<footer>
-© 2026 Aidan Serik
-</footer>
+          <article class="service-card reveal">
+            <h3>Trailer & Promo Editing</h3>
+            <p>Public-facing edits built to create intrigue, emotional lift, and a strong cinematic first impression.</p>
+            <ul>
+              <li>Festival trailer cuts</li>
+              <li>Teasers and promo edits</li>
+              <li>Pitch materials</li>
+            </ul>
+          </article>
 
+          <article class="service-card reveal">
+            <h3>Documentary Editing</h3>
+            <p>Character-driven editing shaped around interviews, archival material, and real-world emotional detail.</p>
+            <ul>
+              <li>Interview structuring</li>
+              <li>Documentary story shaping</li>
+              <li>Research-led refinement</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal">
+            <h3>Creative Post Partnership</h3>
+            <p>For directors, producers, and brands who need an editor with taste, judgement, and calm communication.</p>
+            <ul>
+              <li>Remote collaboration</li>
+              <li>Clear notes workflow</li>
+              <li>Professional delivery</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div>
+            <span class="eyebrow">Contact</span>
+            <h2>Open to film, trailer, and high-end editorial collaborations.</h2>
+            <p>
+              For feature projects, documentary work, trailer editing, or a more complete private portfolio, get in touch directly. This site is intentionally concise; deeper materials can be shared on request.
+            </p>
+            <div class="contact-links">
+              <a class="contact-link" href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
+              <a class="contact-link" href="https://www.upwork.com/" target="_blank" rel="noreferrer noopener">Upwork profile link</a>
+              <a class="contact-link" href="tel:+77011071470">+7 701 107 14 70</a>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="mailto:aidan.serik@gmail.com">Start a conversation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Aidan Serik. Built for feature-film positioning, premium freelance outreach, and direct client trust.</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
