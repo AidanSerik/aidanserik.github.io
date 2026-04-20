@@ -3,33 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aidan Serik — Editor / Director</title>
-  <meta name="description" content="Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide across feature films, documentaries, and trailer-led storytelling." />
-  <meta name="theme-color" content="#111018" />
+  <title>Aidan Serik — Film Editor / Director</title>
+  <meta name="description" content="Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide across feature films, documentaries, and trailers." />
+  <meta name="theme-color" content="#14131c" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #12111a;
-      --bg-2: #171622;
-      --bg-3: #1e1b2c;
-      --panel: rgba(255,255,255,0.045);
-      --panel-2: rgba(255,255,255,0.07);
-      --line: rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.14);
-      --text: #f3f1fa;
-      --muted: rgba(243,241,250,0.66);
-      --muted-2: rgba(243,241,250,0.42);
-      --lilac: #c9b8ff;
-      --lilac-strong: #b695ff;
-      --lilac-deep: #7f61d8;
-      --shadow: 0 24px 100px rgba(0,0,0,0.34);
-      --radius-xl: 40px;
-      --radius-lg: 28px;
-      --radius-md: 20px;
-      --max: 1420px;
-      --ease: 380ms cubic-bezier(.2,.8,.2,1);
+      --bg: #14131c;
+      --bg-soft: #1a1824;
+      --panel: rgba(255,255,255,0.05);
+      --panel-2: rgba(255,255,255,0.075);
+      --line: rgba(255,255,255,0.09);
+      --line-strong: rgba(255,255,255,0.16);
+      --text: #e8d8ff;
+      --text-strong: #f4ecff;
+      --muted: rgba(232,216,255,0.70);
+      --muted-2: rgba(232,216,255,0.46);
+      --accent: #c8a9ff;
+      --accent-2: #a471ff;
+      --shadow: 0 28px 90px rgba(0,0,0,0.34);
+      --max: 1440px;
+      --ease: 340ms cubic-bezier(.2,.8,.2,1);
     }
 
     * { box-sizing: border-box; }
@@ -37,12 +33,12 @@
     body {
       margin: 0;
       font-family: Manrope, system-ui, sans-serif;
-      color: var(--text);
       background:
-        radial-gradient(circle at 12% 8%, rgba(182,149,255,0.18), transparent 20%),
-        radial-gradient(circle at 88% 18%, rgba(182,149,255,0.12), transparent 18%),
-        linear-gradient(180deg, #0f0e16 0%, #12111a 35%, #151320 100%);
-      letter-spacing: -0.015em;
+        radial-gradient(circle at 16% 0%, rgba(164,113,255,0.14), transparent 22%),
+        radial-gradient(circle at 84% 12%, rgba(200,169,255,0.10), transparent 18%),
+        linear-gradient(180deg, #11101a 0%, #14131c 40%, #171622 100%);
+      color: var(--text);
+      letter-spacing: -0.01em;
       overflow-x: hidden;
     }
 
@@ -51,44 +47,30 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background:
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 36px 36px;
-      mask-image: radial-gradient(circle at center, black 42%, transparent 90%);
-      opacity: 0.14;
-      z-index: -2;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: 0.18;
       mix-blend-mode: soft-light;
-      opacity: 0.24;
       z-index: -1;
     }
 
     a { color: inherit; text-decoration: none; }
-    iframe, img { display: block; width: 100%; }
+    img, iframe { display: block; width: 100%; }
     .container { width: min(calc(100% - 36px), var(--max)); margin: 0 auto; }
 
     .nav-wrap {
       position: sticky;
       top: 0;
-      z-index: 40;
+      z-index: 50;
       backdrop-filter: blur(18px);
-      background: rgba(18,17,26,0.58);
+      background: rgba(20,19,28,0.62);
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
     nav {
-      min-height: 78px;
+      min-height: 74px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 18px;
     }
 
@@ -100,14 +82,15 @@
       font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.04em;
+      color: var(--text-strong);
     }
 
-    .brand-mark {
+    .mark {
       width: 11px;
       height: 11px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--lilac), var(--lilac-deep));
-      box-shadow: 0 0 24px rgba(182,149,255,0.6);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 24px rgba(164,113,255,0.5);
       flex: 0 0 auto;
     }
 
@@ -115,123 +98,61 @@
       display: flex;
       align-items: center;
       gap: 22px;
-      color: var(--muted);
       font-size: 14px;
-    }
-
-    .nav-links a { transition: color var(--ease), opacity var(--ease); }
-    .nav-links a:hover { color: var(--text); }
-
-    .nav-btn {
-      padding: 11px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.025);
-      transition: transform var(--ease), border-color var(--ease), background var(--ease);
-    }
-
-    .nav-btn:hover { transform: translateY(-1px); border-color: var(--line-strong); background: rgba(255,255,255,0.06); }
-
-    .section { padding: 96px 0; position: relative; }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
       color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--lilac));
-    }
-
-    .section-top {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 24px;
-      align-items: end;
-      margin-bottom: 30px;
-    }
-
-    .section-title {
-      margin: 14px 0 0;
-      font-family: Syne, sans-serif;
-      font-size: clamp(38px, 6vw, 92px);
-      line-height: 0.9;
-      letter-spacing: -0.07em;
-      font-weight: 700;
-      max-width: 900px;
-    }
-
-    .section-copy {
-      margin: 0;
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.65;
-      font-size: 16px;
-    }
+    .nav-links a { transition: color var(--ease); }
+    .nav-links a:hover { color: var(--text-strong); }
 
     .hero {
-      min-height: calc(100vh - 78px);
-      display: flex;
-      align-items: center;
-      padding: 28px 0 40px;
+      padding: 22px 0 28px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 20px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
       align-items: stretch;
+      min-height: calc(100vh - 110px);
     }
 
-    .hero-copy,
-    .hero-media-shell,
-    .quote-panel,
-    .credits-panel,
-    .project-card,
-    .manifesto,
-    .filmography,
-    .services-shell,
-    .contact-shell,
-    .footer-shell {
+    .hero-left,
+    .hero-right,
+    .contact-block,
+    .footer-block {
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.03));
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.028));
       box-shadow: var(--shadow);
     }
 
-    .hero-copy {
-      border-radius: var(--radius-xl);
-      padding: 24px;
-      min-height: 760px;
+    .hero-left {
+      border-radius: 34px;
+      padding: 28px;
       display: grid;
       grid-template-rows: auto 1fr auto;
-      gap: 22px;
+      gap: 24px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-copy::before {
+    .hero-left::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(145deg, rgba(201,184,255,0.06), transparent 28%, transparent 72%, rgba(182,149,255,0.07));
+      background: linear-gradient(160deg, rgba(200,169,255,0.08), transparent 30%, transparent 70%, rgba(164,113,255,0.08));
       pointer-events: none;
     }
 
-    .hero-top {
+    .hero-meta {
       display: flex;
       justify-content: space-between;
       gap: 14px;
-      color: var(--muted);
+      flex-wrap: wrap;
+      color: var(--muted-2);
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.15em;
       position: relative;
       z-index: 1;
     }
@@ -241,33 +162,30 @@
       z-index: 1;
       margin: 0;
       font-family: Syne, sans-serif;
-      font-size: clamp(68px, 9vw, 148px);
-      line-height: 0.84;
+      font-size: clamp(70px, 10vw, 154px);
+      line-height: 0.82;
       letter-spacing: -0.09em;
-      max-width: 900px;
-      font-weight: 700;
+      color: var(--text-strong);
+      max-width: 760px;
     }
 
-    .hero-title .accent {
-      color: var(--lilac);
-      text-shadow: 0 0 38px rgba(182,149,255,0.14);
-    }
+    .hero-title .accent { color: var(--accent); }
 
     .hero-bottom {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 1fr 280px;
       gap: 18px;
       align-items: end;
     }
 
     .hero-text {
-      max-width: 560px;
+      max-width: 520px;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
       margin: 0;
+      font-size: 15px;
+      line-height: 1.75;
     }
 
     .hero-actions {
@@ -289,107 +207,150 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--lilac), var(--lilac-deep));
-      color: #120f1f;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #140f1f;
       font-weight: 700;
-      box-shadow: 0 14px 34px rgba(127,97,216,0.2);
     }
-
-    .btn-primary:hover,
-    .btn-secondary:hover,
-    .contact-pill:hover,
-    .mini-link:hover { transform: translateY(-1px); }
 
     .btn-secondary {
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.03);
-      color: var(--text);
+      color: var(--text-strong);
     }
 
-    .hero-stats {
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero-mini {
       display: grid;
       gap: 12px;
     }
 
-    .stat {
-      padding: 16px 16px 15px;
+    .mini {
+      padding: 14px 16px;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.025);
+      background: rgba(255,255,255,0.024);
     }
 
-    .stat strong {
+    .mini strong {
       display: block;
       font-size: 14px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      color: var(--text-strong);
     }
 
-    .stat span {
+    .mini span {
       display: block;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
     }
 
-    .hero-media-shell {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
+    .hero-right {
+      border-radius: 34px;
       padding: 18px;
-      min-height: 760px;
-      position: relative;
+      overflow: hidden;
     }
 
-    .hero-media {
+    .portrait {
       position: relative;
+      min-height: 100%;
       height: 100%;
-      min-height: 722px;
-      border-radius: 28px;
+      border-radius: 26px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(15,12,24,0.02), rgba(15,12,24,0.46)),
+        linear-gradient(180deg, rgba(10,9,16,0.02), rgba(10,9,16,0.48)),
         url('aidan-portrait.JPG') center 28% / cover no-repeat,
-        #1b1724;
-      filter: grayscale(1) contrast(1.04) brightness(0.96);
+        #211c2c;
+      filter: grayscale(1) contrast(1.03) brightness(0.96);
     }
 
-    .hero-media::after {
+    .portrait::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 0%, transparent 56%, rgba(18,17,26,0.85) 100%);
+      background: linear-gradient(180deg, transparent 0%, transparent 52%, rgba(20,19,28,0.88) 100%);
     }
 
-    .hero-note {
+    .portrait-note {
       position: absolute;
-      left: 22px;
-      right: 22px;
-      bottom: 22px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
       z-index: 1;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
-      padding: 18px;
-      border-radius: 22px;
+      padding: 16px 18px;
+      border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(20,19,28,0.64);
       backdrop-filter: blur(14px);
-      background: rgba(17,16,24,0.62);
     }
 
-    .hero-note strong { display: block; margin-bottom: 4px; font-size: 14px; }
-    .hero-note span { color: var(--muted); font-size: 13px; }
+    .portrait-note strong { display: block; margin-bottom: 4px; font-size: 14px; color: var(--text-strong); }
+    .portrait-note span { color: var(--muted); font-size: 13px; }
 
     .pill {
       padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.1);
       font-size: 12px;
+      color: var(--text);
       white-space: nowrap;
     }
 
-    .reel-shell {
-      border-radius: 32px;
+    .section {
+      padding: 86px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted-2);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent));
+    }
+
+    .section-title {
+      margin: 14px 0 0;
+      font-family: Syne, sans-serif;
+      font-size: clamp(40px, 6vw, 84px);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+      color: var(--text-strong);
+      max-width: 760px;
+    }
+
+    .section-copy {
+      margin: 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .reel {
       border: 1px solid var(--line);
+      border-radius: 30px;
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.028));
       box-shadow: var(--shadow);
       padding: 18px;
@@ -397,12 +358,12 @@
 
     .reel-frame {
       aspect-ratio: 16 / 9;
-      border-radius: 24px;
+      border-radius: 22px;
       overflow: hidden;
-      background: #0c0a13;
+      background: #0f0c16;
     }
 
-    .reel-frame iframe { width: 100%; height: 100%; border: 0; }
+    .reel-frame iframe { height: 100%; border: 0; }
 
     .reel-meta {
       display: flex;
@@ -413,16 +374,27 @@
       font-size: 14px;
     }
 
-    .works-layout {
+    .work-grid {
       display: grid;
       grid-template-columns: 0.82fr 1.18fr;
       gap: 18px;
       align-items: start;
+      margin-bottom: 18px;
     }
 
-    .quote-panel {
-      border-radius: 32px;
-      padding: 30px;
+    .text-panel,
+    .credits,
+    .card,
+    .bio,
+    .filmography {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.028));
+      box-shadow: var(--shadow);
+    }
+
+    .text-panel {
+      border-radius: 30px;
+      padding: 28px;
       min-height: 100%;
       display: flex;
       flex-direction: column;
@@ -430,67 +402,68 @@
       gap: 28px;
     }
 
-    .quote-panel h3 {
+    .text-panel h3 {
       margin: 0;
       font-family: Syne, sans-serif;
-      font-size: clamp(36px, 5vw, 64px);
+      font-size: clamp(36px, 5vw, 62px);
       line-height: 0.92;
       letter-spacing: -0.07em;
-      font-weight: 700;
-      max-width: 520px;
+      color: var(--text-strong);
+      max-width: 500px;
     }
 
-    .quote-panel h3 .soft { color: var(--lilac); }
-    .quote-panel p {
+    .text-panel h3 .accent { color: var(--accent); }
+    .text-panel p {
       margin: 0;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.7;
+      line-height: 1.72;
       max-width: 470px;
     }
 
     .mini-link {
       display: inline-flex;
-      gap: 10px;
       align-items: center;
-      width: fit-content;
-      color: var(--text);
+      gap: 10px;
       padding: 12px 0;
-      font-size: 14px;
-      transition: transform var(--ease), opacity var(--ease);
+      width: fit-content;
+      color: var(--text-strong);
+      transition: transform var(--ease);
     }
 
-    .credits-panel {
-      border-radius: 32px;
+    .mini-link:hover { transform: translateY(-1px); }
+
+    .credits {
+      border-radius: 30px;
       overflow: hidden;
     }
 
     .credit-row {
       display: grid;
-      grid-template-columns: 92px 1fr 116px;
+      grid-template-columns: 88px 1fr 112px;
       gap: 18px;
       align-items: center;
-      padding: 20px 24px;
+      padding: 20px 22px;
       border-bottom: 1px solid rgba(255,255,255,0.07);
-      transition: background var(--ease), transform var(--ease);
+      transition: background var(--ease);
     }
 
     .credit-row:last-child { border-bottom: 0; }
     .credit-row:hover { background: rgba(255,255,255,0.038); }
 
-    .credit-year {
+    .year {
       color: var(--muted-2);
       font-size: 12px;
-      letter-spacing: 0.16em;
       text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
     .credit-title {
       font-size: 22px;
       line-height: 1;
-      letter-spacing: -0.04em;
       margin-bottom: 6px;
       font-weight: 700;
+      color: var(--text-strong);
     }
 
     .credit-copy {
@@ -499,7 +472,7 @@
       line-height: 1.55;
     }
 
-    .credit-type {
+    .type {
       justify-self: end;
       padding: 10px 12px;
       border-radius: 999px;
@@ -513,48 +486,48 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      margin-top: 18px;
     }
 
-    .project-card {
-      border-radius: 28px;
+    .card {
+      border-radius: 26px;
       overflow: hidden;
       transition: transform var(--ease), border-color var(--ease), background var(--ease);
     }
 
-    .project-card:hover {
+    .card:hover {
       transform: translateY(-4px);
-      border-color: rgba(182,149,255,0.26);
-      background: linear-gradient(180deg, rgba(255,255,255,0.085), rgba(255,255,255,0.038));
+      border-color: rgba(200,169,255,0.24);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.038));
     }
 
-    .project-media {
+    .card-media {
       aspect-ratio: 16 / 10;
-      background: #0d0a14;
+      background: #120f1b;
     }
 
-    .project-media iframe { width: 100%; height: 100%; border: 0; }
+    .card-media iframe { height: 100%; border: 0; }
 
-    .project-body { padding: 20px; }
+    .card-body { padding: 20px; }
 
-    .project-label {
+    .label {
       display: inline-flex;
       margin-bottom: 12px;
-      color: var(--lilac);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
+      color: var(--accent);
     }
 
-    .project-title {
+    .card-title {
       margin: 0 0 10px;
       font-size: 24px;
       line-height: 1;
       letter-spacing: -0.04em;
       font-weight: 700;
+      color: var(--text-strong);
     }
 
-    .project-copy {
+    .card-copy {
       margin: 0 0 16px;
       color: var(--muted);
       font-size: 14px;
@@ -576,18 +549,31 @@
       font-size: 12px;
     }
 
-    .split {
+    .about-grid {
       display: grid;
       grid-template-columns: 0.92fr 1.08fr;
       gap: 18px;
       align-items: start;
     }
 
-    .manifesto,
-    .contact-shell,
-    .footer-shell { border-radius: 32px; padding: 30px; }
-    .manifesto p,
-    .contact-shell p { margin: 0; color: var(--muted); line-height: 1.75; font-size: 15px; }
+    .bio,
+    .filmography,
+    .contact-block,
+    .footer-block {
+      border-radius: 30px;
+    }
+
+    .bio,
+    .contact-block,
+    .footer-block { padding: 28px; }
+
+    .bio p,
+    .contact-block p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.78;
+    }
 
     .metrics {
       display: grid;
@@ -599,71 +585,58 @@
       padding: 18px;
       border-radius: 18px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.025);
+      background: rgba(255,255,255,0.024);
     }
 
     .metric strong {
       display: block;
-      color: var(--lilac);
       font-family: Syne, sans-serif;
       font-size: 38px;
       line-height: 0.88;
       margin-bottom: 8px;
+      color: var(--accent);
     }
 
     .metric span { display: block; color: var(--muted); font-size: 14px; line-height: 1.6; }
 
-    .filmography {
-      border-radius: 32px;
-      overflow: hidden;
-      padding: 0;
-    }
+    .filmography { overflow: hidden; padding: 0; }
 
     .filmography-head {
-      padding: 24px 24px 18px;
+      padding: 24px 24px 16px;
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
     .filmography-head h3 {
       margin: 12px 0 0;
       font-family: Syne, sans-serif;
-      font-size: 36px;
+      font-size: 34px;
       line-height: 0.94;
       letter-spacing: -0.05em;
+      color: var(--text-strong);
     }
 
     .filmography-list { display: grid; }
 
-    .mini-row {
+    .film-row {
       display: grid;
-      grid-template-columns: 84px 1fr auto;
+      grid-template-columns: 82px 1fr auto;
       gap: 16px;
       align-items: center;
       padding: 18px 24px;
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .mini-row:last-child { border-bottom: 0; }
+    .film-row:last-child { border-bottom: 0; }
 
-    .mini-row small {
+    .film-row small {
       color: var(--muted-2);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.14em;
     }
 
-    .mini-row-title {
-      font-size: 18px;
-      line-height: 1;
-      margin-bottom: 5px;
-      font-weight: 700;
-    }
-
-    .mini-row-copy {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
+    .film-title { font-size: 18px; line-height: 1; margin-bottom: 5px; font-weight: 700; color: var(--text-strong); }
+    .film-copy { color: var(--muted); font-size: 14px; line-height: 1.55; }
 
     .chip {
       padding: 10px 12px;
@@ -674,71 +647,7 @@
       white-space: nowrap;
     }
 
-    .services-shell { border-radius: 32px; padding: 30px; }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .service {
-      padding: 22px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.022);
-      transition: transform var(--ease), border-color var(--ease), background var(--ease);
-    }
-
-    .service:hover {
-      transform: translateY(-2px);
-      border-color: rgba(182,149,255,0.22);
-      background: rgba(255,255,255,0.038);
-    }
-
-    .service h3 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      font-weight: 700;
-    }
-
-    .service p {
-      color: var(--muted);
-      margin: 0 0 14px;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .service ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .service li {
-      position: relative;
-      padding-left: 16px;
-    }
-
-    .service li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--lilac), var(--lilac-deep));
-    }
-
-    .contact-shell {
+    .contact-block {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 20px;
@@ -748,14 +657,14 @@
     .contact-title {
       margin: 12px 0 14px;
       font-family: Syne, sans-serif;
-      font-size: clamp(46px, 6vw, 96px);
+      font-size: clamp(48px, 7vw, 96px);
       line-height: 0.88;
       letter-spacing: -0.08em;
-      max-width: 820px;
-      font-weight: 700;
+      color: var(--text-strong);
+      max-width: 760px;
     }
 
-    .contact-title .accent { color: var(--lilac); }
+    .contact-title .accent { color: var(--accent); }
 
     .contact-links {
       display: flex;
@@ -769,17 +678,12 @@
       border-radius: 999px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.03);
-      transition: transform var(--ease), background var(--ease), border-color var(--ease);
+      transition: transform var(--ease), border-color var(--ease), background var(--ease);
     }
 
-    .contact-pill:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(182,149,255,0.22);
-    }
+    .contact-pill:hover { transform: translateY(-1px); border-color: var(--line-strong); background: rgba(255,255,255,0.06); }
 
-    footer { padding: 0 0 34px; }
-
-    .footer-shell {
+    .footer-block {
       display: grid;
       grid-template-columns: 1fr auto auto;
       gap: 16px;
@@ -788,17 +692,14 @@
 
     .footer-name {
       font-family: Syne, sans-serif;
-      font-size: clamp(34px, 5vw, 68px);
+      font-size: clamp(34px, 5vw, 70px);
       line-height: 0.9;
       letter-spacing: -0.07em;
+      color: var(--text-strong);
       font-weight: 700;
     }
 
-    .footer-meta {
-      color: var(--muted);
-      margin-top: 6px;
-      font-size: 14px;
-    }
+    .footer-meta { margin-top: 6px; color: var(--muted); font-size: 14px; }
 
     .footer-note {
       margin-top: 14px;
@@ -823,46 +724,39 @@
 
     @media (max-width: 1160px) {
       .hero-grid,
-      .section-top,
-      .works-layout,
-      .split,
-      .contact-shell,
-      .footer-shell,
+      .section-head,
+      .work-grid,
+      .about-grid,
+      .contact-block,
+      .footer-block,
       .hero-bottom { grid-template-columns: 1fr; }
       .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-copy,
-      .hero-media-shell,
-      .hero-media { min-height: auto; }
-      .hero-media { min-height: 620px; }
+      .portrait { min-height: 620px; }
     }
 
     @media (max-width: 760px) {
       .nav-links { display: none; }
-      .section,
-      .hero { padding: 72px 0; }
+      .hero,
+      .section { padding: 72px 0; }
       .hero-title,
       .section-title,
-      .contact-title { font-size: clamp(46px, 14vw, 78px); }
-      .cards,
-      .services-grid,
-      .hero-stats { grid-template-columns: 1fr; }
+      .contact-title { font-size: clamp(48px, 14vw, 82px); }
+      .cards { grid-template-columns: 1fr; }
       .credit-row,
-      .mini-row,
-      .hero-note,
-      .footer-shell { grid-template-columns: 1fr; }
+      .film-row,
+      .portrait-note,
+      .footer-block { grid-template-columns: 1fr; }
       .reel-meta,
       .footer-note { flex-direction: column; align-items: flex-start; }
       .btn { width: 100%; }
       .hero-actions { width: 100%; }
-      .hero-copy,
-      .hero-media-shell,
-      .manifesto,
-      .services-shell,
-      .contact-shell,
-      .footer-shell,
-      .quote-panel { padding: 22px; }
-      .hero-media { min-height: 500px; }
+      .hero-left,
+      .hero-right,
+      .bio,
+      .contact-block,
+      .footer-block,
+      .text-panel { padding: 22px; }
+      .portrait { min-height: 500px; }
     }
   </style>
 </head>
@@ -871,15 +765,13 @@
     <div class="container">
       <nav>
         <a class="brand" href="#top" aria-label="Aidan Serik home">
-          <span class="brand-mark"></span>
+          <span class="mark"></span>
           <span>Aidan Serik</span>
         </a>
         <div class="nav-links">
-          <a href="#reel">Reel</a>
-          <a href="#works">Works</a>
-          <a href="#credits">Credits</a>
-          <a href="#about">About</a>
-          <a class="nav-btn" href="#contact">Contact</a>
+          <a href="#work">Work</a>
+          <a href="#bio">Bio</a>
+          <a href="#contact">Contact</a>
         </div>
       </nav>
     </div>
@@ -888,150 +780,148 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <div class="hero-top">
-            <span>Editor / Director</span>
-            <span>Tbilisi + Almaty / Worldwide</span>
+        <div class="hero-left reveal">
+          <div class="hero-meta">
+            <span>Film Editor / Director</span>
+            <span>Tbilisi + Almaty / Working worldwide</span>
           </div>
 
-          <h1 class="hero-title">A stylish <span class="accent">editorial portfolio</span> for feature films, documentaries, and trailer-led storytelling.</h1>
+          <h1 class="hero-title">Feature films, trailers, and <span class="accent">editorial rhythm</span>.</h1>
 
           <div class="hero-bottom">
             <div>
               <p class="hero-text">
-                I work across features, shorts, documentaries, and public-facing trailers. This version is intentionally more visual: less generic portfolio, more authored presence. Cleaner typography, softer dark tones, and lilac accents replace the default black-and-white look.
+                A modern portfolio built around public-facing work, selected credits, and a quieter visual language. Inspired by sleek editor portfolios, but reworked for your film background and your lilac-toned palette.
               </p>
               <div class="hero-actions">
-                <a class="btn btn-primary" href="#reel">Watch selected work</a>
-                <a class="btn btn-secondary" href="mailto:aidan.serik@gmail.com">Request full materials</a>
+                <a class="btn btn-primary" href="#work">View work</a>
+                <a class="btn btn-secondary" href="mailto:aidan.serik@gmail.com">Request private materials</a>
               </div>
             </div>
 
-            <div class="hero-stats">
-              <div class="stat">
+            <div class="hero-mini">
+              <div class="mini">
                 <strong>10 years in film</strong>
-                <span>Across directing, editing, documentary, production, and narrative work.</span>
+                <span>Across editing, directing, documentary, production, and narrative work.</span>
               </div>
-              <div class="stat">
+              <div class="mini">
                 <strong>5+ years editing</strong>
-                <span>Feature films, trailers, documentary cuts, and interview-led storytelling.</span>
+                <span>Feature films, trailers, documentary cuts, and interview-driven storytelling.</span>
               </div>
-              <div class="stat">
-                <strong>Modern presentation</strong>
-                <span>Designed to feel closer to boutique editorial portfolios than standard freelancer templates.</span>
+              <div class="mini">
+                <strong>Portfolio note</strong>
+                <span>Many features stay private, so the site centers trailers and public excerpts.</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="hero-media-shell reveal">
-          <div class="hero-media">
-            <div class="hero-note">
+        <div class="hero-right reveal">
+          <div class="portrait">
+            <div class="portrait-note">
               <div>
                 <strong>Aidan Serik</strong>
                 <span>Film editor and director with a feature-first, cinematic sensibility.</span>
               </div>
-              <div class="pill">Lilac dark mode</div>
+              <div class="pill">Text color changed</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="reel">
-      <div class="container">
-        <div class="section-top reveal">
-          <div>
-            <span class="eyebrow">Selected reel</span>
-            <h2 class="section-title">Minimal, polished, and built to make the first scroll feel intentional.</h2>
-          </div>
-          <p class="section-copy">Instead of a loud homepage, this opens with scale, typography, and a single lead video. It is closer to editorial and readymag-inspired portfolios than classic portfolio templates.</p>
+    <section class="section" id="work">
+      <div class="container section-head reveal">
+        <div>
+          <span class="eyebrow">Selected work</span>
+          <h2 class="section-title">A cleaner one-page structure, closer to your reference.</h2>
         </div>
+        <p class="section-copy">The reference site uses a very streamlined film-editor portfolio pattern: minimal navigation, strong branding, and a long work section. This version follows that overall logic, while changing the palette and content for your own positioning. ([morgantaylorbradley.com](https://www.morgantaylorbradley.com/))</p>
+      </div>
 
-        <div class="reel-shell reveal">
-          <div class="reel-frame">
-            <iframe src="https://www.youtube.com/embed/AjeegLB0cR4?rel=0" title="Aidan Serik selected reel" allowfullscreen></iframe>
-          </div>
-          <div class="reel-meta">
-            <span>Current lead video: Women in Lenovo Leadership.</span>
-            <span>Replace this later with a dedicated showreel if needed.</span>
-          </div>
+      <div class="container reel reveal">
+        <div class="reel-frame">
+          <iframe src="https://www.youtube.com/embed/AjeegLB0cR4?rel=0" title="Selected reel" allowfullscreen></iframe>
+        </div>
+        <div class="reel-meta">
+          <span>Lead video: Women in Lenovo Leadership.</span>
+          <span>Use this slot for your strongest public-facing trailer or showreel.</span>
         </div>
       </div>
     </section>
 
-    <section class="section" id="works">
-      <div class="container works-layout">
-        <div class="quote-panel reveal">
+    <section class="section">
+      <div class="container work-grid">
+        <div class="text-panel reveal">
           <div>
-            <span class="eyebrow">Direction</span>
-            <h3>Less <span class="soft">template</span>, more authored visual identity.</h3>
+            <span class="eyebrow">Portfolio structure</span>
+            <h3>Less template, more <span class="accent">editorial presence</span>.</h3>
           </div>
-          <p>This version shifts the site toward a more stylish, contemporary portfolio language: stronger font pairing, softened dark backgrounds, more air, and color accents that feel deliberate rather than decorative.</p>
+          <p>This layout keeps the same broad feel your reference uses — homepage, long work section, concise bio, and contact — while swapping in a softer dark palette and lilac typography instead of the original look. ([morgantaylorbradley.com](https://www.morgantaylorbradley.com/))</p>
           <a class="mini-link" href="#credits">See selected credits →</a>
         </div>
 
-        <div class="credits-panel reveal">
+        <div class="credits reveal" id="credits">
           <div class="credit-row">
-            <div class="credit-year">2019</div>
+            <div class="year">2019</div>
             <div>
               <div class="credit-title">Women in Lenovo Leadership</div>
               <div class="credit-copy">Director · short documentary series</div>
             </div>
-            <div class="credit-type">Public</div>
+            <div class="type">Public</div>
           </div>
           <div class="credit-row">
-            <div class="credit-year">2018</div>
+            <div class="year">2018</div>
             <div>
               <div class="credit-title">Go Viral</div>
               <div class="credit-copy">Editor · short documentary</div>
             </div>
-            <div class="credit-type">Public</div>
+            <div class="type">Public</div>
           </div>
           <div class="credit-row">
-            <div class="credit-year">2019</div>
+            <div class="year">2019</div>
             <div>
               <div class="credit-title">Adren CS:GO</div>
               <div class="credit-copy">Editor · short documentary</div>
             </div>
-            <div class="credit-type">Public</div>
+            <div class="type">Public</div>
           </div>
           <div class="credit-row">
-            <div class="credit-year">2020</div>
+            <div class="year">2020</div>
             <div>
               <div class="credit-title">OT</div>
               <div class="credit-copy">Editor · feature film</div>
             </div>
-            <div class="credit-type">Trailer</div>
+            <div class="type">Trailer</div>
           </div>
           <div class="credit-row">
-            <div class="credit-year">2021</div>
+            <div class="year">2021</div>
             <div>
               <div class="credit-title">Madina</div>
               <div class="credit-copy">Editor · feature film</div>
             </div>
-            <div class="credit-type">MUBI</div>
+            <div class="type">MUBI</div>
           </div>
           <div class="credit-row">
-            <div class="credit-year">2023</div>
+            <div class="year">2023</div>
             <div>
               <div class="credit-title">DYAD</div>
               <div class="credit-copy">Director · short film</div>
             </div>
-            <div class="credit-type">Private</div>
+            <div class="type">Private</div>
           </div>
         </div>
       </div>
 
       <div class="container cards">
-        <article class="project-card reveal">
-          <div class="project-media">
+        <article class="card reveal">
+          <div class="card-media">
             <iframe src="https://www.youtube.com/embed/KlEy8_wsREw?rel=0" title="Women in Lenovo Leadership" allowfullscreen></iframe>
           </div>
-          <div class="project-body">
-            <span class="project-label">Director · 2019</span>
-            <h3 class="project-title">Women in Lenovo Leadership</h3>
-            <p class="project-copy">A branded documentary series cut with clarity, portrait focus, and a controlled emotional rhythm.</p>
+          <div class="card-body">
+            <span class="label">Director · 2019</span>
+            <h3 class="card-title">Women in Lenovo Leadership</h3>
+            <p class="card-copy">Portrait-led branded documentary storytelling with clean rhythm and emotional focus.</p>
             <div class="tags">
               <span class="tag">Direction</span>
               <span class="tag">Documentary</span>
@@ -1040,30 +930,30 @@
           </div>
         </article>
 
-        <article class="project-card reveal">
-          <div class="project-media">
+        <article class="card reveal">
+          <div class="card-media">
             <iframe src="https://www.youtube.com/embed/mYmn1BOXJT4?rel=0" title="Go Viral" allowfullscreen></iframe>
           </div>
-          <div class="project-body">
-            <span class="project-label">Editor · 2018</span>
-            <h3 class="project-title">Go Viral</h3>
-            <p class="project-copy">Short documentary editing shaped around narrative progression, information flow, and a measured pace.</p>
+          <div class="card-body">
+            <span class="label">Editor · 2018</span>
+            <h3 class="card-title">Go Viral</h3>
+            <p class="card-copy">Short documentary editing shaped around narrative progression and a measured pace.</p>
             <div class="tags">
               <span class="tag">Editing</span>
               <span class="tag">Short documentary</span>
-              <span class="tag">Story shaping</span>
+              <span class="tag">Story</span>
             </div>
           </div>
         </article>
 
-        <article class="project-card reveal">
-          <div class="project-media">
+        <article class="card reveal">
+          <div class="card-media">
             <iframe src="https://www.youtube.com/embed/CmohrAsusaY?rel=0" title="Adren CS GO" allowfullscreen></iframe>
           </div>
-          <div class="project-body">
-            <span class="project-label">Editor · 2019</span>
-            <h3 class="project-title">Adren CS:GO</h3>
-            <p class="project-copy">A sharper, contemporary documentary cut with stronger audience pull and faster editorial rhythm.</p>
+          <div class="card-body">
+            <span class="label">Editor · 2019</span>
+            <h3 class="card-title">Adren CS:GO</h3>
+            <p class="card-copy">Contemporary documentary cut with sharper pacing and stronger audience pull.</p>
             <div class="tags">
               <span class="tag">Documentary</span>
               <span class="tag">Pacing</span>
@@ -1074,15 +964,13 @@
       </div>
     </section>
 
-    <section class="section" id="credits">
-      <div class="container split">
-        <div class="manifesto reveal" id="about">
-          <span class="eyebrow">About</span>
-          <h2 class="section-title" style="font-size: clamp(36px, 5vw, 66px);">A cleaner, softer, more stylish visual language.</h2>
+    <section class="section" id="bio">
+      <div class="container about-grid">
+        <div class="bio reveal">
+          <span class="eyebrow">Bio</span>
+          <h2 class="section-title" style="font-size: clamp(36px, 5vw, 68px);">Author-led editing with a calmer visual identity.</h2>
           <p>
-            I’m Aidan Serik, a film editor and director based in Tbilisi and Almaty, working worldwide. My background spans feature films, documentaries, interviews, short films, and trailer work. I’m especially drawn to projects that need sensitivity, structure, and editorial choices that shape the story rather than simply accelerate it.
-            <br><br>
-            This design direction stays minimal, but not flat. The goal is a portfolio that feels current, composed, and visually confident.
+            I’m Aidan Serik, a film editor and director based in Tbilisi and Almaty, working worldwide. My background spans feature films, documentaries, short films, interviews, and trailer work. I’m especially drawn to material that needs sensitivity, structural clarity, and edits that shape the emotional logic of a story.
           </p>
           <div class="metrics">
             <div class="metric">
@@ -1091,11 +979,11 @@
             </div>
             <div class="metric">
               <strong>5+</strong>
-              <span>Years focused specifically on editing feature films, shorts, trailers, and interview-led work.</span>
+              <span>Years focused specifically on editing features, shorts, trailers, and interview-led work.</span>
             </div>
             <div class="metric">
               <strong>WW</strong>
-              <span>Based in Tbilisi and Almaty, collaborating internationally with directors, producers, and remote clients.</span>
+              <span>Based in Tbilisi and Almaty, collaborating internationally with directors and producers.</span>
             </div>
           </div>
         </div>
@@ -1106,67 +994,67 @@
             <h3>Filmography</h3>
           </div>
           <div class="filmography-list">
-            <div class="mini-row">
+            <div class="film-row">
               <small>2023</small>
               <div>
-                <div class="mini-row-title">DYAD</div>
-                <div class="mini-row-copy">Director · short film</div>
+                <div class="film-title">DYAD</div>
+                <div class="film-copy">Director · short film</div>
               </div>
               <div class="chip">Private link</div>
             </div>
-            <div class="mini-row">
+            <div class="film-row">
               <small>2022</small>
               <div>
-                <div class="mini-row-title">Joqtau</div>
-                <div class="mini-row-copy">Editor · feature film</div>
+                <div class="film-title">Joqtau</div>
+                <div class="film-copy">Editor · feature film</div>
               </div>
               <div class="chip">Private materials</div>
             </div>
-            <div class="mini-row">
+            <div class="film-row">
               <small>2022</small>
               <div>
-                <div class="mini-row-title">We Live Here</div>
-                <div class="mini-row-copy">Editor · full-length documentary</div>
+                <div class="film-title">We Live Here</div>
+                <div class="film-copy">Editor · full-length documentary</div>
               </div>
               <div class="chip">Excerpt</div>
             </div>
-            <div class="mini-row">
+            <div class="film-row">
               <small>2022</small>
               <div>
-                <div class="mini-row-title">Buttons</div>
-                <div class="mini-row-copy">Editor · short film</div>
+                <div class="film-title">Buttons</div>
+                <div class="film-copy">Editor · short film</div>
               </div>
               <div class="chip">Selected work</div>
             </div>
-            <div class="mini-row">
+            <div class="film-row">
               <small>2021</small>
               <div>
-                <div class="mini-row-title">Madina</div>
-                <div class="mini-row-copy">Editor · feature film · trailer on MUBI</div>
+                <div class="film-title">Madina</div>
+                <div class="film-copy">Editor · feature film · trailer on MUBI</div>
               </div>
               <a class="chip" href="https://mubi.com/en/films/madina/trailer" target="_blank" rel="noreferrer noopener">Watch</a>
             </div>
-            <div class="mini-row">
+            <div class="film-row">
               <small>2021</small>
               <div>
-                <div class="mini-row-title">Critical Mass</div>
-                <div class="mini-row-copy">Editor · short documentary</div>
+                <div class="film-title">Critical Mass</div>
+                <div class="film-copy">Editor · short documentary</div>
               </div>
               <a class="chip" href="https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs" target="_blank" rel="noreferrer noopener">Watch</a>
             </div>
-            <div class="mini-row">
+            <div class="film-row">
               <small>2021</small>
               <div>
-                <div class="mini-row-title">Silk Road</div>
-                <div class="mini-row-copy">Editor · short documentary series</div>
+                <div class="film-title">Silk Road</div>
+                <div class="film-copy">Editor · short documentary series</div>
               </div>
               <a class="chip" href="https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG" target="_blank" rel="noreferrer noopener">Watch</a>
             </div>
-            <div class="mini-row">
+            <div class="film-row">
               <small>2021</small>
               <div>
-                <div class="mini-row-title">Worxspace</div>
-                <div class="mini-row-copy">Editor · short fashion film</div>
+                <div class="film-title">Worxspace</div>
+                <div class="film-copy">Editor · short fashion film</div>
               </div>
               <a class="chip" href="https://vimeo.com/735383174?share=copy" target="_blank" rel="noreferrer noopener">Watch</a>
             </div>
@@ -1175,64 +1063,13 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container services-shell reveal">
-        <div class="section-top" style="margin-bottom: 0;">
-          <div>
-            <span class="eyebrow">Services</span>
-            <h2 class="section-title">Stylish, but still built to convert.</h2>
-          </div>
-          <p class="section-copy">This stays visually minimal, but it still tells producers and premium clients what you can actually be hired for.</p>
-        </div>
-
-        <div class="services-grid">
-          <div class="service">
-            <h3>Feature Editing</h3>
-            <p>Long-form editorial collaboration for narrative features and documentary features.</p>
-            <ul>
-              <li>Assembly to fine cut</li>
-              <li>Story restructuring</li>
-              <li>Scene rhythm</li>
-            </ul>
-          </div>
-          <div class="service">
-            <h3>Trailer Editing</h3>
-            <p>Trailers, teasers, and public-facing edits with tonal precision and stronger emotional pull.</p>
-            <ul>
-              <li>Festival trailers</li>
-              <li>Pitch cuts</li>
-              <li>Promo edits</li>
-            </ul>
-          </div>
-          <div class="service">
-            <h3>Documentary</h3>
-            <p>Interview-led and character-led documentary editing shaped with clarity and restraint.</p>
-            <ul>
-              <li>Interview structure</li>
-              <li>Documentary pacing</li>
-              <li>Research-led refinement</li>
-            </ul>
-          </div>
-          <div class="service">
-            <h3>Creative Partner</h3>
-            <p>An editor with a director’s perspective, modern taste, and a calm remote workflow.</p>
-            <ul>
-              <li>Professional collaboration</li>
-              <li>International projects</li>
-              <li>Client-facing polish</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="contact">
       <div class="container">
-        <div class="contact-shell reveal">
+        <div class="contact-block reveal">
           <div>
             <span class="eyebrow">Contact</span>
-            <h2 class="contact-title">Let’s make the <span class="accent">next cut</span> feel worth remembering.</h2>
-            <p>For feature films, documentary editing, trailers, private materials, or premium freelance collaborations, reach out directly. The public site is only part of the story.</p>
+            <h2 class="contact-title">Let’s talk about the <span class="accent">next cut</span>.</h2>
+            <p>For feature films, documentary editing, trailers, private materials, or premium freelance collaborations, reach out directly. The public site is only one layer of the work.</p>
             <div class="contact-links">
               <a class="contact-pill" href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
               <a class="contact-pill" href="tel:+77011071470">+7 701 107 14 70</a>
@@ -1247,17 +1084,17 @@
 
   <footer>
     <div class="container">
-      <div class="footer-shell reveal">
+      <div class="footer-block reveal">
         <div>
           <div class="footer-name">Aidan Serik</div>
           <div class="footer-meta">Film Editor / Director</div>
         </div>
-        <a class="contact-pill" href="#works">Works</a>
+        <a class="contact-pill" href="#work">Work</a>
         <a class="contact-pill" href="#contact">Contact</a>
       </div>
       <div class="footer-note">
         <span>Based in Tbilisi and Almaty · Working worldwide</span>
-        <span>Soft dark palette, lilac accents, stronger typography.</span>
+        <span>Dark plum background with changed type color.</span>
       </div>
     </div>
   </footer>
