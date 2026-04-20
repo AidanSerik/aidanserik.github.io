@@ -1,979 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aidan Serik — Film Editor / Director</title>
-  <meta name="description" content="Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide across feature films, documentaries, and trailer-led storytelling." />
-  <meta name="theme-color" content="#171420" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #171420;
-      --bg-2: #1d1828;
-      --bg-3: #241d33;
-      --text: #f4edff;
-      --muted: rgba(244,237,255,0.68);
-      --muted-2: rgba(244,237,255,0.42);
-      --line: rgba(255,255,255,0.08);
-      --line-strong: rgba(255,255,255,0.16);
-      --panel: rgba(255,255,255,0.04);
-      --panel-2: rgba(255,255,255,0.06);
-      --accent: #c8a8ff;
-      --accent-2: #8d63ff;
-      --shadow: 0 34px 110px rgba(0,0,0,0.34);
-      --max: 1460px;
-      --ease: 360ms cubic-bezier(.2,.8,.2,1);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Manrope, system-ui, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 8% 0%, rgba(200,168,255,0.17), transparent 20%),
-        radial-gradient(circle at 90% 18%, rgba(141,99,255,0.12), transparent 18%),
-        linear-gradient(180deg, #14111c 0%, #171420 38%, #1b1626 100%);
-      overflow-x: hidden;
-      letter-spacing: -0.01em;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.94' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
-      opacity: 0.2;
-      mix-blend-mode: soft-light;
-      z-index: -1;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    iframe, img { display: block; width: 100%; }
-    .container { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
-
-    .nav-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      backdrop-filter: blur(18px);
-      background: rgba(23,20,32,0.62);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    nav {
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-family: Syne, sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-    }
-
-    .brand-mark {
-      width: 11px;
-      height: 11px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 26px rgba(141,99,255,0.55);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .nav-links a { transition: color var(--ease); }
-    .nav-links a:hover { color: var(--text); }
-
-    .hero {
-      padding: 24px 0 36px;
-      min-height: calc(100vh - 74px);
-      display: flex;
-      align-items: stretch;
-    }
-
-    .hero-layout {
-      display: grid;
-      grid-template-columns: 0.62fr 0.38fr;
-      gap: 18px;
-      width: 100%;
-      min-height: calc(100vh - 122px);
-    }
-
-    .hero-main,
-    .hero-side,
-    .work-list,
-    .statement,
-    .about-block,
-    .filmography,
-    .contact-block,
-    .footer-block {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      box-shadow: var(--shadow);
-    }
-
-    .hero-main {
-      border-radius: 38px;
-      padding: 28px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 24px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero-main::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(160deg, rgba(200,168,255,0.08), transparent 28%),
-        linear-gradient(340deg, rgba(141,99,255,0.08), transparent 22%);
-      pointer-events: none;
-    }
-
-    .meta-row {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      color: var(--muted-2);
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .hero-title {
-      position: relative;
-      z-index: 1;
-      margin: 0;
-      font-family: Syne, sans-serif;
-      font-size: clamp(82px, 11vw, 180px);
-      line-height: 0.78;
-      letter-spacing: -0.1em;
-      font-weight: 700;
-      max-width: 980px;
-    }
-
-    .hero-title .line {
-      display: block;
-    }
-
-    .hero-title .accent {
-      color: var(--accent);
-    }
-
-    .hero-bottom {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 18px;
-      align-items: end;
-    }
-
-    .hero-text {
-      margin: 0;
-      max-width: 520px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.78;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .btn {
-      min-height: 54px;
-      padding: 0 20px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: transform var(--ease), background var(--ease), border-color var(--ease);
-    }
-
-    .btn:hover,
-    .contact-pill:hover,
-    .ghost-link:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #130f1f;
-      font-weight: 700;
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-    }
-
-    .hero-notes {
-      display: grid;
-      gap: 12px;
-    }
-
-    .note {
-      padding: 14px 15px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.022);
-    }
-
-    .note strong {
-      display: block;
-      font-size: 13px;
-      margin-bottom: 6px;
-    }
-
-    .note span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .hero-side {
-      border-radius: 38px;
-      padding: 18px;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      gap: 18px;
-      min-height: 100%;
-    }
-
-    .portrait {
-      position: relative;
-      min-height: 620px;
-      border-radius: 28px;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(10,9,16,0.02), rgba(10,9,16,0.48)),
-        url('aidan-portrait.JPG') center 28% / cover no-repeat,
-        #1f182a;
-      filter: grayscale(1) contrast(1.04) brightness(0.96);
-    }
-
-    .portrait::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 0%, transparent 52%, rgba(23,20,32,0.88) 100%);
-    }
-
-    .portrait-card {
-      padding: 18px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .portrait-card strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .portrait-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .section {
-      padding: 92px 0;
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: 0.38fr 0.62fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .statement {
-      border-radius: 34px;
-      padding: 28px;
-      position: sticky;
-      top: 96px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--muted-2);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent));
-    }
-
-    .statement h2 {
-      margin: 16px 0 16px;
-      font-family: Syne, sans-serif;
-      font-size: clamp(36px, 5vw, 68px);
-      line-height: 0.9;
-      letter-spacing: -0.08em;
-      font-weight: 700;
-    }
-
-    .statement h2 .accent { color: var(--accent); }
-    .statement p {
-      margin: 0 0 24px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.75;
-      max-width: 420px;
-    }
-
-    .ghost-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      color: var(--text);
-      transition: transform var(--ease);
-    }
-
-    .work-list {
-      border-radius: 34px;
-      overflow: hidden;
-    }
-
-    .work-item {
-      display: grid;
-      grid-template-columns: 126px 1fr 140px;
-      gap: 18px;
-      align-items: center;
-      padding: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      transition: background var(--ease), transform var(--ease);
-    }
-
-    .work-item:last-child { border-bottom: 0; }
-    .work-item:hover { background: rgba(255,255,255,0.038); }
-
-    .work-year {
-      color: var(--muted-2);
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .work-title {
-      font-family: Syne, sans-serif;
-      font-size: 28px;
-      line-height: 0.96;
-      letter-spacing: -0.05em;
-      margin-bottom: 6px;
-    }
-
-    .work-copy {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-      max-width: 560px;
-    }
-
-    .work-type {
-      justify-self: end;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .reel-block {
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      box-shadow: var(--shadow);
-      padding: 18px;
-    }
-
-    .reel-frame {
-      aspect-ratio: 16 / 9;
-      border-radius: 24px;
-      overflow: hidden;
-      background: #120e1c;
-    }
-
-    .reel-frame iframe { height: 100%; border: 0; }
-
-    .reel-meta {
-      margin-top: 16px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.46fr 0.54fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .about-block,
-    .filmography,
-    .contact-block,
-    .footer-block {
-      border-radius: 34px;
-    }
-
-    .about-block,
-    .contact-block,
-    .footer-block { padding: 30px; }
-
-    .about-block h2,
-    .contact-block h2 {
-      margin: 16px 0 14px;
-      font-family: Syne, sans-serif;
-      font-size: clamp(38px, 5vw, 72px);
-      line-height: 0.9;
-      letter-spacing: -0.08em;
-      font-weight: 700;
-      max-width: 700px;
-    }
-
-    .about-block h2 .accent,
-    .contact-block h2 .accent { color: var(--accent); }
-
-    .about-block p,
-    .contact-block p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.78;
-    }
-
-    .stats {
-      display: grid;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .stat {
-      padding: 18px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.024);
-    }
-
-    .stat strong {
-      display: block;
-      font-family: Syne, sans-serif;
-      color: var(--accent);
-      font-size: 38px;
-      line-height: 0.88;
-      margin-bottom: 8px;
-    }
-
-    .stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .filmography {
-      overflow: hidden;
-      padding: 0;
-    }
-
-    .filmography-head {
-      padding: 24px 24px 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .filmography-head h3 {
-      margin: 12px 0 0;
-      font-family: Syne, sans-serif;
-      font-size: 38px;
-      line-height: 0.92;
-      letter-spacing: -0.06em;
-      font-weight: 700;
-    }
-
-    .film-list {
-      display: grid;
-    }
-
-    .film-item {
-      display: grid;
-      grid-template-columns: 82px 1fr auto;
-      gap: 16px;
-      align-items: center;
-      padding: 18px 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .film-item:last-child { border-bottom: 0; }
-
-    .film-item small {
-      color: var(--muted-2);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-    }
-
-    .film-title {
-      font-family: Syne, sans-serif;
-      font-size: 21px;
-      line-height: 0.96;
-      letter-spacing: -0.04em;
-      margin-bottom: 5px;
-    }
-
-    .film-copy {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .chip {
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      white-space: nowrap;
-    }
-
-    .contact-block {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .contact-pill {
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      transition: transform var(--ease), background var(--ease), border-color var(--ease);
-    }
-
-    .contact-pill:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: var(--line-strong);
-    }
-
-    .footer-block {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .footer-name {
-      font-family: Syne, sans-serif;
-      font-size: clamp(38px, 5vw, 74px);
-      line-height: 0.9;
-      letter-spacing: -0.08em;
-      font-weight: 700;
-    }
-
-    .footer-meta {
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-note {
-      margin-top: 14px;
-      color: var(--muted-2);
-      font-size: 12px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 820ms ease, transform 820ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 1180px) {
-      .hero-layout,
-      .section-grid,
-      .about-grid,
-      .contact-block,
-      .footer-block,
-      .hero-bottom { grid-template-columns: 1fr; }
-      .statement { position: static; }
-      .portrait { min-height: 560px; }
-    }
-
-    @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .hero,
-      .section { padding: 72px 0; }
-      .hero-title,
-      .statement h2,
-      .about-block h2,
-      .contact-block h2 { font-size: clamp(50px, 15vw, 86px); }
-      .work-item,
-      .film-item,
-      .contact-block,
-      .footer-block,
-      .portrait-note,
-      .hero-bottom { grid-template-columns: 1fr; }
-      .reel-meta,
-      .footer-note { flex-direction: column; align-items: flex-start; }
-      .btn { width: 100%; }
-      .hero-actions { width: 100%; }
-      .hero-main,
-      .hero-side,
-      .statement,
-      .about-block,
-      .contact-block,
-      .footer-block { padding: 22px; }
-      .portrait { min-height: 460px; }
-      .work-title { font-size: 24px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aidan Serik — Film Editor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #0b0b0f;
+  color: #eae6ff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* --- ОБЩИЙ СТИЛЬ --- */
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* --- АНИМАЦИЯ ПОЯВЛЕНИЯ --- */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- ТЕКСТ --- */
+h1 {
+  font-size: 64px;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: 400;
+  color: #bba8ff;
+}
+
+p {
+  font-size: 18px;
+  color: #aaa;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* --- СПИСОК ПРОЕКТОВ --- */
+.credits {
+  font-size: 28px;
+  line-height: 2.2;
+  letter-spacing: 0.02em;
+}
+
+.credits span {
+  display: block;
+  color: #bba8ff;
+}
+
+/* --- ВИДЕО --- */
+.video {
+  width: 80%;
+  max-width: 900px;
+  aspect-ratio: 16/9;
+  margin: auto;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* --- КОНТАКТ --- */
+.contact a {
+  color: #bba8ff;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+/* --- СКРОЛЛ ЭФФЕКТ --- */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 20%, rgba(187,168,255,0.08), transparent 60%);
+}
+</style>
 </head>
+
 <body>
-  <div class="nav-wrap">
-    <div class="container">
-      <nav>
-        <a class="brand" href="#top" aria-label="Aidan Serik home">
-          <span class="brand-mark"></span>
-          <span>Aidan Serik</span>
-        </a>
-        <div class="nav-links">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-    </div>
+
+<!-- INTRO -->
+<section class="section fade">
+  <div>
+    <h1>Aidan Serik</h1>
+    <p>Film Editor / Director</p>
   </div>
+</section>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-layout">
-        <div class="hero-main reveal">
-          <div class="meta-row">
-            <span>Film Editor / Director</span>
-            <span>Tbilisi + Almaty / Worldwide</span>
-          </div>
+<!-- TITLE -->
+<section class="section fade">
+  <div>
+    <h1>Feature films, trailers, and editorial rhythm</h1>
+  </div>
+</section>
 
-          <h1 class="hero-title">
-            <span class="line">EDITORIAL</span>
-            <span class="line accent">CUTS</span>
-            <span class="line">FOR FILM</span>
-          </h1>
+<!-- PROJECTS -->
+<section class="section fade">
+  <div class="credits">
+    <span>Madina — Editor</span>
+    <span>Joqtau — Editor</span>
+    <span>DYAD — Director</span>
+    <span>We Live Here — Editor</span>
+    <span>Critical Mass — Editor</span>
+    <span>Silk Road — Editor</span>
+    <span>OT — Editor</span>
+  </div>
+</section>
 
-          <div class="hero-bottom">
-            <div>
-              <p class="hero-text">A creative editorial site built around pacing, typography, and selected credits — closer to a fashion-editorial portfolio than a standard freelancer layout. The structure is intentionally different now: bigger type, cleaner composition, fewer “template” blocks, and a stronger visual point of view.</p>
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#work">View selected work</a>
-                <a class="btn btn-secondary" href="mailto:aidan.serik@gmail.com">Request private materials</a>
-              </div>
-            </div>
-            <div class="hero-notes">
-              <div class="note">
-                <strong>10 years in film</strong>
-                <span>Across editing, directing, documentary, production, and narrative work.</span>
-              </div>
-              <div class="note">
-                <strong>5+ years editing</strong>
-                <span>Feature films, trailers, public excerpts, and interview-led storytelling.</span>
-              </div>
-              <div class="note">
-                <strong>Portfolio logic</strong>
-                <span>Focused on trailers and public-facing materials because many features remain private.</span>
-              </div>
-            </div>
-          </div>
-        </div>
+<!-- VIDEO -->
+<section class="section fade">
+  <div class="video">
+    <iframe src="https://www.youtube.com/embed/AjeegLB0cR4"></iframe>
+  </div>
+</section>
 
-        <div class="hero-side reveal">
-          <div class="portrait"></div>
-          <div class="portrait-card">
-            <strong>Aidan Serik</strong>
-            <p>Film editor and director with a feature-first sensibility, built for cinematic stories, trailers, and selected public work.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- ABOUT -->
+<section class="section fade">
+  <div>
+    <h2>About</h2>
+    <p>
+      Based in Tbilisi and Almaty, working worldwide.  
+      10 years in film, focused on feature storytelling, documentary work, and editorial structure.
+    </p>
+  </div>
+</section>
 
-    <section class="section" id="work">
-      <div class="container section-grid">
-        <aside class="statement reveal">
-          <span class="eyebrow">Selected work</span>
-          <h2>Creative <span class="accent">editorial</span> structure, not a template clone.</h2>
-          <p>I rebuilt this as a different format: a large-type hero, a text-led work index, and a cleaner sequence of sections. It takes inspiration from editorial portfolio patterns like minimal top nav, long-form work lists, and strong typography, which are visible across your references. ([morgantaylorbradley.com](https://www.morgantaylorbradley.com/))</p>
-          <a class="ghost-link" href="#about">Read bio →</a>
-        </aside>
+<!-- CONTACT -->
+<section class="section fade contact">
+  <div>
+    <h2>Contact</h2>
+    <a href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
+    <a href="#">Upwork</a>
+  </div>
+</section>
 
-        <div>
-          <div class="work-list reveal">
-            <div class="work-item">
-              <div class="work-year">2019</div>
-              <div>
-                <div class="work-title">Women in Lenovo Leadership</div>
-                <div class="work-copy">Director · short documentary series with portrait-led storytelling and a clean branded-documentary feel.</div>
-              </div>
-              <div class="work-type">Public</div>
-            </div>
-            <div class="work-item">
-              <div class="work-year">2018</div>
-              <div>
-                <div class="work-title">Go Viral</div>
-                <div class="work-copy">Editor · short documentary shaped around measured pacing, clarity, and narrative progression.</div>
-              </div>
-              <div class="work-type">Public</div>
-            </div>
-            <div class="work-item">
-              <div class="work-year">2019</div>
-              <div>
-                <div class="work-title">Adren CS:GO</div>
-                <div class="work-copy">Editor · contemporary documentary cut with sharper rhythm and stronger audience pull.</div>
-              </div>
-              <div class="work-type">Public</div>
-            </div>
-            <div class="work-item">
-              <div class="work-year">2020</div>
-              <div>
-                <div class="work-title">OT</div>
-                <div class="work-copy">Editor · feature film presented here through trailer-led public-facing material.</div>
-              </div>
-              <div class="work-type">Trailer</div>
-            </div>
-            <div class="work-item">
-              <div class="work-year">2021</div>
-              <div>
-                <div class="work-title">Madina</div>
-                <div class="work-copy">Editor · feature film with trailer available publicly on MUBI.</div>
-              </div>
-              <div class="work-type">MUBI</div>
-            </div>
-            <div class="work-item">
-              <div class="work-year">2023</div>
-              <div>
-                <div class="work-title">DYAD</div>
-                <div class="work-copy">Director · short film presented as private material on request.</div>
-              </div>
-              <div class="work-type">Private</div>
-            </div>
-          </div>
+<script>
+const elements = document.querySelectorAll('.fade');
 
-          <div class="reel-block reveal">
-            <div class="reel-frame">
-              <iframe src="https://www.youtube.com/embed/AjeegLB0cR4?rel=0" title="Selected reel" allowfullscreen></iframe>
-            </div>
-            <div class="reel-meta">
-              <span>Lead video: Women in Lenovo Leadership.</span>
-              <span>This can later become a dedicated 60–90 sec showreel.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+});
 
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-block reveal">
-          <span class="eyebrow">About</span>
-          <h2>More <span class="accent">editorial site</span>, less portfolio grid.</h2>
-          <p>I’m Aidan Serik, a film editor and director based in Tbilisi and Almaty, working worldwide. My background spans feature films, documentaries, short films, interviews, and trailer work. I’m especially interested in material that needs sensitivity, structure, and cuts that shape the emotional logic of a story rather than simply speed it up.</p>
-          <div class="stats">
-            <div class="stat">
-              <strong>10</strong>
-              <span>Years in cinema across editing, directing, documentary practice, and production.</span>
-            </div>
-            <div class="stat">
-              <strong>5+</strong>
-              <span>Years focused specifically on features, trailers, shorts, and interview-led editorial work.</span>
-            </div>
-            <div class="stat">
-              <strong>WW</strong>
-              <span>Based in Tbilisi and Almaty, collaborating internationally with directors, producers, and premium clients.</span>
-            </div>
-          </div>
-        </div>
+elements.forEach(el => observer.observe(el));
+</script>
 
-        <div class="filmography reveal">
-          <div class="filmography-head">
-            <span class="eyebrow">Selected credits</span>
-            <h3>Filmography</h3>
-          </div>
-          <div class="film-list">
-            <div class="film-item">
-              <small>2023</small>
-              <div>
-                <div class="film-title">DYAD</div>
-                <div class="film-copy">Director · short film</div>
-              </div>
-              <div class="chip">Private link</div>
-            </div>
-            <div class="film-item">
-              <small>2022</small>
-              <div>
-                <div class="film-title">Joqtau</div>
-                <div class="film-copy">Editor · feature film</div>
-              </div>
-              <div class="chip">Private materials</div>
-            </div>
-            <div class="film-item">
-              <small>2022</small>
-              <div>
-                <div class="film-title">We Live Here</div>
-                <div class="film-copy">Editor · full-length documentary</div>
-              </div>
-              <div class="chip">Excerpt</div>
-            </div>
-            <div class="film-item">
-              <small>2022</small>
-              <div>
-                <div class="film-title">Buttons</div>
-                <div class="film-copy">Editor · short film</div>
-              </div>
-              <div class="chip">Selected work</div>
-            </div>
-            <div class="film-item">
-              <small>2021</small>
-              <div>
-                <div class="film-title">Madina</div>
-                <div class="film-copy">Editor · feature film · trailer on MUBI</div>
-              </div>
-              <a class="chip" href="https://mubi.com/en/films/madina/trailer" target="_blank" rel="noreferrer noopener">Watch</a>
-            </div>
-            <div class="film-item">
-              <small>2021</small>
-              <div>
-                <div class="film-title">Critical Mass</div>
-                <div class="film-copy">Editor · short documentary</div>
-              </div>
-              <a class="chip" href="https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs" target="_blank" rel="noreferrer noopener">Watch</a>
-            </div>
-            <div class="film-item">
-              <small>2021</small>
-              <div>
-                <div class="film-title">Silk Road</div>
-                <div class="film-copy">Editor · short documentary series</div>
-              </div>
-              <a class="chip" href="https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG" target="_blank" rel="noreferrer noopener">Watch</a>
-            </div>
-            <div class="film-item">
-              <small>2021</small>
-              <div>
-                <div class="film-title">Worxspace</div>
-                <div class="film-copy">Editor · short fashion film</div>
-              </div>
-              <a class="chip" href="https://vimeo.com/735383174?share=copy" target="_blank" rel="noreferrer noopener">Watch</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-block reveal">
-          <div>
-            <span class="eyebrow">Contact</span>
-            <h2>Let’s make the <span class="accent">next cut</span> worth watching.</h2>
-            <p>For feature films, documentary editing, trailers, private materials, or premium freelance collaborations, get in touch directly.</p>
-            <div class="contact-links">
-              <a class="contact-pill" href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
-              <a class="contact-pill" href="tel:+77011071470">+7 701 107 14 70</a>
-              <a class="contact-pill" href="#">Upwork profile</a>
-            </div>
-          </div>
-          <a class="btn btn-primary" href="mailto:aidan.serik@gmail.com">Start a conversation</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-block reveal">
-        <div>
-          <div class="footer-name">Aidan Serik</div>
-          <div class="footer-meta">Film Editor / Director</div>
-        </div>
-        <a class="contact-pill" href="#work">Work</a>
-        <a class="contact-pill" href="#contact">Contact</a>
-      </div>
-      <div class="footer-note">
-        <span>Based in Tbilisi and Almaty · Working worldwide</span>
-        <span>Editorial layout · dark plum palette · lilac accents.</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>
