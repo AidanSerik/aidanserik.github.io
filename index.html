@@ -1,224 +1,674 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aidan Serik — Kino Archive</title>
+  <meta name="description" content="Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide across feature films, documentaries, trailers, and editorial storytelling." />
+  <meta name="theme-color" content="#050505" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --paper: #0a0a0a;
+      --red: #ff120d;
+      --red-dark: #d90f0b;
+      --text: #ff120d;
+      --white: #f7f3eb;
+      --border: #ff120d;
+      --shadow: 0 24px 70px rgba(0,0,0,0.35);
+      --radius: 26px;
+      --max: 1440px;
+      --ease: 280ms cubic-bezier(.2,.8,.2,1);
+    }
 
-<title>Aidan Serik</title>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Archivo, Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    a { color: inherit; text-decoration: none; }
+    img, iframe { display: block; width: 100%; }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+      opacity: 0.22;
+      mix-blend-mode: soft-light;
+      z-index: 100;
+    }
 
-body {
-  background: #0d0d12;
-  color: #eaeaf0;
-  font-family: Inter, sans-serif;
-  overflow-x: hidden;
-}
+    .page {
+      width: min(calc(100% - 16px), 100%);
+      margin: 0 auto;
+      padding-bottom: 110px;
+    }
 
-/* GRAIN */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity: 0.07;
-  pointer-events: none;
-}
+    .ticker {
+      margin: 8px 8px 10px;
+      border: 2px solid var(--border);
+      border-radius: 22px;
+      background: #000;
+      color: var(--text);
+      text-align: center;
+      padding: 14px 18px;
+      font-size: clamp(18px, 1.6vw, 28px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 80px;
-}
+    .hero {
+      margin: 0 8px;
+      position: relative;
+      min-height: 86vh;
+      border: 2px solid var(--border);
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.2)),
+        url('aidan-portrait.JPG') center 28% / cover no-repeat;
+    }
 
-.hero h1 {
-  font-size: 9vw;
-  line-height: 0.9;
-  font-weight: 600;
-}
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.16) 0 2%, transparent 2.2%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.16) 0 2%, transparent 2.2%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,0.16) 0 2%, transparent 2.2%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.16) 0 2%, transparent 2.2%);
+      background-size: 90px 90px;
+      opacity: 0.85;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
 
-.hero span {
-  color: #a78bfa;
-}
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 34px 26px 26px;
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-/* FILM STRIP */
-.film-strip {
-  display: flex;
-  overflow-x: auto;
-  gap: 40px;
-  padding: 80px;
-}
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
 
-.film-card {
-  min-width: 400px;
-  position: relative;
-}
+    .brand {
+      font-size: clamp(18px, 1.6vw, 28px);
+      font-weight: 800;
+      line-height: 1;
+    }
 
-.film-card img {
-  width: 100%;
-  border-radius: 20px;
-  filter: contrast(1.1);
-}
+    .brand small {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 8px;
+      letter-spacing: 0.02em;
+    }
 
-.film-card::before {
-  content: "";
-  position: absolute;
-  inset: -10px;
-  border: 2px dashed rgba(255,255,255,0.2);
-  border-radius: 20px;
-}
+    .top-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
 
-/* WORK GRID */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  padding: 80px;
-}
+    .hero-title {
+      max-width: 100%;
+      font-weight: 900;
+      font-size: clamp(72px, 14vw, 220px);
+      line-height: 0.84;
+      letter-spacing: -0.08em;
+      text-transform: none;
+      margin: 0;
+    }
 
-.work {
-  cursor: pointer;
-}
+    .hero-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-.work img {
-  width: 100%;
-  border-radius: 12px;
-}
+    .hero-caption p {
+      margin: 0;
+      max-width: 640px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
 
-.work h3 {
-  margin-top: 12px;
-  font-size: 18px;
-}
+    .scroll-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: clamp(20px, 2vw, 44px);
+      font-weight: 700;
+    }
 
-/* ABOUT */
-.about {
-  padding: 120px 80px;
-  display: flex;
-  gap: 60px;
-}
+    .scroll-note .arrow {
+      width: 78px;
+      height: 78px;
+      border-radius: 999px;
+      border: 2px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 42px;
+      line-height: 1;
+    }
 
-.about img {
-  width: 300px;
-  border-radius: 10px;
-}
+    .film-divider {
+      display: flex;
+      gap: 10px;
+      overflow: hidden;
+      padding: 10px 6px;
+      margin: 0 0 6px;
+    }
 
-.about-text {
-  max-width: 500px;
-}
+    .film-divider span {
+      width: 18px;
+      height: 18px;
+      background: var(--red);
+      flex: 0 0 auto;
+    }
 
-/* CONTACT */
-.contact {
-  padding: 120px 80px;
-}
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 0 8px 10px;
+    }
 
-.contact a {
-  display: block;
-  color: #a78bfa;
-  margin-top: 10px;
-}
+    .strip-frame {
+      height: 160px;
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      background: #111;
+      position: relative;
+    }
 
-/* NAV */
-nav {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-}
+    .strip-frame img { height: 100%; object-fit: cover; }
 
-nav a {
-  padding: 10px 20px;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 30px;
-  text-decoration: none;
-  color: white;
-}
+    .section {
+      margin: 0 8px 10px;
+      border: 2px solid var(--border);
+      background: #000;
+      box-shadow: var(--shadow);
+    }
 
-nav a:hover {
-  background: #a78bfa;
-  color: black;
-}
+    .section-title-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      padding: 20px 22px;
+      border-bottom: 2px solid var(--border);
+    }
 
-/* FILM FLICKER */
-@keyframes flicker {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0.98; }
-}
+    .section-title-row h2 {
+      margin: 0;
+      font-size: clamp(44px, 8vw, 120px);
+      line-height: 0.86;
+      letter-spacing: -0.08em;
+      font-weight: 900;
+    }
 
-body {
-  animation: flicker 4s infinite;
-}
-</style>
+    .section-title-row .meta {
+      max-width: 320px;
+      text-align: right;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .work-card {
+      display: grid;
+      gap: 10px;
+    }
+
+    .work-head,
+    .work-foot {
+      border: 2px solid var(--border);
+      background: var(--red);
+      color: #000;
+      padding: 14px 16px;
+      min-height: 92px;
+    }
+
+    .work-head {
+      border-radius: 18px;
+    }
+
+    .work-foot {
+      border-radius: 18px;
+    }
+
+    .work-head strong,
+    .work-foot strong {
+      display: block;
+      font-size: clamp(20px, 2vw, 30px);
+      line-height: 1.02;
+      font-weight: 800;
+    }
+
+    .work-head span,
+    .work-foot span {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .film-window {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      background: #111;
+      aspect-ratio: 16 / 10;
+    }
+
+    .film-window iframe,
+    .film-window img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .film-window::before,
+    .film-window::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 18px;
+      background:
+        radial-gradient(circle at center, rgba(255,245,230,0.95) 0 48%, transparent 52%) center 22px / 22px 110px repeat-y;
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .film-window::before { left: 0; }
+    .film-window::after { right: 0; }
+
+    .archive-banner {
+      margin: 0 8px 10px;
+      border: 2px solid var(--border);
+      background: #000;
+      padding: 16px 24px;
+      overflow: hidden;
+      font-family: "Bodoni Moda", serif;
+      font-size: clamp(28px, 4vw, 68px);
+      font-style: italic;
+      white-space: nowrap;
+    }
+
+    .archive-banner .track {
+      display: inline-flex;
+      gap: 24px;
+      min-width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .about-contact {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .about-card,
+    .contact-card {
+      border: 2px solid var(--border);
+      padding: 22px;
+      min-height: 100%;
+    }
+
+    .about-card h3,
+    .contact-card h3 {
+      margin: 0 0 14px;
+      font-size: clamp(36px, 6vw, 86px);
+      line-height: 0.88;
+      letter-spacing: -0.08em;
+      font-weight: 900;
+    }
+
+    .about-card p,
+    .contact-card p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+      font-weight: 600;
+      max-width: 620px;
+    }
+
+    .about-photo {
+      margin-top: 20px;
+      border: 2px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      aspect-ratio: 5 / 3;
+    }
+
+    .about-photo img {
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.04);
+    }
+
+    .contacts {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .contacts a {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 2px solid var(--border);
+      padding: 14px 16px;
+      font-size: 18px;
+      font-weight: 700;
+      transition: background var(--ease), color var(--ease);
+    }
+
+    .contacts a:hover {
+      background: var(--red);
+      color: #000;
+    }
+
+    .footer-block {
+      margin: 0 8px 10px;
+      border: 2px solid var(--border);
+      background: #000;
+      padding: 18px 22px 110px;
+      position: relative;
+    }
+
+    .footer-block h2 {
+      margin: 0;
+      font-size: clamp(72px, 11vw, 180px);
+      line-height: 0.82;
+      letter-spacing: -0.09em;
+      font-weight: 900;
+    }
+
+    .footer-meta {
+      display: grid;
+      grid-template-columns: 1fr 260px 260px;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .footer-meta p,
+    .footer-meta a {
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .footer-meta .group-title {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      font-family: "Bodoni Moda", serif;
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%);
+      z-index: 90;
+      display: flex;
+      gap: 0;
+      border: 2px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      background: var(--red);
+      box-shadow: var(--shadow);
+    }
+
+    .bottom-nav a {
+      color: #000;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 16px 22px;
+      border-right: 2px solid #000;
+      transition: background var(--ease), color var(--ease);
+    }
+
+    .bottom-nav a:last-child { border-right: 0; }
+    .bottom-nav a:hover {
+      background: #000;
+      color: var(--red);
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .about-contact,
+      .footer-meta,
+      .hero-caption,
+      .hero-top,
+      .hero-bottom { grid-template-columns: 1fr; }
+      .works-grid { grid-template-columns: 1fr; }
+      .strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .section-title-row { flex-direction: column; align-items: flex-start; }
+      .section-title-row .meta { text-align: left; }
+    }
+
+    @media (max-width: 760px) {
+      .hero-title,
+      .footer-block h2,
+      .section-title-row h2,
+      .about-card h3,
+      .contact-card h3 {
+        font-size: clamp(52px, 18vw, 110px);
+      }
+      .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .film-divider span { width: 12px; height: 12px; }
+      .bottom-nav {
+        width: calc(100% - 18px);
+        justify-content: space-between;
+      }
+      .bottom-nav a {
+        flex: 1 1 25%;
+        text-align: center;
+        padding: 14px 10px;
+        font-size: 15px;
+      }
+      .work-item,
+      .footer-meta { grid-template-columns: 1fr; }
+      .work-type { justify-self: start; }
+      .hero-inner,
+      .about-card,
+      .contact-card,
+      .footer-block { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <div class="ticker">Kino Archive — film editor / director — trailers, features, documentary, rhythm, structure, montage</div>
 
-<section class="hero">
-  <h1>
-    AIDAN<br>
-    <span>SERIK</span><br><br>
-    FILM EDITOR<br>
-    & DIRECTOR
-  </h1>
-</section>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="hero-top">
+          <div class="brand">Aidan Serik<small>Film Editor / Director</small></div>
+          <div class="top-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Call</a>
+          </div>
+        </div>
 
-<section class="film-strip">
-  <div class="film-card">
-    <img src="aidan-portrait.JPG">
+        <h1 class="hero-title">Kino <br> Archive</h1>
+
+        <div class="hero-caption">
+          <p>Portfolio built like a film interface: archive logic, frame-based works, oversized titles, and a cinematic material feel. Based in Tbilisi and Almaty, working worldwide.</p>
+          <div class="scroll-note">Scroll <span class="arrow">↓</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="film-divider" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <section class="strip">
+      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
+      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
+      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
+      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
+      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
+      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section-title-row">
+        <h2>Selected Work</h2>
+        <div class="meta">Each project is presented like a film frame: title strip, frame window, and archive note.</div>
+      </div>
+
+      <div class="works-grid">
+        <article class="work-card">
+          <div class="work-head"><strong>Women in Lenovo Leadership</strong><span>Director · documentary series · 2019</span></div>
+          <div class="film-window"><iframe src="https://www.youtube.com/embed/AjeegLB0cR4?rel=0" title="Women in Lenovo Leadership" allowfullscreen></iframe></div>
+          <div class="work-foot"><strong>Public-facing lead reel</strong><span>Portrait-led documentary storytelling</span></div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head"><strong>Go Viral</strong><span>Editor · short documentary · 2018</span></div>
+          <div class="film-window"><iframe src="https://www.youtube.com/embed/mYmn1BOXJT4?rel=0" title="Go Viral" allowfullscreen></iframe></div>
+          <div class="work-foot"><strong>Measured progression</strong><span>Editorial rhythm and narrative clarity</span></div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head"><strong>Adren CS:GO</strong><span>Editor · short documentary · 2019</span></div>
+          <div class="film-window"><iframe src="https://www.youtube.com/embed/CmohrAsusaY?rel=0" title="Adren CS GO" allowfullscreen></iframe></div>
+          <div class="work-foot"><strong>Contemporary energy</strong><span>Sharper pacing and audience pull</span></div>
+        </article>
+
+        <article class="work-card">
+          <div class="work-head"><strong>OT</strong><span>Editor · feature film · 2020</span></div>
+          <div class="film-window"><iframe src="https://www.youtube.com/embed/LZEonboLtXg?rel=0" title="OT feature film" allowfullscreen></iframe></div>
+          <div class="work-foot"><strong>Feature-led material</strong><span>Trailer presentation for public portfolio</span></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="archive-banner">
+      <div class="track">Noire ✶ Retro ✶ 4x3 ✶ Kino Archive ✶ Movie ✶ Montage ✶ Trailer ✶ Documentary ✶ Feature ✶ Noire ✶ Retro ✶ 4x3 ✶ Kino Archive ✶ Movie ✶ Montage ✶ Trailer ✶ Documentary ✶ Feature ✶</div>
+    </div>
+
+    <section class="section">
+      <div class="section-title-row">
+        <h2>Credits</h2>
+        <div class="meta">A compact list for clients who need the factual side of the portfolio quickly.</div>
+      </div>
+
+      <div class="work-list">
+        <div class="work-item"><div class="work-year">2023</div><div><div class="work-title">DYAD</div><div class="work-copy">Director · short film</div></div><div class="work-type">Private</div></div>
+        <div class="work-item"><div class="work-year">2022</div><div><div class="work-title">Joqtau</div><div class="work-copy">Editor · feature film</div></div><div class="work-type">Private</div></div>
+        <div class="work-item"><div class="work-year">2022</div><div><div class="work-title">We Live Here</div><div class="work-copy">Editor · full-length documentary</div></div><div class="work-type">Excerpt</div></div>
+        <div class="work-item"><div class="work-year">2022</div><div><div class="work-title">Buttons</div><div class="work-copy">Editor · short film</div></div><div class="work-type">Selected</div></div>
+        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Madina</div><div class="work-copy">Editor · feature film · trailer on MUBI</div></div><a class="work-type" href="https://mubi.com/en/films/madina/trailer" target="_blank" rel="noreferrer noopener">Watch</a></div>
+        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Critical Mass</div><div class="work-copy">Editor · short documentary</div></div><a class="work-type" href="https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs" target="_blank" rel="noreferrer noopener">Watch</a></div>
+        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Silk Road</div><div class="work-copy">Editor · short documentary series</div></div><a class="work-type" href="https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG" target="_blank" rel="noreferrer noopener">Watch</a></div>
+        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Worxspace</div><div class="work-copy">Editor · short fashion film</div></div><a class="work-type" href="https://vimeo.com/735383174?share=copy" target="_blank" rel="noreferrer noopener">Watch</a></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="about-contact">
+        <div class="about-card">
+          <h3>About</h3>
+          <p>Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide. The site is intentionally built like a film archive and physical strip: bold titles, hard contrast, frame windows, and clear project indexing. Behind the style is a straightforward offer — feature editing, documentary structure, trailer work, and a director’s eye for rhythm.</p>
+          <div class="about-photo"><img src="aidan-portrait.JPG" alt="Aidan Serik"></div>
+        </div>
+
+        <div class="contact-card" id="contact">
+          <h3>Call</h3>
+          <p>For feature films, documentary editing, trailers, and private materials, get in touch directly. Public links are just part of the archive.</p>
+          <div class="contacts">
+            <a href="mailto:aidan.serik@gmail.com"><span>Email</span><span>aidan.serik@gmail.com</span></a>
+            <a href="tel:+77011071470"><span>Phone</span><span>+7 701 107 14 70</span></a>
+            <a href="#"><span>Upwork</span><span>Add your profile link</span></a>
+            <a href="https://vimeo.com" target="_blank" rel="noreferrer noopener"><span>Vimeo</span><span>Selected public materials</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-block">
+      <h2>Footer Kino</h2>
+      <div class="footer-meta">
+        <p>Film editor / director<br>Based in Tbilisi and Almaty<br>Working worldwide</p>
+        <div>
+          <div class="group-title">Social</div>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer noopener">LinkedIn</a><br>
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer noopener">Instagram</a><br>
+          <a href="https://vimeo.com" target="_blank" rel="noreferrer noopener">Vimeo</a>
+        </div>
+        <div>
+          <div class="group-title">Index</div>
+          <a href="#home">Home</a><br>
+          <a href="#work">Work</a><br>
+          <a href="#about">About</a><br>
+          <a href="#contact">Call</a>
+        </div>
+      </div>
+    </footer>
   </div>
-  <div class="film-card">
-    <img src="aidan-portrait.JPG">
-  </div>
-  <div class="film-card">
-    <img src="aidan-portrait.JPG">
-  </div>
-</section>
 
-<section class="grid">
-  <div class="work">
-    <img src="aidan-portrait.JPG">
-    <h3>Women in Lenovo — 2019</h3>
-  </div>
-
-  <div class="work">
-    <img src="aidan-portrait.JPG">
-    <h3>Adren CS:GO — 2019</h3>
-  </div>
-</section>
-
-<section class="about">
-  <img src="aidan-portrait.JPG">
-  <div class="about-text">
-    <h2>Aidan Serik</h2>
-    <p>Based in Tbilisi & Almaty. Working worldwide.</p>
-    <br>
-    <p>Editor / Director focused on documentary and narrative storytelling.</p>
-  </div>
-</section>
-
-<section class="contact">
-  <h2>Contact</h2>
-  <a href="#">Email</a>
-  <a href="#">Instagram</a>
-  <a href="#">Vimeo</a>
-</section>
-
-<nav>
-  <a href="#">Home</a>
-  <a href="#">Work</a>
-  <a href="#">About</a>
-  <a href="#">Contact</a>
-</nav>
-
+  <nav class="bottom-nav" aria-label="Primary">
+    <a href="#home">Home</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Call</a>
+  </nav>
 </body>
 </html>
