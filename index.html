@@ -4,28 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aidan Serik — Film Editor & Director</title>
-  <meta name="description" content="Film editor and director working across feature films, trailers, documentaries, and high-end narrative storytelling." />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="description" content="Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide across feature films, trailers, documentaries, and narrative storytelling." />
+  <meta name="theme-color" content="#09090b" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0b0c;
-      --bg-soft: #111214;
-      --panel: rgba(255,255,255,0.04);
-      --panel-strong: rgba(255,255,255,0.07);
-      --line: rgba(255,255,255,0.10);
-      --text: #f5f1ea;
-      --muted: rgba(245,241,234,0.70);
-      --muted-2: rgba(245,241,234,0.48);
-      --accent: #d6b27a;
-      --accent-2: #8d6b3f;
-      --shadow: 0 24px 80px rgba(0,0,0,0.35);
-      --radius-lg: 28px;
-      --radius-md: 20px;
-      --radius-sm: 14px;
-      --max: 1240px;
+      --bg: #09090b;
+      --bg-soft: #0f1014;
+      --bg-panel: rgba(255,255,255,0.04);
+      --bg-panel-2: rgba(255,255,255,0.06);
+      --line: rgba(255,255,255,0.09);
+      --line-strong: rgba(255,255,255,0.16);
+      --text: #f4f3f7;
+      --muted: rgba(244,243,247,0.68);
+      --muted-2: rgba(244,243,247,0.45);
+      --lilac: #c5b7ff;
+      --blue: #7aa2ff;
+      --accent-glow: rgba(122,162,255,0.22);
+      --shadow: 0 28px 80px rgba(0,0,0,0.38);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --max: 1280px;
       --ease: 320ms cubic-bezier(.2,.7,.2,1);
     }
 
@@ -33,65 +35,83 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, system-ui, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(214,178,122,0.12), transparent 28%),
-        radial-gradient(circle at 85% 12%, rgba(214,178,122,0.08), transparent 20%),
-        linear-gradient(180deg, #0a0a0b 0%, #0b0b0c 38%, #111214 100%);
+      font-family: Inter, Manrope, system-ui, sans-serif;
       color: var(--text);
+      background:
+        radial-gradient(circle at 14% 0%, rgba(197,183,255,0.16), transparent 22%),
+        radial-gradient(circle at 86% 12%, rgba(122,162,255,0.14), transparent 22%),
+        linear-gradient(180deg, #07070a 0%, #09090b 34%, #0d0e12 100%);
       line-height: 1.5;
+      letter-spacing: -0.01em;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 86%);
+      pointer-events: none;
+      opacity: 0.18;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: 0.22;
+      mix-blend-mode: soft-light;
+      z-index: -1;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    button, input, textarea { font: inherit; }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-    }
+    iframe, img { display: block; width: 100%; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+    .section { padding: 92px 0; position: relative; }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 12px;
-      letter-spacing: 0.18em;
+      font-size: 11px;
       text-transform: uppercase;
+      letter-spacing: 0.18em;
       color: var(--muted);
     }
 
     .eyebrow::before {
       content: "";
-      width: 30px;
+      width: 28px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent));
-    }
-
-    .section {
-      padding: 96px 0;
-      position: relative;
+      background: linear-gradient(90deg, transparent, var(--lilac));
     }
 
     .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 24px;
-      margin-bottom: 34px;
+      align-items: end;
+      margin-bottom: 30px;
     }
 
     .section-title {
-      margin: 16px 0 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(40px, 7vw, 72px);
-      line-height: 0.96;
-      letter-spacing: -0.03em;
-      font-weight: 600;
+      font-size: clamp(34px, 6vw, 76px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+      margin: 14px 0 0;
+      font-weight: 700;
     }
 
     .section-copy {
-      max-width: 520px;
+      margin: 0;
+      max-width: 540px;
       color: var(--muted);
       font-size: 16px;
     }
@@ -101,7 +121,7 @@
       top: 0;
       z-index: 30;
       backdrop-filter: blur(18px);
-      background: rgba(11,11,12,0.55);
+      background: rgba(9,9,11,0.58);
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
@@ -110,276 +130,280 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 22px;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      font-size: 18px;
+      letter-spacing: -0.04em;
     }
 
-    .brand-mark {
-      width: 10px;
-      height: 10px;
+    .brand-dot {
+      width: 11px;
+      height: 11px;
       border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 24px rgba(214,178,122,0.7);
+      background: linear-gradient(135deg, var(--lilac), var(--blue));
+      box-shadow: 0 0 32px rgba(197,183,255,0.65);
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 22px;
+      align-items: center;
       color: var(--muted);
       font-size: 14px;
     }
 
-    .nav-links a {
-      transition: color var(--ease), opacity var(--ease);
-    }
+    .nav-links a { transition: color var(--ease); }
+    .nav-links a:hover { color: var(--text); }
 
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--text);
-    }
-
-    .nav-cta {
+    .nav-btn {
       padding: 11px 16px;
-      border: 1px solid var(--line);
       border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
       color: var(--text);
-      transition: background var(--ease), border-color var(--ease), transform var(--ease);
+      transition: transform var(--ease), background var(--ease), border-color var(--ease);
     }
 
-    .nav-cta:hover { background: rgba(255,255,255,0.05); transform: translateY(-1px); }
+    .nav-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.06); border-color: var(--line-strong); }
 
     .hero {
-      padding: 72px 0 36px;
       min-height: calc(100vh - 76px);
       display: flex;
       align-items: center;
+      padding: 42px 0 54px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 24px;
       align-items: stretch;
     }
 
-    .hero-copy {
-      padding: 26px 0;
+    .hero-left {
+      min-height: 720px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 20px 0;
     }
 
     .hero-title {
-      margin: 20px 0 18px;
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 600;
-      font-size: clamp(54px, 7vw, 104px);
-      line-height: 0.92;
-      letter-spacing: -0.05em;
-      max-width: 840px;
+      max-width: 860px;
+      margin: 16px 0 18px;
+      font-size: clamp(56px, 8vw, 126px);
+      line-height: 0.88;
+      letter-spacing: -0.07em;
+      font-weight: 700;
     }
 
     .hero-title .accent {
-      color: var(--accent);
-      font-style: italic;
+      background: linear-gradient(135deg, var(--lilac), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero-text {
-      max-width: 620px;
-      font-size: 18px;
+      max-width: 680px;
       color: var(--muted);
+      font-size: 17px;
+      margin: 0;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin: 34px 0 44px;
+      margin-top: 28px;
     }
 
     .btn {
+      min-height: 54px;
+      padding: 0 20px;
+      border-radius: 999px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      transition: transform var(--ease), background var(--ease), border-color var(--ease), color var(--ease);
-      cursor: pointer;
+      transition: transform var(--ease), background var(--ease), border-color var(--ease), opacity var(--ease);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #f0d5ad);
-      color: #171411;
+      background: linear-gradient(135deg, var(--lilac), var(--blue));
+      color: #0b0b12;
       font-weight: 700;
+      box-shadow: 0 12px 34px rgba(122,162,255,0.18);
     }
 
     .btn-primary:hover { transform: translateY(-1px); }
 
     .btn-secondary {
-      border-color: var(--line);
-      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
       color: var(--text);
     }
 
-    .btn-secondary:hover { background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+    .btn-secondary:hover { transform: translateY(-1px); background: rgba(255,255,255,0.06); }
 
-    .hero-facts {
+    .hero-meta {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
-      max-width: 740px;
     }
 
-    .fact {
-      padding: 18px;
-      border-radius: var(--radius-md);
-      background: var(--panel);
+    .meta-card,
+    .glass,
+    .list-card,
+    .contact-card,
+    .reel-shell,
+    .project-card,
+    .about-card,
+    .services-card,
+    .footer-top {
       border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.028));
       box-shadow: var(--shadow);
     }
 
-    .fact strong {
-      display: block;
-      font-size: 15px;
-      margin-bottom: 7px;
-    }
-
-    .fact span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .hero-card {
-      position: relative;
+    .meta-card {
+      border-radius: var(--radius-md);
       padding: 18px;
-      border-radius: 34px;
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .meta-card span { color: var(--muted); font-size: 13px; }
+
+    .hero-right {
+      position: relative;
+      min-height: 720px;
+    }
+
+    .portrait-card {
+      position: relative;
+      height: 100%;
+      min-height: 720px;
+      padding: 18px;
+      border-radius: var(--radius-xl);
       border: 1px solid rgba(255,255,255,0.08);
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02)),
-        rgba(11,11,12,0.85);
-      box-shadow: var(--shadow);
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+        rgba(11,11,16,0.86);
       overflow: hidden;
-      min-height: 670px;
+      box-shadow: var(--shadow);
     }
 
-    .hero-card::before {
+    .portrait-card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 24%, rgba(214,178,122,0.05));
+      background: radial-gradient(circle at top left, rgba(197,183,255,0.18), transparent 28%), radial-gradient(circle at bottom right, rgba(122,162,255,0.12), transparent 24%);
       pointer-events: none;
     }
 
-    .hero-media {
+    .portrait-frame {
       position: relative;
-      height: 100%;
-      min-height: 620px;
       border-radius: 24px;
       overflow: hidden;
+      height: 100%;
+      min-height: 650px;
       background:
-        linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.72)),
-        radial-gradient(circle at 30% 20%, rgba(214,178,122,0.34), transparent 24%),
-        url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=80') center/cover;
+        linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.35)),
+        url('aidan-portrait.jpg') center 22% / cover no-repeat,
+        #111;
+      filter: saturate(0.88) contrast(1.04);
     }
 
-    .floating-note {
+    .portrait-note {
       position: absolute;
-      right: 22px;
-      bottom: 22px;
-      width: min(300px, calc(100% - 44px));
-      padding: 18px 18px 16px;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 18px;
       border-radius: 22px;
-      background: rgba(10,10,11,0.76);
+      background: rgba(9,9,12,0.72);
       border: 1px solid rgba(255,255,255,0.08);
       backdrop-filter: blur(12px);
     }
 
-    .floating-note strong { display: block; margin-bottom: 6px; font-size: 14px; }
-    .floating-note p { margin: 0; font-size: 13px; color: var(--muted); }
-
-    .logo-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .logo-chip {
-      min-height: 58px;
-      display: grid;
-      place-items: center;
-      padding: 8px 12px;
+    .portrait-note strong { display: block; margin-bottom: 4px; font-size: 14px; }
+    .portrait-note span { color: var(--muted); font-size: 13px; }
+    .portrait-pill {
+      padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .ticker-wrap {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       background: rgba(255,255,255,0.02);
-      color: var(--muted);
-      font-size: 13px;
-      text-align: center;
+      overflow: hidden;
     }
 
-    .feature-band {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-      padding: 26px 0;
-    }
-
-    .feature-grid .item {
+    .ticker {
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-      padding: 8px 16px;
-      border-left: 1px solid rgba(255,255,255,0.08);
+      gap: 26px;
+      min-width: max-content;
+      padding: 14px 0;
+      animation: ticker 26s linear infinite;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .feature-grid .item:first-child { border-left: 0; padding-left: 0; }
+    .ticker span::after {
+      content: '✦';
+      margin-left: 26px;
+      color: rgba(197,183,255,0.72);
+    }
 
-    .feature-grid strong { font-size: 14px; }
-    .feature-grid span { color: var(--muted); font-size: 14px; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
 
     .reel-shell {
       padding: 18px;
       border-radius: 30px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
     .reel-frame {
       position: relative;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       border-radius: 22px;
-      background: #090909;
-      aspect-ratio: 16 / 9;
+      background: #060608;
     }
 
-    .reel-frame iframe,
-    .project-media iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
+    .reel-frame iframe { width: 100%; height: 100%; border: 0; }
 
     .reel-meta {
       display: flex;
       justify-content: space-between;
       gap: 18px;
-      margin-top: 18px;
+      margin-top: 16px;
       color: var(--muted);
       font-size: 14px;
     }
@@ -387,50 +411,47 @@
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      gap: 18px;
     }
 
     .project-card {
       border-radius: 28px;
       overflow: hidden;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow);
       transition: transform var(--ease), border-color var(--ease), background var(--ease);
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(214,178,122,0.35);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border-color: rgba(197,183,255,0.28);
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
     }
 
     .project-media {
       aspect-ratio: 16 / 10;
-      background: #090909;
+      background: #060608;
     }
 
-    .project-body {
-      padding: 22px;
-    }
+    .project-media iframe { width: 100%; height: 100%; border: 0; }
 
-    .project-type {
+    .project-body { padding: 22px; }
+    .project-label {
       display: inline-flex;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
       margin-bottom: 12px;
+      color: var(--lilac);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
     }
 
     .project-title {
       margin: 0 0 10px;
       font-size: 24px;
-      letter-spacing: -0.03em;
+      line-height: 1;
+      letter-spacing: -0.04em;
     }
 
     .project-copy {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       color: var(--muted);
       font-size: 15px;
     }
@@ -445,65 +466,84 @@
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.02);
       color: var(--muted);
       font-size: 12px;
     }
 
-    .awards-wrap {
+    .list-layout {
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
-      gap: 22px;
+      gap: 18px;
       align-items: start;
     }
 
-    .quote-card,
-    .panel-card {
+    .about-card,
+    .list-card,
+    .services-card,
+    .contact-card,
+    .footer-top {
       border-radius: 28px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .quote-card {
-      padding: 32px;
-      min-height: 100%;
-    }
+    .about-card,
+    .services-card,
+    .contact-card,
+    .footer-top { padding: 28px; }
 
-    .quote-mark {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 72px;
-      line-height: 0.8;
-      color: var(--accent);
-    }
+    .about-card p,
+    .services-card p,
+    .contact-card p { color: var(--muted); margin: 0; }
 
-    .quote-card p {
-      margin: 12px 0 0;
-      font-size: clamp(24px, 4vw, 40px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      max-width: 520px;
-    }
-
-    .awards-list {
+    .info-stack {
       display: grid;
       gap: 14px;
     }
 
-    .award-row {
-      display: grid;
-      grid-template-columns: 92px 1fr auto;
-      gap: 18px;
-      align-items: center;
-      padding: 20px 22px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    .mini-box {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
     }
 
-    .award-row:last-child { border-bottom: 0; }
-    .award-year { color: var(--accent); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; }
-    .award-title { font-size: 18px; margin-bottom: 4px; }
-    .award-copy { color: var(--muted); font-size: 14px; }
-    .award-chip {
+    .mini-box strong {
+      display: block;
+      font-size: 38px;
+      line-height: 0.9;
+      margin-bottom: 8px;
+      color: var(--lilac);
+    }
+
+    .mini-box span { color: var(--muted); font-size: 14px; }
+
+    .film-list,
+    .award-list {
+      display: grid;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 108px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .row:last-child { border-bottom: 0; }
+    .row small {
+      display: block;
+      color: var(--muted-2);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+    }
+
+    .row-title { font-size: 18px; margin-bottom: 4px; }
+    .row-copy { color: var(--muted); font-size: 14px; }
+    .chip {
       padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
@@ -512,112 +552,72 @@
       white-space: nowrap;
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-    }
-
-    .about-main,
-    .about-side,
-    .services-grid .service-card,
-    .contact-card {
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow);
-    }
-
-    .about-main,
-    .about-side {
-      padding: 30px;
-    }
-
-    .about-main p,
-    .about-side p { color: var(--muted); margin: 0; font-size: 16px; }
-
-    .about-side {
-      display: grid;
-      gap: 18px;
-    }
-
-    .mini-stat {
-      display: grid;
-      grid-template-columns: 72px 1fr;
-      gap: 16px;
-      align-items: start;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .mini-stat:first-child { border-top: 0; padding-top: 0; }
-    .mini-stat strong {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 40px;
-      line-height: 0.9;
-      color: var(--accent);
-      font-weight: 600;
-    }
-    .mini-stat span { color: var(--muted); font-size: 14px; }
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
+      gap: 16px;
+      margin-top: 24px;
     }
 
-    .service-card { padding: 24px; }
-    .service-card h3 {
-      margin: 0 0 14px;
-      font-size: 21px;
+    .service {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.024);
+    }
+
+    .service h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1;
       letter-spacing: -0.03em;
     }
-    .service-card p { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
-    .service-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 10px;
+
+    .service p {
       color: var(--muted);
       font-size: 14px;
+      margin: 0 0 14px;
     }
-    .service-card li {
+
+    .service ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .service li {
+      padding-left: 16px;
       position: relative;
-      padding-left: 18px;
     }
-    .service-card li::before {
+
+    .service li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 9px;
+      top: 8px;
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--lilac), var(--blue));
     }
 
     .contact-card {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 20px;
+      gap: 24px;
       align-items: center;
-      padding: 32px;
     }
 
-    .contact-card h2 {
-      margin: 16px 0 12px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(38px, 5vw, 64px);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      font-weight: 600;
-    }
-
-    .contact-card p {
-      max-width: 560px;
-      color: var(--muted);
-      margin: 0;
+    .contact-title {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      margin: 12px 0 14px;
+      font-weight: 700;
     }
 
     .contact-links {
@@ -632,20 +632,33 @@
       border-radius: 999px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.03);
+      color: var(--text);
       transition: transform var(--ease), background var(--ease), border-color var(--ease);
     }
 
     .contact-link:hover {
       transform: translateY(-1px);
-      background: rgba(255,255,255,0.06);
-      border-color: rgba(214,178,122,0.35);
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(197,183,255,0.26);
     }
 
-    footer {
-      padding: 28px 0 46px;
-      color: var(--muted-2);
-      font-size: 13px;
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 14px;
     }
+
+    .footer-name {
+      font-size: clamp(32px, 5vw, 62px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      font-weight: 700;
+    }
+
+    footer { padding: 0 0 34px; }
+    .footer-bottom { color: var(--muted-2); font-size: 12px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
     .reveal {
       opacity: 0;
@@ -658,40 +671,36 @@
       transform: translateY(0);
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1120px) {
       .hero-grid,
-      .awards-wrap,
-      .about-grid,
-      .contact-card { grid-template-columns: 1fr; }
+      .section-head,
+      .list-layout,
+      .contact-card,
+      .footer-top { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .services-grid,
-      .feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-card { min-height: 520px; }
-      .hero-media { min-height: 460px; }
-      .feature-grid .item:nth-child(3) { border-left: 0; padding-left: 0; }
+      .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-left,
+      .hero-right,
+      .portrait-card { min-height: auto; }
+      .portrait-frame { min-height: 540px; }
     }
 
     @media (max-width: 760px) {
-      .section { padding: 76px 0; }
-      nav { min-height: 70px; }
+      .section { padding: 72px 0; }
       .nav-links { display: none; }
-      .hero { min-height: auto; padding-top: 36px; }
-      .hero-title { font-size: clamp(46px, 15vw, 70px); }
-      .hero-facts,
-      .logo-row,
+      .hero { min-height: auto; }
+      .hero-title { font-size: clamp(48px, 14vw, 72px); }
+      .hero-meta,
       .projects-grid,
-      .services-grid,
-      .feature-grid { grid-template-columns: 1fr; }
-      .feature-grid .item { border-left: 0; padding-left: 0; padding-right: 0; }
-      .award-row { grid-template-columns: 1fr; }
-      .reel-meta,
-      .section-head { flex-direction: column; align-items: start; }
-      .contact-card { padding: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr; }
+      .contact-title { font-size: clamp(38px, 14vw, 58px); }
       .btn { width: 100%; }
       .hero-actions { width: 100%; }
-      .hero-card { min-height: 440px; }
-      .hero-media { min-height: 400px; }
-      .floating-note { position: static; width: 100%; margin-top: 16px; }
+      .portrait-note { grid-template-columns: 1fr; }
+      .reel-meta,
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .ticker { animation-duration: 18s; }
     }
   </style>
 </head>
@@ -700,15 +709,15 @@
     <div class="container">
       <nav>
         <a class="brand" href="#top" aria-label="Aidan Serik home">
-          <span class="brand-mark"></span>
+          <span class="brand-dot"></span>
           <span>Aidan Serik</span>
         </a>
         <div class="nav-links">
-          <a href="#work">Work</a>
-          <a href="#recognition">Recognition</a>
+          <a href="#reel">Reel</a>
+          <a href="#work">Works</a>
+          <a href="#films">Films</a>
           <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a class="nav-cta" href="#contact">Get in touch</a>
+          <a class="nav-btn" href="#contact">Let’s talk</a>
         </div>
       </nav>
     </div>
@@ -717,66 +726,53 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <span class="eyebrow">Feature film editor · trailer-led portfolio</span>
-          <h1 class="hero-title">Crafting <span class="accent">cinematic rhythm</span> for feature films, trailers, and emotionally precise stories.</h1>
-          <p class="hero-text">
-            I am a film editor and director with a decade in cinema and 5+ years focused on editing. My work spans feature films, documentaries, and narrative projects recognized on the festival circuit. Because many projects are feature-length, this portfolio highlights trailers and selected excerpts rather than full films.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#reel">Watch selected trailer work</a>
-            <a class="btn btn-secondary" href="mailto:aidan.serik@gmail.com">Email for full materials</a>
+        <div class="hero-left reveal">
+          <div>
+            <span class="eyebrow">Film editor · director · based in Tbilisi and Almaty · working worldwide</span>
+            <h1 class="hero-title">Editing <span class="accent">cinematic stories</span> for features, documentaries, and trailer-led portfolios.</h1>
+            <p class="hero-text">
+              I’ve spent around 10 years working in cinema and 5+ years focused specifically on editing. My work moves between feature films, documentary storytelling, trailers, and carefully shaped narrative material. Because many projects are feature-length, this portfolio highlights trailers, excerpts, and public-facing materials rather than full films.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#reel">Watch selected work</a>
+              <a class="btn btn-secondary" href="mailto:aidan.serik@gmail.com">Request full materials</a>
+            </div>
           </div>
-          <div class="hero-facts">
-            <div class="fact">
+
+          <div class="hero-meta">
+            <div class="meta-card">
               <strong>10 years in film</strong>
-              <span>Across directing, editing, documentary, set and post-production roles.</span>
+              <span>Across documentary, narrative, production, directing, and post-production.</span>
             </div>
-            <div class="fact">
+            <div class="meta-card">
               <strong>5+ years editing</strong>
-              <span>Feature films, trailers, documentaries, interviews, and commercial storytelling.</span>
+              <span>Feature films, shorts, interviews, trailers, and documentary work.</span>
             </div>
-            <div class="fact">
-              <strong>Festival-caliber work</strong>
-              <span>Portfolio positioned around completed films recognized at top-tier festivals.</span>
+            <div class="meta-card">
+              <strong>Worldwide collaboration</strong>
+              <span>Based between Tbilisi and Almaty, available for remote editorial work internationally.</span>
             </div>
-          </div>
-          <div class="logo-row" aria-label="Positioning highlights">
-            <div class="logo-chip">Feature Films</div>
-            <div class="logo-chip">Documentaries</div>
-            <div class="logo-chip">Trailer Editing</div>
-            <div class="logo-chip">Director’s Eye</div>
           </div>
         </div>
-        <div class="hero-card reveal">
-          <div class="hero-media">
-            <div class="floating-note">
-              <strong>Portfolio note</strong>
-              <p>Full features are not published here. This site is intentionally built around trailers, excerpts, and concise case framing for producers and clients.</p>
+
+        <div class="hero-right reveal">
+          <div class="portrait-card">
+            <div class="portrait-frame"></div>
+            <div class="portrait-note">
+              <div>
+                <strong>Aidan Serik</strong>
+                <span>Film Editor & Director · feature-led editorial sensibility · trailer-first presentation</span>
+              </div>
+              <div class="portrait-pill">Minimal · modern · cinematic</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="feature-band">
-      <div class="container feature-grid reveal">
-        <div class="item">
-          <strong>Narrative first</strong>
-          <span>Performance, pacing, and emotional continuity drive every cut.</span>
-        </div>
-        <div class="item">
-          <strong>Director + editor</strong>
-          <span>A creative partner who understands both structure and execution.</span>
-        </div>
-        <div class="item">
-          <strong>Festival positioning</strong>
-          <span>Work presented with credibility, restraint, and cinematic tone.</span>
-        </div>
-        <div class="item">
-          <strong>Client-friendly delivery</strong>
-          <span>Clear communication, thoughtful notes, and professional turnaround.</span>
-        </div>
+    <section class="ticker-wrap" aria-hidden="true">
+      <div class="ticker">
+        <span>Feature films</span><span>Documentary editing</span><span>Trailer cuts</span><span>Interview structure</span><span>Narrative pacing</span><span>Festival-ready positioning</span><span>Feature films</span><span>Documentary editing</span><span>Trailer cuts</span><span>Interview structure</span><span>Narrative pacing</span><span>Festival-ready positioning</span>
       </div>
     </section>
 
@@ -785,17 +781,18 @@
         <div class="section-head reveal">
           <div>
             <span class="eyebrow">Selected trailer work</span>
-            <h2 class="section-title">A concise reel built for serious clients.</h2>
+            <h2 class="section-title">A concise reel for producers, directors, and premium freelance clients.</h2>
           </div>
-          <p class="section-copy">Use this section as your strongest first impression on Upwork, in email outreach, and for producers who need immediate proof of taste, pacing, and editorial control.</p>
+          <p class="section-copy">Lead with one strong public-facing video. This first section is designed to do the job of a pitch: taste, rhythm, confidence, and immediate proof that your work belongs in serious conversations.</p>
         </div>
+
         <div class="reel-shell reveal">
           <div class="reel-frame">
             <iframe src="https://www.youtube.com/embed/AjeegLB0cR4?rel=0" title="Aidan Serik selected reel" allowfullscreen></iframe>
           </div>
           <div class="reel-meta">
-            <span>Lead with your strongest trailer or a dedicated 60–90 second reel.</span>
-            <span>Edit the YouTube link directly inside the code when needed.</span>
+            <span>Current hero video: Women in Lenovo Leadership — directed by Aidan Serik.</span>
+            <span>Replace this embed with a future dedicated showreel any time.</span>
           </div>
         </div>
       </div>
@@ -805,188 +802,298 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">Portfolio</span>
-            <h2 class="section-title">Selected work</h2>
+            <span class="eyebrow">Works</span>
+            <h2 class="section-title">Selected public trailers and excerpts</h2>
           </div>
-          <p class="section-copy">These cards are intentionally framed as polished case snapshots, not a long resume dump. Replace the titles below with your actual film titles where you want them public.</p>
+          <p class="section-copy">The site intentionally favors publicly shareable work. For unreleased features or private materials, deeper cuts can be sent on request.</p>
         </div>
 
         <div class="projects-grid">
           <article class="project-card reveal">
             <div class="project-media">
-              <iframe src="https://www.youtube.com/embed/KlEy8_wsREw?rel=0" title="Feature trailer 1" allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/embed/KlEy8_wsREw?rel=0" title="Women in Lenovo Leadership" allowfullscreen></iframe>
             </div>
             <div class="project-body">
-              <span class="project-type">Feature Film Trailer</span>
-              <h3 class="project-title">Feature project / trailer selection</h3>
-              <p class="project-copy">A trailer-centered presentation for a feature film, focused on mood, rhythm, dramatic escalation, and clean narrative signaling.</p>
+              <span class="project-label">Director · 2019</span>
+              <h3 class="project-title">Women in Lenovo Leadership</h3>
+              <p class="project-copy">Short documentary series created with a clean, emotionally driven visual language and a strong branded-documentary sensibility.</p>
               <div class="tags">
-                <span class="tag">Narrative pacing</span>
-                <span class="tag">Trailer structure</span>
-                <span class="tag">Feature workflow</span>
+                <span class="tag">Direction</span>
+                <span class="tag">Documentary</span>
+                <span class="tag">Portrait storytelling</span>
               </div>
             </div>
           </article>
 
           <article class="project-card reveal">
             <div class="project-media">
-              <iframe src="https://www.youtube.com/embed/_529dy48OWY?rel=0" title="Documentary trailer" allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/embed/mYmn1BOXJT4?rel=0" title="Go Viral short documentary" allowfullscreen></iframe>
             </div>
             <div class="project-body">
-              <span class="project-type">Documentary / Excerpt</span>
-              <h3 class="project-title">Documentary storytelling cut</h3>
-              <p class="project-copy">Editorial work shaped around character, authenticity, interview texture, and controlled emotional movement.</p>
+              <span class="project-label">Editor · 2018</span>
+              <h3 class="project-title">Go Viral — Short Documentary</h3>
+              <p class="project-copy">A concise documentary cut built around clarity, flow, and a controlled progression of information and emotion.</p>
               <div class="tags">
-                <span class="tag">Documentary editing</span>
-                <span class="tag">Interview rhythm</span>
-                <span class="tag">Story refinement</span>
+                <span class="tag">Short documentary</span>
+                <span class="tag">Editing</span>
+                <span class="tag">Story shaping</span>
               </div>
             </div>
           </article>
 
           <article class="project-card reveal">
             <div class="project-media">
-              <iframe src="https://www.youtube.com/embed/mYmn1BOXJT4?rel=0" title="Short film or excerpt" allowfullscreen></iframe>
+              <iframe src="https://www.youtube.com/embed/CmohrAsusaY?rel=0" title="Adren CS GO" allowfullscreen></iframe>
             </div>
             <div class="project-body">
-              <span class="project-type">Short Film / Narrative</span>
-              <h3 class="project-title">Narrative cut with director-led sensibility</h3>
-              <p class="project-copy">Built to show command of scene construction, emotional transitions, and visual continuity without overcutting the material.</p>
+              <span class="project-label">Editor · 2019</span>
+              <h3 class="project-title">Adren CS:GO</h3>
+              <p class="project-copy">Short documentary editing focused on pace, character attention, and a sharp, contemporary rhythm for audience engagement.</p>
               <div class="tags">
-                <span class="tag">Scene shaping</span>
-                <span class="tag">Performance-led</span>
-                <span class="tag">Cinematic restraint</span>
+                <span class="tag">Contemporary pacing</span>
+                <span class="tag">Documentary</span>
+                <span class="tag">Editorial rhythm</span>
               </div>
             </div>
           </article>
+
+          <article class="project-card reveal">
+            <div class="project-media">
+              <iframe src="https://player.vimeo.com/video/347423378" title="Youth 4 Human Rights" allowfullscreen></iframe>
+            </div>
+            <div class="project-body">
+              <span class="project-label">Director · 2019</span>
+              <h3 class="project-title">Youth 4 Human Rights</h3>
+              <p class="project-copy">Directed documentary material shaped around interviews, ideas, and socially grounded storytelling.</p>
+              <div class="tags">
+                <span class="tag">Direction</span>
+                <span class="tag">Interview-led</span>
+                <span class="tag">Social impact</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-media">
+              <iframe src="https://player.vimeo.com/video/329319324" title="Interview editor work" allowfullscreen></iframe>
+            </div>
+            <div class="project-body">
+              <span class="project-label">Interview Editor · 2019–2020</span>
+              <h3 class="project-title">Interview Editing — Tihii Svet</h3>
+              <p class="project-copy">Editing interview-driven material with attention to voice, pace, and subtle emotional continuity across documentary conversations.</p>
+              <div class="tags">
+                <span class="tag">Interview editing</span>
+                <span class="tag">Narrative clarity</span>
+                <span class="tag">Documentary rhythm</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-media">
+              <iframe src="https://www.youtube.com/embed/LZEonboLtXg?rel=0" title="OT feature movie" allowfullscreen></iframe>
+            </div>
+            <div class="project-body">
+              <span class="project-label">Editor · 2020</span>
+              <h3 class="project-title">OT — Feature Film</h3>
+              <p class="project-copy">Feature editorial work with emphasis on structure, restraint, and scene-to-scene narrative pressure.</p>
+              <div class="tags">
+                <span class="tag">Feature film</span>
+                <span class="tag">Editor</span>
+                <span class="tag">Narrative structure</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="films">
+      <div class="container list-layout">
+        <div class="about-card reveal">
+          <span class="eyebrow">About</span>
+          <h2 class="section-title" style="font-size: clamp(34px, 5vw, 62px); margin-top: 14px;">A feature-first editor with a director’s eye.</h2>
+          <p>
+            I’m Aidan Serik, a film editor and director based in Tbilisi and Almaty, working worldwide. My background moves across feature films, short films, documentary series, interviews, branded storytelling, and direction. What ties everything together is an instinct for rhythm, emotional logic, and cuts that feel inevitable rather than decorative.
+            <br><br>
+            I’m especially interested in projects that need sensitivity, structure, and cinematic restraint — work where editorial choices shape the story rather than simply accelerate it.
+          </p>
+          <div class="info-stack" style="margin-top: 24px;">
+            <div class="mini-box">
+              <strong>10</strong>
+              <span>Years in cinema across editing, directing, production, and documentary practice.</span>
+            </div>
+            <div class="mini-box">
+              <strong>5+</strong>
+              <span>Years specifically focused on editing features, shorts, documentaries, and interviews.</span>
+            </div>
+            <div class="mini-box">
+              <strong>Global</strong>
+              <span>Based in Tbilisi and Almaty, collaborating remotely and internationally.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="list-card reveal">
+          <div class="film-list">
+            <div class="row">
+              <small>2023</small>
+              <div>
+                <div class="row-title">DYAD</div>
+                <div class="row-copy">Director · short film</div>
+              </div>
+              <div class="chip">Drive link</div>
+            </div>
+            <div class="row">
+              <small>2022</small>
+              <div>
+                <div class="row-title">Joqtau</div>
+                <div class="row-copy">Editor · feature film</div>
+              </div>
+              <div class="chip">Private materials</div>
+            </div>
+            <div class="row">
+              <small>2022</small>
+              <div>
+                <div class="row-title">We Live Here</div>
+                <div class="row-copy">Editor · full-length documentary</div>
+              </div>
+              <div class="chip">In progress / excerpt</div>
+            </div>
+            <div class="row">
+              <small>2022</small>
+              <div>
+                <div class="row-title">Buttons</div>
+                <div class="row-copy">Editor · short film</div>
+              </div>
+              <div class="chip">Selected project</div>
+            </div>
+            <div class="row">
+              <small>2021</small>
+              <div>
+                <div class="row-title">Madina</div>
+                <div class="row-copy">Editor · feature film · trailer on MUBI</div>
+              </div>
+              <div class="chip">Public trailer</div>
+            </div>
+            <div class="row">
+              <small>2021</small>
+              <div>
+                <div class="row-title">Critical Mass</div>
+                <div class="row-copy">Editor · short documentary</div>
+              </div>
+              <div class="chip">Public</div>
+            </div>
+            <div class="row">
+              <small>2021</small>
+              <div>
+                <div class="row-title">Silk Road</div>
+                <div class="row-copy">Editor · short documentary series</div>
+              </div>
+              <div class="chip">Series</div>
+            </div>
+            <div class="row">
+              <small>2021</small>
+              <div>
+                <div class="row-title">Worxspace</div>
+                <div class="row-copy">Editor · short fashion film</div>
+              </div>
+              <div class="chip">Vimeo</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section" id="recognition">
-      <div class="container awards-wrap">
-        <div class="quote-card reveal">
-          <span class="eyebrow">Positioning</span>
-          <div class="quote-mark">“</div>
-          <p>This portfolio is designed to communicate cinematic taste, festival-level credibility, and editorial precision before a client ever starts scrolling your CV.</p>
-        </div>
-        <div class="panel-card reveal">
-          <div class="awards-list">
-            <div class="award-row">
-              <div class="award-year">Edit</div>
+      <div class="container list-layout">
+        <div class="list-card reveal">
+          <div class="award-list">
+            <div class="row">
+              <small>2021</small>
               <div>
-                <div class="award-title">A-class festival positioning</div>
-                <div class="award-copy">Replace this line with the real festival selection or award wording you are comfortable publishing.</div>
+                <div class="row-title">Warm Lake</div>
+                <div class="row-copy">Editor · short film</div>
               </div>
-              <div class="award-chip">Public-facing note</div>
+              <a class="chip" href="https://player.vimeo.com/video/640904442" target="_blank" rel="noreferrer noopener">Watch</a>
             </div>
-            <div class="award-row">
-              <div class="award-year">Cut</div>
+            <div class="row">
+              <small>2021</small>
               <div>
-                <div class="award-title">Feature-first presentation</div>
-                <div class="award-copy">Because feature films often cannot be shared in full, the site is structured around trailers, excerpts, and concise project framing.</div>
+                <div class="row-title">Critical Mass</div>
+                <div class="row-copy">Editor · public trailer / documentary work</div>
               </div>
-              <div class="award-chip">Smart portfolio strategy</div>
+              <a class="chip" href="https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs" target="_blank" rel="noreferrer noopener">Watch</a>
             </div>
-            <div class="award-row">
-              <div class="award-year">Pitch</div>
+            <div class="row">
+              <small>2021</small>
               <div>
-                <div class="award-title">Ready for Upwork and direct outreach</div>
-                <div class="award-copy">The language and layout are built to work for production companies, directors, producers, agencies, and premium freelance clients.</div>
+                <div class="row-title">Madina</div>
+                <div class="row-copy">Editor · feature film trailer available on MUBI</div>
               </div>
-              <div class="award-chip">Client-facing</div>
+              <a class="chip" href="https://mubi.com/en/films/madina/trailer" target="_blank" rel="noreferrer noopener">Trailer</a>
+            </div>
+            <div class="row">
+              <small>2021</small>
+              <div>
+                <div class="row-title">Silk Road</div>
+                <div class="row-copy">Editor · short documentary series with multiple public episodes</div>
+              </div>
+              <a class="chip" href="https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG" target="_blank" rel="noreferrer noopener">Episode</a>
+            </div>
+            <div class="row">
+              <small>2021</small>
+              <div>
+                <div class="row-title">Worxspace</div>
+                <div class="row-copy">Editor · short fashion movie</div>
+              </div>
+              <a class="chip" href="https://vimeo.com/735383174?share=copy" target="_blank" rel="noreferrer noopener">Watch</a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">About</span>
-            <h2 class="section-title">Editor’s instinct. Director’s perspective.</h2>
-          </div>
-          <p class="section-copy">Your biography on a site should read as selective and memorable, not like a full chronology. This version is intentionally curated from your broader experience in cinema.</p>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-main reveal">
-            <p>
-              I’m Aidan Serik, a film editor and director with around 10 years of experience across cinema and 5+ years working specifically in editing. My background includes feature films, documentaries, interviews, and narrative projects where story shape matters as much as technical execution.
-              <br><br>
-              I work with a strong sense of rhythm, emotional logic, and structural clarity. Whether the material is intimate and observational or dramatic and high-stakes, my focus stays the same: finding the cut that lets the story feel inevitable.
-            </p>
-          </div>
-          <div class="about-side reveal">
-            <div class="mini-stat">
-              <strong>10</strong>
-              <span>Years working in film across directing, production, costume, documentary, and post.</span>
+        <div class="services-card reveal" id="services">
+          <span class="eyebrow">Services</span>
+          <h2 class="section-title" style="font-size: clamp(34px, 5vw, 60px); margin-top: 14px;">What clients can hire me for</h2>
+          <p>Positioned for producers, directors, studios, documentary teams, and premium freelance clients who care about taste, structure, and communication.</p>
+          <div class="services-grid">
+            <div class="service">
+              <h3>Feature Editing</h3>
+              <p>Long-form editorial collaboration for narrative features and feature documentaries.</p>
+              <ul>
+                <li>Assembly to fine cut</li>
+                <li>Scene shaping</li>
+                <li>Story refinement</li>
+              </ul>
             </div>
-            <div class="mini-stat">
-              <strong>5+</strong>
-              <span>Years focused on editing feature films, documentary projects, interviews, and trailers.</span>
+            <div class="service">
+              <h3>Trailer Editing</h3>
+              <p>Trailers, teasers, and public-facing edits that create intrigue and tonal precision.</p>
+              <ul>
+                <li>Festival trailers</li>
+                <li>Pitch cuts</li>
+                <li>Promotional edits</li>
+              </ul>
             </div>
-            <div class="mini-stat">
-              <strong>C1</strong>
-              <span>English proficiency for international communication, notes, and collaborative workflows.</span>
+            <div class="service">
+              <h3>Documentary</h3>
+              <p>Interview-led and character-led documentary editing with emotional clarity.</p>
+              <ul>
+                <li>Interview structure</li>
+                <li>Documentary rhythm</li>
+                <li>Research-led shaping</li>
+              </ul>
+            </div>
+            <div class="service">
+              <h3>Creative Partner</h3>
+              <p>An editor with a director’s perspective and calm, professional remote workflow.</p>
+              <ul>
+                <li>Client notes process</li>
+                <li>International collaboration</li>
+                <li>Premium presentation</li>
+              </ul>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="eyebrow">Services</span>
-            <h2 class="section-title">What clients can hire me for</h2>
-          </div>
-          <p class="section-copy">This service language is tailored to attract professional clients rather than low-budget one-off requests.</p>
-        </div>
-
-        <div class="services-grid">
-          <article class="service-card reveal">
-            <h3>Feature Film Editing</h3>
-            <p>Long-form narrative editing with attention to performance, structure, and scene-to-scene momentum.</p>
-            <ul>
-              <li>Assembly to fine cut</li>
-              <li>Story and rhythm refinement</li>
-              <li>Director / producer collaboration</li>
-            </ul>
-          </article>
-
-          <article class="service-card reveal">
-            <h3>Trailer & Promo Editing</h3>
-            <p>Public-facing edits built to create intrigue, emotional lift, and a strong cinematic first impression.</p>
-            <ul>
-              <li>Festival trailer cuts</li>
-              <li>Teasers and promo edits</li>
-              <li>Pitch materials</li>
-            </ul>
-          </article>
-
-          <article class="service-card reveal">
-            <h3>Documentary Editing</h3>
-            <p>Character-driven editing shaped around interviews, archival material, and real-world emotional detail.</p>
-            <ul>
-              <li>Interview structuring</li>
-              <li>Documentary story shaping</li>
-              <li>Research-led refinement</li>
-            </ul>
-          </article>
-
-          <article class="service-card reveal">
-            <h3>Creative Post Partnership</h3>
-            <p>For directors, producers, and brands who need an editor with taste, judgement, and calm communication.</p>
-            <ul>
-              <li>Remote collaboration</li>
-              <li>Clear notes workflow</li>
-              <li>Professional delivery</li>
-            </ul>
-          </article>
         </div>
       </div>
     </section>
@@ -996,14 +1103,12 @@
         <div class="contact-card reveal">
           <div>
             <span class="eyebrow">Contact</span>
-            <h2>Open to film, trailer, and high-end editorial collaborations.</h2>
-            <p>
-              For feature projects, documentary work, trailer editing, or a more complete private portfolio, get in touch directly. This site is intentionally concise; deeper materials can be shared on request.
-            </p>
+            <h2 class="contact-title">Let’s talk about your film, trailer, or next cut.</h2>
+            <p>For feature projects, documentary editing, trailer work, or private portfolio materials, get in touch directly. Public links are only part of the story.</p>
             <div class="contact-links">
               <a class="contact-link" href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
-              <a class="contact-link" href="https://www.upwork.com/" target="_blank" rel="noreferrer noopener">Upwork profile link</a>
               <a class="contact-link" href="tel:+77011071470">+7 701 107 14 70</a>
+              <a class="contact-link" href="#">Upwork profile</a>
             </div>
           </div>
           <a class="btn btn-primary" href="mailto:aidan.serik@gmail.com">Start a conversation</a>
@@ -1013,7 +1118,20 @@
   </main>
 
   <footer>
-    <div class="container">© 2026 Aidan Serik. Built for feature-film positioning, premium freelance outreach, and direct client trust.</div>
+    <div class="container">
+      <div class="footer-top reveal">
+        <div>
+          <div class="footer-name">Aidan Serik</div>
+          <div style="color: var(--muted); margin-top: 6px;">Film Editor & Director</div>
+        </div>
+        <a class="contact-link" href="#work">Works</a>
+        <a class="contact-link" href="#contact">Contact</a>
+      </div>
+      <div class="footer-bottom">
+        <span>Based in Tbilisi and Almaty · working worldwide</span>
+        <span>Designed for a modern, minimal, cinematic portfolio presentation.</span>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -1024,7 +1142,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.14 });
+    }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
