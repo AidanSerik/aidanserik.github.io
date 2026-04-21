@@ -1,458 +1,863 @@
-export default function KinoArchivePortfolio() {
-  const projects = [
-    {
-      title: "Women in Lenovo Leadership",
-      role: "Director / Motor production",
-      format: "Short documentary series",
-      period: "February 2019",
-      links: [
-        "https://www.youtube.com/watch?v=AjeegLB0cR4",
-        "https://www.youtube.com/watch?v=KlEy8_wsREw",
-      ],
-    },
-    {
-      title: "Go Viral",
-      role: "Editor",
-      format: "Short documentary",
-      period: "2018",
-      links: ["https://www.youtube.com/watch?v=mYmn1BOXJT4"],
-    },
-    {
-      title: "Adren CS:GO",
-      role: "Editor / Motor production",
-      format: "Short documentary",
-      period: "September 2019",
-      links: ["https://www.youtube.com/watch?v=CmohrAsusaY"],
-    },
-    {
-      title: "Youth 4 Human Rights",
-      role: "Director / Tihii Svet documentary studio",
-      format: "Short documentary series",
-      period: "October 2019",
-      links: ["https://vimeo.com/347423378?share=copy&fl=cl&fe=ci"],
-    },
-    {
-      title: "Interview editor / Tihii Svet documentary studio",
-      role: "Interview editor",
-      format: "Documentary interviews",
-      period: "November 2019 — March 2020",
-      links: ["https://vimeo.com/329319324?share=copy&fl=cl&fe=ci"],
-    },
-    {
-      title: "Don't give up",
-      role: "Editor",
-      format: "TV show, 2 episodes",
-      period: "November 2019",
-      links: [],
-    },
-    {
-      title: "OT",
-      role: "Editor",
-      format: "Feature movie",
-      period: "August 2020 — September 2020",
-      links: ["https://youtu.be/LZEonboLtXg?si=pnQKy_xRHZKp791j"],
-    },
-    {
-      title: "Warm Lake",
-      role: "Editor",
-      format: "Short movie",
-      period: "2020",
-      links: ["https://vimeo.com/640904442?fl=pl&fe=sh"],
-    },
-    {
-      title: "Critical Mass",
-      role: "Editor",
-      format: "Short documentary",
-      period: "April 2021",
-      links: ["https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs"],
-    },
-    {
-      title: "Madina",
-      role: "Editor",
-      format: "Feature movie",
-      period: "February 2021 — May 2021",
-      links: ["https://mubi.com/en/films/madina/trailer"],
-    },
-    {
-      title: "Silk Road",
-      role: "Editor",
-      format: "Short documentary series",
-      period: "January 2021",
-      links: [
-        "https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG",
-        "https://youtu.be/LYBGiICmjBo?si=DdJWsAwuC3Azliz0",
-        "https://youtu.be/gzIBereMIvo?si=NlmHfGGMoJxwgDCd",
-      ],
-    },
-    {
-      title: "Worxspace",
-      role: "Editor",
-      format: "Short fashion movie",
-      period: "January 2021",
-      links: ["https://vimeo.com/735383174?share=copy"],
-    },
-    {
-      title: "We Live Here",
-      role: "Editor",
-      format: "Full-length documentary",
-      period: "August 2022 — present",
-      links: [
-        "https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link",
-      ],
-    },
-    {
-      title: "Joqtau",
-      role: "Editor",
-      format: "Feature movie",
-      period: "August 2022 — December 2022",
-      links: [
-        "https://drive.google.com/file/d/1l2ri-6PSz4RQEu_n17IsBr6xmcnSsY1X/view?usp=drive_link",
-      ],
-    },
-    {
-      title: "Buttons",
-      role: "Editor",
-      format: "Short movie",
-      period: "October 2022",
-      links: [],
-    },
-    {
-      title: "DYAD",
-      role: "Director",
-      format: "Short movie",
-      period: "September 2023",
-      links: [
-        "https://drive.google.com/file/d/1xI83zVJkROkVWfYqE8rzaYOYmKHAUqvh/view?usp=sharing",
-      ],
-    },
-  ];
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aidan Serik — Film Editor & Director</title>
+    <meta
+      name="description"
+      content="Aidan Serik is a film editor and director based between Tbilisi and Almaty, working internationally across documentaries, fiction, and artist-led visual projects."
+    />
+    <style>
+      :root {
+        --bg: #070707;
+        --bg-soft: #101010;
+        --panel: #0d0d0d;
+        --line: #2a2a2a;
+        --line-soft: #6e604d;
+        --text: #f3eee4;
+        --muted: #c9b79b;
+        --accent: #d6c3a1;
+        --black: #000000;
+        --radius-xl: 32px;
+        --radius-lg: 24px;
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
 
-  const stripFrames = Array.from({ length: 12 }, () => "/aidan-portrait.jpg");
-  const featured = [
-    "Women in Lenovo Leadership",
-    "Madina",
-    "We Live Here",
-    "DYAD",
-  ];
-  const navItems = [
-    ["Home", "#home"],
-    ["Work", "#work"],
-    ["About", "#about"],
-    ["Call", "#contact"],
-  ];
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
 
-  return (
-    <div className="min-h-screen bg-[#070707] text-[#F3EEE4]">
-      <style>{`
-        html { scroll-behavior: smooth; }
-        body { background: #070707; }
-        .hero-tight { line-height: 0.84; letter-spacing: -0.06em; }
-        .section-tight { line-height: 0.9; letter-spacing: -0.05em; }
+      img { display: block; max-width: 100%; }
+      a { color: inherit; text-decoration: none; }
+      button, input { font: inherit; }
 
-        @keyframes filmStripLeft {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+      .container {
+        width: min(1400px, calc(100% - 24px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(16px);
+        background: rgba(7, 7, 7, 0.88);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 18px 8px;
+      }
+
+      .brand {
+        color: var(--accent);
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .nav {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .nav a,
+      .floating-nav a,
+      .button,
+      .chip {
+        border: 1px solid var(--line-soft);
+        color: var(--accent);
+        border-radius: 999px;
+        background: transparent;
+        transition: 220ms ease;
+      }
+
+      .nav a,
+      .floating-nav a {
+        padding: 12px 20px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .nav a:hover,
+      .floating-nav a:hover,
+      .button:hover,
+      .chip:hover {
+        background: var(--accent);
+        color: var(--black);
+        border-color: var(--accent);
+      }
+
+      section { padding-top: 16px; }
+
+      .eyebrow {
+        border: 1px solid var(--line);
+        background: var(--bg-soft);
+        color: var(--muted);
+        border-radius: var(--radius-xl);
+        padding: 16px 24px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+        font-size: 12px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
+        background: #000;
+        min-height: 78vh;
+        margin-top: 16px;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 78vh;
+        object-fit: cover;
+        filter: grayscale(1);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.56);
+      }
+
+      .hero-top,
+      .hero-center {
+        position: absolute;
+        inset-inline: 0;
+        z-index: 1;
+      }
+
+      .hero-top {
+        top: 28px;
+        text-align: center;
+        padding: 0 24px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        font-size: 12px;
+      }
+
+      .hero-center {
+        inset-block: 0;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 32px 20px;
+      }
+
+      .hero-title,
+      .section-title,
+      .contact-title {
+        margin: 0;
+        font-weight: 900;
+        letter-spacing: -0.06em;
+        line-height: 0.84;
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        font-size: clamp(64px, 13vw, 220px);
+        max-width: 1200px;
+      }
+
+      .hero-subtitle {
+        margin: 22px auto 0;
+        max-width: 760px;
+        color: var(--accent);
+        font-size: clamp(16px, 2vw, 22px);
+        line-height: 1.5;
+      }
+
+      .strip-wrap,
+      .about-wrap,
+      .work-wrap,
+      .feature-box,
+      .contact-wrap {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
+        background: var(--panel);
+      }
+
+      .strip-wrap {
+        overflow: hidden;
+        padding: 22px 0;
+      }
+
+      .strip-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 16px 14px;
+      }
+
+      .strip-line {
+        height: 1px;
+        flex: 1;
+        background: var(--line-soft);
+      }
+
+      .strip-label,
+      .section-label {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.32em;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      .film-strip-viewport {
+        overflow: hidden;
+      }
+
+      .film-strip-track {
+        display: flex;
+        width: max-content;
+        gap: 16px;
+        padding: 0 16px;
+        animation: filmStrip 28s linear infinite;
+      }
+
+      .frame {
+        flex: 0 0 auto;
+        width: 290px;
+        border: 1px solid var(--line-soft);
+        border-radius: 24px;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .frame img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        filter: grayscale(1);
+      }
+
+      .about-wrap,
+      .contact-wrap,
+      .work-wrap {
+        padding: 28px;
+      }
+
+      .about-grid,
+      .contact-grid,
+      .feature-grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      .about-grid {
+        grid-template-columns: 0.38fr 1fr;
+        align-items: center;
+      }
+
+      .section-title { font-size: clamp(58px, 8vw, 124px); }
+      .section-italic {
+        margin: 16px 0 0;
+        color: var(--accent);
+        font-size: clamp(28px, 4vw, 56px);
+        font-style: italic;
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .icon-float {
+        width: fit-content;
+        margin-top: 34px;
+        color: var(--muted);
+        animation: projectorFloat 4s ease-in-out infinite;
+      }
+
+      .about-card {
+        position: relative;
+        border: 1px solid var(--line-soft);
+        border-radius: var(--radius-lg);
+        background: var(--accent);
+        color: var(--black);
+        padding: 30px;
+      }
+
+      .about-text {
+        margin: 0;
+        font-size: clamp(24px, 2.8vw, 40px);
+        line-height: 1.14;
+        font-weight: 700;
+      }
+
+      .arrow-float {
+        position: absolute;
+        right: 24px;
+        bottom: -40px;
+        color: var(--accent);
+        animation: arrowDrift 4.2s ease-in-out infinite;
+      }
+
+      .work-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .work-desc {
+        max-width: 520px;
+        color: var(--muted);
+        line-height: 1.65;
+        font-size: 17px;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 28px;
+      }
+
+      .project-card {
+        border: 1px solid #2d2d2d;
+        border-radius: var(--radius-lg);
+        background: #0b0b0b;
+        padding: 16px;
+        transition: border-color 220ms ease, transform 220ms ease;
+      }
+
+      .project-card:hover {
+        border-color: var(--line-soft);
+        transform: translateY(-2px);
+      }
+
+      .project-image {
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid #222;
+        background: #000;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 290px;
+        object-fit: cover;
+        filter: grayscale(1);
+        transition: transform 400ms ease;
+      }
+
+      .project-card:hover .project-image img { transform: scale(1.03); }
+
+      .project-meta {
+        margin-top: 16px;
+      }
+
+      .project-period {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 11px;
+      }
+
+      .project-title {
+        margin: 10px 0 0;
+        font-size: 29px;
+        line-height: 1.15;
+      }
+
+      .project-role {
+        margin: 10px 0 0;
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .project-format {
+        margin: 6px 0 0;
+        color: #b6aa98;
+      }
+
+      .project-links {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .button,
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button {
+        padding: 10px 16px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .chip {
+        padding: 14px 18px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        margin-top: 16px;
+      }
+
+      .feature-box { padding: 28px; }
+
+      .featured-list {
+        margin-top: 22px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .featured-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        border: 1px solid var(--line-soft);
+        border-radius: 20px;
+        padding: 18px 20px;
+      }
+
+      .featured-no {
+        color: #8f8373;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 11px;
+      }
+
+      .featured-name {
+        margin-top: 6px;
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .position-title {
+        margin: 14px 0 0;
+        font-size: 38px;
+        line-height: 1.15;
+      }
+
+      .position-text {
+        margin: 16px 0 0;
+        color: #b6aa98;
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .chips {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: end;
+      }
+
+      .contact-title { font-size: clamp(62px, 8vw, 148px); }
+
+      .contact-text {
+        margin: 18px 0 0;
+        max-width: 520px;
+        color: #b6aa98;
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .contact-actions {
+        display: grid;
+        gap: 14px;
+      }
+
+      .email-link {
+        display: block;
+        border: 1px solid var(--line-soft);
+        border-radius: 24px;
+        padding: 22px 24px;
+        font-size: clamp(22px, 3vw, 34px);
+        font-weight: 600;
+        transition: 220ms ease;
+      }
+
+      .email-link:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--black);
+      }
+
+      .action-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .action-grid a {
+        text-align: center;
+        padding: 18px 20px;
+        border-radius: 24px;
+        border: 1px solid var(--line-soft);
+        color: var(--accent);
+        font-weight: 700;
+        transition: 220ms ease;
+      }
+
+      .action-grid a:hover {
+        background: var(--accent);
+        color: var(--black);
+        border-color: var(--accent);
+      }
+
+      .floating-nav {
+        position: fixed;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        z-index: 110;
+        display: flex;
+        gap: 8px;
+      }
+
+      .floating-nav a {
+        background: rgba(10, 10, 10, 0.92);
+        box-shadow: var(--shadow);
+        padding: 14px 22px;
+        font-size: 16px;
+      }
+
+      @keyframes filmStrip {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+
+      @keyframes projectorFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(-2deg); }
+      }
+
+      @keyframes arrowDrift {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        50% { transform: translate(10px, -10px) rotate(-4deg); }
+      }
+
+      @media (max-width: 1100px) {
+        .projects-grid,
+        .feature-grid,
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
         }
+      }
 
-        @keyframes projectorFloat {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(-2deg); }
+      @media (max-width: 780px) {
+        .container { width: min(100% - 16px, 1400px); }
+        .topbar-inner { padding: 14px 4px; }
+        .nav { display: none; }
+        .about-wrap,
+        .contact-wrap,
+        .work-wrap,
+        .feature-box { padding: 20px; }
+        .frame { width: 240px; }
+        .frame img { height: 150px; }
+        .project-image img { height: 240px; }
+        .chips,
+        .action-grid { grid-template-columns: 1fr; }
+        .floating-nav {
+          width: calc(100% - 16px);
+          justify-content: center;
+          flex-wrap: wrap;
+          bottom: 10px;
         }
-
-        @keyframes arrowDrift {
-          0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(10px, -10px) rotate(-4deg); }
+        .floating-nav a {
+          padding: 12px 18px;
+          font-size: 14px;
         }
-
-        .film-strip-track {
-          display: flex;
-          width: max-content;
-          animation: filmStripLeft 28s linear infinite;
-        }
-
-        .projector-float {
-          animation: projectorFloat 4s ease-in-out infinite;
-        }
-
-        .arrow-drift {
-          animation: arrowDrift 4.2s ease-in-out infinite;
-        }
-      `}</style>
-
-      <header className="sticky top-0 z-50 border-b border-[#262626] bg-[#070707]/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <a href="#home" className="text-lg font-medium tracking-tight text-[#D6C3A1]">
-            Aidan Serik
-          </a>
-          <nav className="hidden items-center gap-2 md:flex">
-            {navItems.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="rounded-full border border-[#6E604D] px-5 py-3 text-base font-semibold text-[#D6C3A1] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
-
-      <main>
-        <section id="home" className="px-3 pt-3 sm:px-4 lg:px-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#101010] px-6 py-4 text-center text-sm uppercase tracking-[0.25em] text-[#C9B79B] sm:text-base">
-            Film editor & director — documentary, fiction, and artist-led moving image.
-          </div>
-
-          <div className="relative mt-4 overflow-hidden rounded-[2rem] border border-[#262626] bg-black">
-            <img
-              src="/aidan-portrait.jpg"
-              alt="Aidan Serik portrait"
-              className="h-[78vh] w-full object-cover grayscale"
-            />
-            <div className="absolute inset-0 bg-black/55" />
-
-            <div className="absolute inset-x-0 top-6 px-6 text-center sm:top-8">
-              <p className="text-xs uppercase tracking-[0.35em] text-[#C9B79B] sm:text-sm">
-                Based between Tbilisi and Almaty · available worldwide
-              </p>
-            </div>
-
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-              <h1 className="hero-tight max-w-6xl text-[64px] font-black uppercase text-[#F3EEE4] sm:text-[108px] md:text-[150px] lg:text-[220px]">
-                Aidan Serik
-              </h1>
-              <p className="mt-6 max-w-3xl text-base text-[#D6C3A1] sm:text-xl">
-                Precision editing, cinematic rhythm, and authored visual storytelling.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-3 pt-4 sm:px-4 lg:px-6">
-          <div className="overflow-hidden rounded-[2rem] border border-[#262626] bg-[#090909] py-5">
-            <div className="mb-4 flex items-center gap-4 px-4">
-              <div className="h-px flex-1 bg-[#6E604D]" />
-              <p className="text-xs uppercase tracking-[0.35em] text-[#C9B79B] sm:text-sm">
-                Selected stills
-              </p>
-              <div className="h-px flex-1 bg-[#6E604D]" />
-            </div>
-
-            <div className="overflow-hidden">
-              <div className="film-strip-track gap-4 px-4">
-                {[...stripFrames, ...stripFrames].map((src, index) => (
-                  <div
-                    key={`frame-${index}`}
-                    className="shrink-0 overflow-hidden rounded-[1.4rem] border border-[#6E604D] bg-black"
-                  >
-                    <img
-                      src={src}
-                      alt={`Frame ${index + 1}`}
-                      className="h-44 w-72 object-cover grayscale"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="about" className="px-3 pt-4 sm:px-4 lg:px-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#050505] px-6 py-10 sm:px-10 sm:py-14 lg:px-16 lg:py-20">
-            <div className="grid gap-10 lg:grid-cols-[0.36fr_1fr] lg:items-center">
-              <div>
-                <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">About</p>
-                <h2 className="section-tight mt-3 text-[58px] font-black uppercase text-[#F3EEE4] sm:text-[88px] lg:text-[122px]">
-                  Info
-                </h2>
-                <p className="mt-5 font-serif text-3xl italic text-[#D6C3A1] sm:text-5xl">
-                  What I do
-                </p>
-
-                <div className="projector-float mt-10 w-fit text-[#C9B79B]">
-                  <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="52" r="18" stroke="currentColor" strokeWidth="7" />
-                    <circle cx="102" cy="52" r="18" stroke="currentColor" strokeWidth="7" />
-                    <rect x="34" y="66" width="84" height="38" rx="9" stroke="currentColor" strokeWidth="7" />
-                    <rect x="118" y="78" width="20" height="14" rx="3" fill="currentColor" />
-                    <path d="M48 104L38 134" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M102 104L112 134" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M136 24L154 12" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M136 38L160 38" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M136 52L154 64" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                  </svg>
-                </div>
-              </div>
-
-              <div className="relative rounded-[2rem] border border-[#6E604D] bg-[#D6C3A1] p-6 text-black sm:p-8 lg:p-10">
-                <p className="max-w-5xl text-2xl font-semibold leading-[1.18] sm:text-3xl lg:text-[40px] lg:leading-[1.12]">
-                  Aidan Serik is a film editor and director based between Tbilisi and Almaty, working internationally across documentaries, fiction, and artist-driven visual projects. Her work is defined by emotional precision, strong cinematic structure, and a refined sense of rhythm.
-                </p>
-                <div className="arrow-drift absolute -bottom-8 right-4 text-[#D6C3A1] lg:-bottom-12 lg:right-8">
-                  <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 24L126 118" stroke="currentColor" strokeWidth="9" strokeLinecap="round" />
-                    <path d="M84 120H126V78" stroke="currentColor" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="work" className="px-3 pt-4 sm:px-4 lg:px-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-4 sm:p-5">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Portfolio</p>
-                <h2 className="section-tight mt-3 text-[58px] font-black uppercase text-[#F3EEE4] sm:text-[96px] lg:text-[136px]">
-                  Selected Work
-                </h2>
-              </div>
-              <p className="max-w-xl text-base leading-relaxed text-[#C9B79B] sm:text-lg">
-                Editing and directing work across short documentaries, feature films, television, fashion, and artist-led cinema.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {projects.map((project) => (
-                <article
-                  key={project.title}
-                  className="group rounded-[1.75rem] border border-[#2D2D2D] bg-[#0B0B0B] p-4 transition duration-300 hover:border-[#6E604D]"
-                >
-                  <div className="overflow-hidden rounded-[1.3rem] border border-[#222222] bg-black">
-                    <img
-                      src="/aidan-portrait.jpg"
-                      alt={project.title}
-                      className="h-72 w-full object-cover grayscale transition duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-
-                  <div className="mt-4">
-                    <p className="text-xs uppercase tracking-[0.28em] text-[#C9B79B]">{project.period}</p>
-                    <h3 className="mt-2 text-2xl font-semibold text-[#F3EEE4]">{project.title}</h3>
-                    <p className="mt-2 text-base font-medium text-[#D6C3A1]">{project.role}</p>
-                    <p className="mt-1 text-base text-[#B6AA98]">{project.format}</p>
-                  </div>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.links.length > 0 ? (
-                      project.links.map((link, linkIndex) => (
-                        <a
-                          key={`${project.title}-${linkIndex}`}
-                          href={link}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="rounded-full border border-[#6E604D] px-4 py-2 text-sm font-semibold text-[#D6C3A1] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
-                        >
-                          {project.links.length > 1 ? `Watch ${linkIndex + 1}` : "Watch"}
-                        </a>
-                      ))
-                    ) : (
-                      <span className="rounded-full border border-[#3A352F] px-4 py-2 text-sm text-[#8D8375]">
-                        Link on request
-                      </span>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-3 pt-4 sm:px-4 lg:px-6">
-          <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-6 sm:p-8">
-              <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Featured</p>
-              <div className="mt-6 space-y-4">
-                {featured.map((item, index) => (
-                  <div
-                    key={item}
-                    className="flex items-center justify-between rounded-[1.3rem] border border-[#6E604D] px-5 py-5"
-                  >
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.28em] text-[#8F8373]">0{index + 1}</p>
-                      <p className="mt-1 text-2xl font-semibold text-[#F3EEE4]">{item}</p>
-                    </div>
-                    <span className="text-[#D6C3A1]">↗</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-6 sm:p-8">
-              <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Positioning</p>
-              <h3 className="mt-4 text-3xl font-semibold text-[#F3EEE4] sm:text-4xl">
-                High-end editing for films that need authorship.
-              </h3>
-              <p className="mt-4 text-base leading-relaxed text-[#B6AA98] sm:text-lg">
-                The site is intentionally restrained: refined typography, dark cinematic contrast, and subtle motion that supports the work instead of overpowering it.
-              </p>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {["Documentary", "Fiction", "Feature film", "Short form"].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-full border border-[#6E604D] px-4 py-3 text-center text-sm uppercase tracking-[0.24em] text-[#D6C3A1]"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="px-3 py-4 sm:px-4 lg:px-6 lg:py-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-6 sm:p-8 lg:p-10">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-              <div>
-                <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Contact</p>
-                <h2 className="section-tight mt-3 text-[62px] font-black uppercase text-[#F3EEE4] sm:text-[96px] lg:text-[148px]">
-                  Aidan Serik
-                </h2>
-                <p className="mt-5 max-w-xl text-base leading-relaxed text-[#B6AA98] sm:text-lg">
-                  For editing, directing, and collaboration inquiries, get in touch by email.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                <a
-                  href="mailto:hello@aidanserik.com"
-                  className="block rounded-[1.5rem] border border-[#6E604D] px-6 py-5 text-xl font-medium text-[#F3EEE4] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black sm:text-2xl"
-                >
-                  hello@aidanserik.com
-                </a>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <a
-                    href="#work"
-                    className="rounded-[1.5rem] border border-[#6E604D] px-6 py-5 text-center text-lg font-semibold text-[#D6C3A1] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
-                  >
-                    View work
-                  </a>
-                  <a
-                    href="#about"
-                    className="rounded-[1.5rem] border border-[#6E604D] px-6 py-5 text-center text-lg font-semibold text-[#D6C3A1] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
-                  >
-                    Read bio
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <div className="fixed bottom-4 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 md:flex">
-        {navItems.map(([label, href]) => (
-          <a
-            key={`floating-${label}`}
-            href={href}
-            className="rounded-full border border-[#6E604D] bg-[#0A0A0A]/90 px-7 py-4 text-2xl font-semibold text-[#D6C3A1] shadow-xl shadow-black/40 transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
-          >
-            {label}
-          </a>
-        ))}
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="#home">Aidan Serik</a>
+        <nav class="nav">
+          <a href="#home">Home</a>
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact">Call</a>
+        </nav>
       </div>
+    </header>
+
+    <main>
+      <section id="home" class="container">
+        <div class="eyebrow">Film editor & director — documentary, fiction, and artist-led moving image.</div>
+        <div class="hero">
+          <img src="aidan-portrait.jpg" alt="Aidan Serik portrait" />
+          <div class="hero-top">Based between Tbilisi and Almaty · available worldwide</div>
+          <div class="hero-center">
+            <div>
+              <h1 class="hero-title">Aidan Serik</h1>
+              <p class="hero-subtitle">Precision editing, cinematic rhythm, and authored visual storytelling.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="strip-wrap">
+          <div class="strip-header">
+            <div class="strip-line"></div>
+            <div class="strip-label">Selected stills</div>
+            <div class="strip-line"></div>
+          </div>
+          <div class="film-strip-viewport">
+            <div class="film-strip-track">
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+              <div class="frame"><img src="aidan-portrait.jpg" alt="still" /></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="container">
+        <div class="about-wrap">
+          <div class="about-grid">
+            <div>
+              <div class="section-label">About</div>
+              <h2 class="section-title">Info</h2>
+              <p class="section-italic">What I do</p>
+              <div class="icon-float" aria-hidden="true">
+                <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="50" cy="52" r="18" stroke="currentColor" stroke-width="7" />
+                  <circle cx="102" cy="52" r="18" stroke="currentColor" stroke-width="7" />
+                  <rect x="34" y="66" width="84" height="38" rx="9" stroke="currentColor" stroke-width="7" />
+                  <rect x="118" y="78" width="20" height="14" rx="3" fill="currentColor" />
+                  <path d="M48 104L38 134" stroke="currentColor" stroke-width="7" stroke-linecap="round" />
+                  <path d="M102 104L112 134" stroke="currentColor" stroke-width="7" stroke-linecap="round" />
+                  <path d="M136 24L154 12" stroke="currentColor" stroke-width="7" stroke-linecap="round" />
+                  <path d="M136 38L160 38" stroke="currentColor" stroke-width="7" stroke-linecap="round" />
+                  <path d="M136 52L154 64" stroke="currentColor" stroke-width="7" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+            <div class="about-card">
+              <p class="about-text">
+                Aidan Serik is a film editor and director based between Tbilisi and Almaty, working internationally across documentaries, fiction, and artist-driven visual projects. Her work is defined by emotional precision, strong cinematic structure, and a refined sense of rhythm.
+              </p>
+              <div class="arrow-float" aria-hidden="true">
+                <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 24L126 118" stroke="currentColor" stroke-width="9" stroke-linecap="round" />
+                  <path d="M84 120H126V78" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="container">
+        <div class="work-wrap">
+          <div class="work-top">
+            <div>
+              <div class="section-label">Portfolio</div>
+              <h2 class="section-title">Selected Work</h2>
+            </div>
+            <p class="work-desc">
+              Editing and directing work across short documentaries, feature films, television, fashion, and artist-led cinema.
+            </p>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="project-image"><img src="aidan-portrait.jpg" alt="Women in Lenovo Leadership" /></div>
+              <div class="project-meta">
+                <div class="project-period">February 2019</div>
+                <h3 class="project-title">Women in Lenovo Leadership</h3>
+                <p class="project-role">Director / Motor production</p>
+                <p class="project-format">Short documentary series</p>
+              </div>
+              <div class="project-links">
+                <a class="button" target="_blank" rel="noreferrer" href="https://www.youtube.com/watch?v=AjeegLB0cR4">Watch 1</a>
+                <a class="button" target="_blank" rel="noreferrer" href="https://www.youtube.com/watch?v=KlEy8_wsREw">Watch 2</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image"><img src="aidan-portrait.jpg" alt="Go Viral" /></div>
+              <div class="project-meta">
+                <div class="project-period">2018</div>
+                <h3 class="project-title">Go Viral</h3>
+                <p class="project-role">Editor</p>
+                <p class="project-format">Short documentary</p>
+              </div>
+              <div class="project-links">
+                <a class="button" target="_blank" rel="noreferrer" href="https://www.youtube.com/watch?v=mYmn1BOXJT4">Watch</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image"><img src="aidan-portrait.jpg" alt="Adren CS GO" /></div>
+              <div class="project-meta">
+                <div class="project-period">September 2019</div>
+                <h3 class="project-title">Adren CS:GO</h3>
+                <p class="project-role">Editor / Motor production</p>
+                <p class="project-format">Short documentary</p>
+              </div>
+              <div class="project-links">
+                <a class="button" target="_blank" rel="noreferrer" href="https://www.youtube.com/watch?v=CmohrAsusaY">Watch</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image"><img src="aidan-portrait.jpg" alt="Youth 4 Human Rights" /></div>
+              <div class="project-meta">
+                <div class="project-period">October 2019</div>
+                <h3 class="project-title">Youth 4 Human Rights</h3>
+                <p class="project-role">Director / Tihii Svet documentary studio</p>
+                <p class="project-format">Short documentary series</p>
+              </div>
+              <div class="project-links">
+                <a class="button" target="_blank" rel="noreferrer" href="https://vimeo.com/347423378?share=copy&fl=cl&fe=ci">Watch</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image"><img src="aidan-portrait.jpg" alt="Madina" /></div>
+              <div class="project-meta">
+                <div class="project-period">February 2021 — May 2021</div>
+                <h3 class="project-title">Madina</h3>
+                <p class="project-role">Editor</p>
+                <p class="project-format">Feature movie</p>
+              </div>
+              <div class="project-links">
+                <a class="button" target="_blank" rel="noreferrer" href="https://mubi.com/en/films/madina/trailer">Watch</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image"><img src="aidan-portrait.jpg" alt="We Live Here" /></div>
+              <div class="project-meta">
+                <div class="project-period">August 2022 — present</div>
+                <h3 class="project-title">We Live Here</h3>
+                <p class="project-role">Editor</p>
+                <p class="project-format">Full-length documentary</p>
+              </div>
+              <div class="project-links">
+                <a class="button" target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link">Watch</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="section-label">Featured</div>
+            <div class="featured-list">
+              <div class="featured-item">
+                <div>
+                  <div class="featured-no">01</div>
+                  <div class="featured-name">Women in Lenovo Leadership</div>
+                </div>
+                <div>↗</div>
+              </div>
+              <div class="featured-item">
+                <div>
+                  <div class="featured-no">02</div>
+                  <div class="featured-name">Madina</div>
+                </div>
+                <div>↗</div>
+              </div>
+              <div class="featured-item">
+                <div>
+                  <div class="featured-no">03</div>
+                  <div class="featured-name">We Live Here</div>
+                </div>
+                <div>↗</div>
+              </div>
+              <div class="featured-item">
+                <div>
+                  <div class="featured-no">04</div>
+                  <div class="featured-name">DYAD</div>
+                </div>
+                <div>↗</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="section-label">Positioning</div>
+            <h3 class="position-title">High-end editing for films that need authorship.</h3>
+            <p class="position-text">
+              The site is intentionally restrained: refined typography, dark cinematic contrast, and subtle motion that supports the work instead of overpowering it.
+            </p>
+            <div class="chips">
+              <div class="chip">Documentary</div>
+              <div class="chip">Fiction</div>
+              <div class="chip">Feature film</div>
+              <div class="chip">Short form</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="container">
+        <div class="contact-wrap">
+          <div class="contact-grid">
+            <div>
+              <div class="section-label">Contact</div>
+              <h2 class="contact-title">Aidan Serik</h2>
+              <p class="contact-text">For editing, directing, and collaboration inquiries, get in touch by email.</p>
+            </div>
+            <div class="contact-actions">
+              <a class="email-link" href="mailto:hello@aidanserik.com">hello@aidanserik.com</a>
+              <div class="action-grid">
+                <a href="#work">View work</a>
+                <a href="#about">Read bio</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="floating-nav">
+      <a href="#home">Home</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Call</a>
     </div>
-  );
-}
+  </body>
+</html>
