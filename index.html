@@ -96,18 +96,14 @@ export default function KinoArchivePortfolio() {
       role: "Editor",
       format: "Full-length documentary",
       period: "August 2022 — present",
-      links: [
-        "https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link",
-      ],
+      links: ["https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link"],
     },
     {
       title: "Joqtau",
       role: "Editor",
       format: "Feature movie",
       period: "August 2022 — December 2022",
-      links: [
-        "https://drive.google.com/file/d/1l2ri-6PSz4RQEu_n17IsBr6xmcnSsY1X/view?usp=drive_link",
-      ],
+      links: ["https://drive.google.com/file/d/1l2ri-6PSz4RQEu_n17IsBr6xmcnSsY1X/view?usp=drive_link"],
     },
     {
       title: "Buttons",
@@ -121,33 +117,26 @@ export default function KinoArchivePortfolio() {
       role: "Director",
       format: "Short movie",
       period: "September 2023",
-      links: [
-        "https://drive.google.com/file/d/1xI83zVJkROkVWfYqE8rzaYOYmKHAUqvh/view?usp=sharing",
-      ],
+      links: ["https://drive.google.com/file/d/1xI83zVJkROkVWfYqE8rzaYOYmKHAUqvh/view?usp=sharing"],
     },
   ];
 
-  const stripFrames = Array.from({ length: 12 }, () => "/aidan-portrait.jpg");
+  const filmStrip = Array.from({ length: 12 }, () => "/aidan-portrait.jpg");
+
   const featured = [
     "Women in Lenovo Leadership",
     "Madina",
     "We Live Here",
     "DYAD",
   ];
-  const navItems = [
-    ["Home", "#home"],
-    ["Work", "#work"],
-    ["About", "#about"],
-    ["Call", "#contact"],
-  ];
 
   return (
-    <div className="min-h-screen bg-[#070707] text-[#F3EEE4]">
+    <div className="min-h-screen bg-[#070707] text-[#F3EEE4] selection:bg-[#D6C3A1] selection:text-black">
       <style>{`
         html { scroll-behavior: smooth; }
         body { background: #070707; }
-        .hero-tight { line-height: 0.84; letter-spacing: -0.06em; }
-        .section-tight { line-height: 0.9; letter-spacing: -0.05em; }
+        .display-tight { line-height: .82; letter-spacing: -0.06em; }
+        .hero-title { line-height: .86; letter-spacing: -0.07em; }
 
         @keyframes filmStripLeft {
           from { transform: translateX(0); }
@@ -161,10 +150,10 @@ export default function KinoArchivePortfolio() {
 
         @keyframes arrowDrift {
           0%, 100% { transform: translate(0, 0) rotate(0deg); }
-          50% { transform: translate(10px, -10px) rotate(-4deg); }
+          50% { transform: translate(14px, -12px) rotate(-5deg); }
         }
 
-        .film-strip-track {
+        .film-row {
           display: flex;
           width: max-content;
           animation: filmStripLeft 28s linear infinite;
@@ -175,21 +164,26 @@ export default function KinoArchivePortfolio() {
         }
 
         .arrow-drift {
-          animation: arrowDrift 4.2s ease-in-out infinite;
+          animation: arrowDrift 4.4s ease-in-out infinite;
         }
       `}</style>
 
-      <header className="sticky top-0 z-50 border-b border-[#262626] bg-[#070707]/90 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-[#2B2B2B] bg-[#070707]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <a href="#home" className="text-lg font-medium tracking-tight text-[#D6C3A1]">
             Aidan Serik
           </a>
           <nav className="hidden items-center gap-2 md:flex">
-            {navItems.map(([label, href]) => (
+            {[
+              ["Home", "#home"],
+              ["Work", "#work"],
+              ["About", "#about"],
+              ["Call", "#contact"],
+            ].map(([label, href]) => (
               <a
                 key={label}
                 href={href}
-                className="rounded-full border border-[#6E604D] px-5 py-3 text-base font-semibold text-[#D6C3A1] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
+                className="rounded-full border border-[#6E604D] bg-transparent px-6 py-3 text-lg font-semibold text-[#D6C3A1] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
               >
                 {label}
               </a>
@@ -199,27 +193,27 @@ export default function KinoArchivePortfolio() {
       </header>
 
       <main>
-        <section id="home" className="px-3 pt-3 sm:px-4 lg:px-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#101010] px-6 py-4 text-center text-sm uppercase tracking-[0.25em] text-[#C9B79B] sm:text-base">
+        <section id="home" className="px-3 pt-3 sm:px-4 lg:px-6 lg:pt-4">
+          <div className="rounded-[2rem] border border-[#2A2A2A] bg-[#111111] px-6 py-4 text-center text-lg text-[#C9B79B] sm:text-xl">
             Film editor & director — documentary, fiction, and artist-led moving image.
           </div>
 
-          <div className="relative mt-4 overflow-hidden rounded-[2rem] border border-[#262626] bg-black">
+          <div className="relative mt-4 overflow-hidden rounded-[2rem] border border-[#2A2A2A] bg-black">
             <img
               src="/aidan-portrait.jpg"
               alt="Aidan Serik portrait"
               className="h-[78vh] w-full object-cover grayscale"
             />
-            <div className="absolute inset-0 bg-black/55" />
+            <div className="absolute inset-0 bg-black/50" />
 
-            <div className="absolute inset-x-0 top-6 px-6 text-center sm:top-8">
-              <p className="text-xs uppercase tracking-[0.35em] text-[#C9B79B] sm:text-sm">
+            <div className="absolute inset-x-0 top-6 px-4 text-center sm:top-8 sm:px-8">
+              <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B] sm:text-base">
                 Based between Tbilisi and Almaty · available worldwide
               </p>
             </div>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-              <h1 className="hero-tight max-w-6xl text-[64px] font-black uppercase text-[#F3EEE4] sm:text-[108px] md:text-[150px] lg:text-[220px]">
+              <h1 className="hero-title max-w-6xl text-[68px] font-black uppercase text-[#F3EEE4] sm:text-[110px] md:text-[150px] lg:text-[220px]">
                 Aidan Serik
               </h1>
               <p className="mt-6 max-w-3xl text-base text-[#D6C3A1] sm:text-xl">
@@ -230,7 +224,7 @@ export default function KinoArchivePortfolio() {
         </section>
 
         <section className="px-3 pt-4 sm:px-4 lg:px-6">
-          <div className="overflow-hidden rounded-[2rem] border border-[#262626] bg-[#090909] py-5">
+          <div className="overflow-hidden rounded-[2rem] border border-[#2A2A2A] bg-[#090909] py-5">
             <div className="mb-4 flex items-center gap-4 px-4">
               <div className="h-px flex-1 bg-[#6E604D]" />
               <p className="text-xs uppercase tracking-[0.35em] text-[#C9B79B] sm:text-sm">
@@ -238,32 +232,40 @@ export default function KinoArchivePortfolio() {
               </p>
               <div className="h-px flex-1 bg-[#6E604D]" />
             </div>
-
             <div className="overflow-hidden">
-              <div className="film-strip-track gap-4 px-4">
-                {[...stripFrames, ...stripFrames].map((src, index) => (
+              <div className="film-row gap-4 px-4">
+                {[...filmStrip, ...filmStrip].map((src, i) => (
                   <div
-                    key={`frame-${index}`}
-                    className="shrink-0 overflow-hidden rounded-[1.4rem] border border-[#6E604D] bg-black"
+                    key={i}
+                    className="shrink-0 overflow-hidden rounded-[1.5rem] border border-[#6E604D] bg-black"
                   >
                     <img
                       src={src}
-                      alt={`Frame ${index + 1}`}
+                      alt={`Still ${i + 1}`}
                       className="h-44 w-72 object-cover grayscale"
                     />
                   </div>
                 ))}
               </div>
             </div>
+            <div className="mt-4 flex items-center gap-4 px-4">
+              <div className="h-px flex-1 bg-[#6E604D]" />
+              <div className="flex gap-2">
+                {Array.from({ length: 18 }).map((_, i) => (
+                  <span key={i} className="block h-4 w-3 bg-[#D6C3A1]" />
+                ))}
+              </div>
+              <div className="h-px flex-1 bg-[#6E604D]" />
+            </div>
           </div>
         </section>
 
         <section id="about" className="px-3 pt-4 sm:px-4 lg:px-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#050505] px-6 py-10 sm:px-10 sm:py-14 lg:px-16 lg:py-20">
-            <div className="grid gap-10 lg:grid-cols-[0.36fr_1fr] lg:items-center">
+          <div className="relative overflow-hidden rounded-[2rem] border border-[#2A2A2A] bg-[#050505] px-6 py-10 sm:px-10 sm:py-14 lg:px-16 lg:py-20">
+            <div className="grid gap-10 lg:grid-cols-[0.34fr_1fr] lg:items-center">
               <div>
                 <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">About</p>
-                <h2 className="section-tight mt-3 text-[58px] font-black uppercase text-[#F3EEE4] sm:text-[88px] lg:text-[122px]">
+                <h2 className="mt-3 text-[58px] font-black uppercase leading-none text-[#F3EEE4] sm:text-[88px] lg:text-[122px]">
                   Info
                 </h2>
                 <p className="mt-5 font-serif text-3xl italic text-[#D6C3A1] sm:text-5xl">
@@ -272,27 +274,27 @@ export default function KinoArchivePortfolio() {
 
                 <div className="projector-float mt-10 w-fit text-[#C9B79B]">
                   <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="52" r="18" stroke="currentColor" strokeWidth="7" />
-                    <circle cx="102" cy="52" r="18" stroke="currentColor" strokeWidth="7" />
-                    <rect x="34" y="66" width="84" height="38" rx="9" stroke="currentColor" strokeWidth="7" />
-                    <rect x="118" y="78" width="20" height="14" rx="3" fill="currentColor" />
-                    <path d="M48 104L38 134" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M102 104L112 134" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M136 24L154 12" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M136 38L160 38" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
-                    <path d="M136 52L154 64" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
+                    <circle cx="50" cy="52" r="18" stroke="currentColor" strokeWidth="7"/>
+                    <circle cx="102" cy="52" r="18" stroke="currentColor" strokeWidth="7"/>
+                    <rect x="34" y="66" width="84" height="38" rx="9" stroke="currentColor" strokeWidth="7"/>
+                    <rect x="118" y="78" width="20" height="14" rx="3" fill="currentColor"/>
+                    <path d="M48 104L38 134" stroke="currentColor" strokeWidth="7" strokeLinecap="round"/>
+                    <path d="M102 104L112 134" stroke="currentColor" strokeWidth="7" strokeLinecap="round"/>
+                    <path d="M136 24L154 12" stroke="currentColor" strokeWidth="7" strokeLinecap="round"/>
+                    <path d="M136 38L160 38" stroke="currentColor" strokeWidth="7" strokeLinecap="round"/>
+                    <path d="M136 52L154 64" stroke="currentColor" strokeWidth="7" strokeLinecap="round"/>
                   </svg>
                 </div>
               </div>
 
               <div className="relative rounded-[2rem] border border-[#6E604D] bg-[#D6C3A1] p-6 text-black sm:p-8 lg:p-10">
                 <p className="max-w-5xl text-2xl font-semibold leading-[1.18] sm:text-3xl lg:text-[40px] lg:leading-[1.12]">
-                  Aidan Serik is a film editor and director based between Tbilisi and Almaty, working internationally across documentaries, fiction, and artist-driven visual projects. Her work is defined by emotional precision, strong cinematic structure, and a refined sense of rhythm.
+                  Aidan Serik is a film editor and director based between Tbilisi and Almaty, working internationally across documentaries, fiction, and artist-driven visual projects. Her work is defined by emotional precision, strong cinematic structure, and a refined sense of rhythm — shaping films that feel authored, elevated, and unmistakably intentional.
                 </p>
                 <div className="arrow-drift absolute -bottom-8 right-4 text-[#D6C3A1] lg:-bottom-12 lg:right-8">
                   <svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 24L126 118" stroke="currentColor" strokeWidth="9" strokeLinecap="round" />
-                    <path d="M84 120H126V78" stroke="currentColor" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M22 24L126 118" stroke="currentColor" strokeWidth="9" strokeLinecap="round"/>
+                    <path d="M84 120H126V78" stroke="currentColor" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </div>
               </div>
@@ -301,11 +303,11 @@ export default function KinoArchivePortfolio() {
         </section>
 
         <section id="work" className="px-3 pt-4 sm:px-4 lg:px-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-4 sm:p-5">
+          <div className="overflow-hidden rounded-[2rem] border border-[#2A2A2A] bg-[#090909] p-4 sm:p-5">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Portfolio</p>
-                <h2 className="section-tight mt-3 text-[58px] font-black uppercase text-[#F3EEE4] sm:text-[96px] lg:text-[136px]">
+                <h2 className="display-tight mt-3 text-[58px] font-black uppercase text-[#F3EEE4] sm:text-[96px] lg:text-[136px]">
                   Selected Work
                 </h2>
               </div>
@@ -320,7 +322,7 @@ export default function KinoArchivePortfolio() {
                   key={project.title}
                   className="group rounded-[1.75rem] border border-[#2D2D2D] bg-[#0B0B0B] p-4 transition duration-300 hover:border-[#6E604D]"
                 >
-                  <div className="overflow-hidden rounded-[1.3rem] border border-[#222222] bg-black">
+                  <div className="overflow-hidden rounded-[1.3rem] border border-[#222] bg-black">
                     <img
                       src="/aidan-portrait.jpg"
                       alt={project.title}
@@ -337,15 +339,15 @@ export default function KinoArchivePortfolio() {
 
                   <div className="mt-4 flex flex-wrap gap-2">
                     {project.links.length > 0 ? (
-                      project.links.map((link, linkIndex) => (
+                      project.links.map((link, index) => (
                         <a
-                          key={`${project.title}-${linkIndex}`}
+                          key={link}
                           href={link}
                           target="_blank"
                           rel="noreferrer"
                           className="rounded-full border border-[#6E604D] px-4 py-2 text-sm font-semibold text-[#D6C3A1] transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
                         >
-                          {project.links.length > 1 ? `Watch ${linkIndex + 1}` : "Watch"}
+                          Watch{project.links.length > 1 ? ` ${index + 1}` : ""}
                         </a>
                       ))
                     ) : (
@@ -362,7 +364,7 @@ export default function KinoArchivePortfolio() {
 
         <section className="px-3 pt-4 sm:px-4 lg:px-6">
           <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-6 sm:p-8">
+            <div className="rounded-[2rem] border border-[#2A2A2A] bg-[#090909] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Featured</p>
               <div className="mt-6 space-y-4">
                 {featured.map((item, index) => (
@@ -380,16 +382,21 @@ export default function KinoArchivePortfolio() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-6 sm:p-8">
+            <div className="rounded-[2rem] border border-[#2A2A2A] bg-[#090909] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Positioning</p>
               <h3 className="mt-4 text-3xl font-semibold text-[#F3EEE4] sm:text-4xl">
                 High-end editing for films that need authorship.
               </h3>
               <p className="mt-4 text-base leading-relaxed text-[#B6AA98] sm:text-lg">
-                The site is intentionally restrained: refined typography, dark cinematic contrast, and subtle motion that supports the work instead of overpowering it.
+                This portfolio is designed to present your work as premium: restrained palette, strong typography, clean composition, and motion used with intent rather than decoration.
               </p>
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                {["Documentary", "Fiction", "Feature film", "Short form"].map((item) => (
+                {[
+                  "Documentary",
+                  "Fiction",
+                  "Feature film",
+                  "Short form",
+                ].map((item) => (
                   <div
                     key={item}
                     className="rounded-full border border-[#6E604D] px-4 py-3 text-center text-sm uppercase tracking-[0.24em] text-[#D6C3A1]"
@@ -403,11 +410,11 @@ export default function KinoArchivePortfolio() {
         </section>
 
         <section id="contact" className="px-3 py-4 sm:px-4 lg:px-6 lg:py-6">
-          <div className="rounded-[2rem] border border-[#262626] bg-[#090909] p-6 sm:p-8 lg:p-10">
+          <div className="rounded-[2rem] border border-[#2A2A2A] bg-[#090909] p-6 sm:p-8 lg:p-10">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
               <div>
                 <p className="text-sm uppercase tracking-[0.35em] text-[#C9B79B]">Contact</p>
-                <h2 className="section-tight mt-3 text-[62px] font-black uppercase text-[#F3EEE4] sm:text-[96px] lg:text-[148px]">
+                <h2 className="display-tight mt-3 text-[62px] font-black uppercase text-[#F3EEE4] sm:text-[96px] lg:text-[148px]">
                   Aidan Serik
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-[#B6AA98] sm:text-lg">
@@ -443,9 +450,14 @@ export default function KinoArchivePortfolio() {
       </main>
 
       <div className="fixed bottom-4 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 md:flex">
-        {navItems.map(([label, href]) => (
+        {[
+          ["Home", "#home"],
+          ["Work", "#work"],
+          ["About", "#about"],
+          ["Call", "#contact"],
+        ].map(([label, href]) => (
           <a
-            key={`floating-${label}`}
+            key={label}
             href={href}
             className="rounded-full border border-[#6E604D] bg-[#0A0A0A]/90 px-7 py-4 text-2xl font-semibold text-[#D6C3A1] shadow-xl shadow-black/40 transition hover:border-[#D6C3A1] hover:bg-[#D6C3A1] hover:text-black"
           >
