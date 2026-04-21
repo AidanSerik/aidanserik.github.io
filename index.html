@@ -1,674 +1,353 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aidan Serik — Kino Archive</title>
-  <meta name="description" content="Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide across feature films, documentaries, trailers, and editorial storytelling." />
-  <meta name="theme-color" content="#050505" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #050505;
-      --paper: #0a0a0a;
-      --red: #ff120d;
-      --red-dark: #d90f0b;
-      --text: #ff120d;
-      --white: #f7f3eb;
-      --border: #ff120d;
-      --shadow: 0 24px 70px rgba(0,0,0,0.35);
-      --radius: 26px;
-      --max: 1440px;
-      --ease: 280ms cubic-bezier(.2,.8,.2,1);
-    }
+export default function KinoArchivePortfolio() {
+  const projects = [
+    {
+      title: "Am",
+      category: "Movie",
+      tag: "Arthouse: 001",
+      image:
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",
+    },
+    {
+      title: "Momo",
+      category: "Motion",
+      tag: "Archive: 002",
+      image:
+        "https://images.unsplash.com/photo-1511300636408-a63a89df3482?q=80&w=1600&auto=format&fit=crop",
+    },
+    {
+      title: "Stella",
+      category: "Graphic",
+      tag: "Visual: 003",
+      image:
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop",
+    },
+    {
+      title: "Arte",
+      category: "UI/UX",
+      tag: "System: 004",
+      image:
+        "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=1600&auto=format&fit=crop",
+    },
+    {
+      title: "Noire",
+      category: "Brand",
+      tag: "Edition: 005",
+      image:
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop",
+    },
+    {
+      title: "Retro",
+      category: "Art Direction",
+      tag: "Collection: 006",
+      image:
+        "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1600&auto=format&fit=crop",
+    },
+  ];
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Archivo, Arial, sans-serif;
-      overflow-x: hidden;
-    }
+  const archiveRows = [
+    ["German Expressionism", "Shadow City", "1920"],
+    ["Soviet Montage", "Rhythm of the Revolution", "1925"],
+    ["Surrealist Film", "The Glass Dreamer", "1930"],
+    ["Italian Neorealism", "Children of the Ruins", "1946"],
+    ["French New Wave", "Jump Cut Hearts", "1960"],
+    ["Czechoslovak New Wave", "The Empty Pub", "1964"],
+  ];
 
-    a { color: inherit; text-decoration: none; }
-    img, iframe { display: block; width: 100%; }
+  const pills = ["All", "Movie", "Motion", "Graphic", "UI/UX"];
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-      opacity: 0.22;
-      mix-blend-mode: soft-light;
-      z-index: 100;
-    }
+  return (
+    <div className="min-h-screen bg-black text-red-500 selection:bg-red-500 selection:text-black">
+      <style>{`
+        html { scroll-behavior: smooth; }
+        body { background: #000; }
+        .display-tight { line-height: .82; letter-spacing: -0.05em; }
+      `}</style>
 
-    .page {
-      width: min(calc(100% - 16px), 100%);
-      margin: 0 auto;
-      padding-bottom: 110px;
-    }
+      <header className="sticky top-0 z-50 border-b border-red-500/60 bg-black/90 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+          <a href="#home" className="text-lg font-medium tracking-tight text-red-500">
+            Kino Archive
+          </a>
+          <nav className="hidden items-center gap-2 md:flex">
+            {[
+              ["Home", "#home"],
+              ["Work", "#work"],
+              ["About", "#about"],
+              ["Call", "#contact"],
+            ].map(([label, href], i) => (
+              <a
+                key={label}
+                href={href}
+                className={`rounded-full border border-red-500 px-6 py-3 text-lg font-semibold text-red-500 transition hover:bg-red-500 hover:text-black ${
+                  i === 1 ? "bg-red-500 text-black" : "bg-transparent"
+                }`}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </header>
 
-    .ticker {
-      margin: 8px 8px 10px;
-      border: 2px solid var(--border);
-      border-radius: 22px;
-      background: #000;
-      color: var(--text);
-      text-align: center;
-      padding: 14px 18px;
-      font-size: clamp(18px, 1.6vw, 28px);
-      line-height: 1;
-      letter-spacing: -0.03em;
-    }
-
-    .hero {
-      margin: 0 8px;
-      position: relative;
-      min-height: 86vh;
-      border: 2px solid var(--border);
-      border-radius: 0 0 24px 24px;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.2)),
-        url('aidan-portrait.JPG') center 28% / cover no-repeat;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.16) 0 2%, transparent 2.2%),
-        radial-gradient(circle at top right, rgba(255,255,255,0.16) 0 2%, transparent 2.2%),
-        radial-gradient(circle at bottom left, rgba(255,255,255,0.16) 0 2%, transparent 2.2%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.16) 0 2%, transparent 2.2%);
-      background-size: 90px 90px;
-      opacity: 0.85;
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      padding: 34px 26px 26px;
-      min-height: 86vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-
-    .brand {
-      font-size: clamp(18px, 1.6vw, 28px);
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .brand small {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      margin-top: 8px;
-      letter-spacing: 0.02em;
-    }
-
-    .top-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .hero-title {
-      max-width: 100%;
-      font-weight: 900;
-      font-size: clamp(72px, 14vw, 220px);
-      line-height: 0.84;
-      letter-spacing: -0.08em;
-      text-transform: none;
-      margin: 0;
-    }
-
-    .hero-caption {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .hero-caption p {
-      margin: 0;
-      max-width: 640px;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.5;
-    }
-
-    .scroll-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      font-size: clamp(20px, 2vw, 44px);
-      font-weight: 700;
-    }
-
-    .scroll-note .arrow {
-      width: 78px;
-      height: 78px;
-      border-radius: 999px;
-      border: 2px solid var(--border);
-      display: grid;
-      place-items: center;
-      font-size: 42px;
-      line-height: 1;
-    }
-
-    .film-divider {
-      display: flex;
-      gap: 10px;
-      overflow: hidden;
-      padding: 10px 6px;
-      margin: 0 0 6px;
-    }
-
-    .film-divider span {
-      width: 18px;
-      height: 18px;
-      background: var(--red);
-      flex: 0 0 auto;
-    }
-
-    .strip {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(160px, 1fr));
-      gap: 12px;
-      margin: 0 8px 10px;
-    }
-
-    .strip-frame {
-      height: 160px;
-      border: 2px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      background: #111;
-      position: relative;
-    }
-
-    .strip-frame img { height: 100%; object-fit: cover; }
-
-    .section {
-      margin: 0 8px 10px;
-      border: 2px solid var(--border);
-      background: #000;
-      box-shadow: var(--shadow);
-    }
-
-    .section-title-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      align-items: center;
-      padding: 20px 22px;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .section-title-row h2 {
-      margin: 0;
-      font-size: clamp(44px, 8vw, 120px);
-      line-height: 0.86;
-      letter-spacing: -0.08em;
-      font-weight: 900;
-    }
-
-    .section-title-row .meta {
-      max-width: 320px;
-      text-align: right;
-      font-size: 14px;
-      line-height: 1.45;
-      font-weight: 600;
-    }
-
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      padding: 12px;
-    }
-
-    .work-card {
-      display: grid;
-      gap: 10px;
-    }
-
-    .work-head,
-    .work-foot {
-      border: 2px solid var(--border);
-      background: var(--red);
-      color: #000;
-      padding: 14px 16px;
-      min-height: 92px;
-    }
-
-    .work-head {
-      border-radius: 18px;
-    }
-
-    .work-foot {
-      border-radius: 18px;
-    }
-
-    .work-head strong,
-    .work-foot strong {
-      display: block;
-      font-size: clamp(20px, 2vw, 30px);
-      line-height: 1.02;
-      font-weight: 800;
-    }
-
-    .work-head span,
-    .work-foot span {
-      display: block;
-      margin-top: 4px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .film-window {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 2px solid var(--border);
-      background: #111;
-      aspect-ratio: 16 / 10;
-    }
-
-    .film-window iframe,
-    .film-window img {
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .film-window::before,
-    .film-window::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 18px;
-      background:
-        radial-gradient(circle at center, rgba(255,245,230,0.95) 0 48%, transparent 52%) center 22px / 22px 110px repeat-y;
-      mix-blend-mode: screen;
-      opacity: 0.9;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    .film-window::before { left: 0; }
-    .film-window::after { right: 0; }
-
-    .archive-banner {
-      margin: 0 8px 10px;
-      border: 2px solid var(--border);
-      background: #000;
-      padding: 16px 24px;
-      overflow: hidden;
-      font-family: "Bodoni Moda", serif;
-      font-size: clamp(28px, 4vw, 68px);
-      font-style: italic;
-      white-space: nowrap;
-    }
-
-    .archive-banner .track {
-      display: inline-flex;
-      gap: 24px;
-      min-width: max-content;
-      animation: marquee 20s linear infinite;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    .about-contact {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 12px;
-      padding: 12px;
-    }
-
-    .about-card,
-    .contact-card {
-      border: 2px solid var(--border);
-      padding: 22px;
-      min-height: 100%;
-    }
-
-    .about-card h3,
-    .contact-card h3 {
-      margin: 0 0 14px;
-      font-size: clamp(36px, 6vw, 86px);
-      line-height: 0.88;
-      letter-spacing: -0.08em;
-      font-weight: 900;
-    }
-
-    .about-card p,
-    .contact-card p {
-      margin: 0;
-      font-size: 15px;
-      line-height: 1.7;
-      font-weight: 600;
-      max-width: 620px;
-    }
-
-    .about-photo {
-      margin-top: 20px;
-      border: 2px solid var(--border);
-      border-radius: 22px;
-      overflow: hidden;
-      aspect-ratio: 5 / 3;
-    }
-
-    .about-photo img {
-      height: 100%;
-      object-fit: cover;
-      filter: grayscale(1) contrast(1.04);
-    }
-
-    .contacts {
-      display: grid;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .contacts a {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      border: 2px solid var(--border);
-      padding: 14px 16px;
-      font-size: 18px;
-      font-weight: 700;
-      transition: background var(--ease), color var(--ease);
-    }
-
-    .contacts a:hover {
-      background: var(--red);
-      color: #000;
-    }
-
-    .footer-block {
-      margin: 0 8px 10px;
-      border: 2px solid var(--border);
-      background: #000;
-      padding: 18px 22px 110px;
-      position: relative;
-    }
-
-    .footer-block h2 {
-      margin: 0;
-      font-size: clamp(72px, 11vw, 180px);
-      line-height: 0.82;
-      letter-spacing: -0.09em;
-      font-weight: 900;
-    }
-
-    .footer-meta {
-      display: grid;
-      grid-template-columns: 1fr 260px 260px;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .footer-meta p,
-    .footer-meta a {
-      font-size: 15px;
-      line-height: 1.65;
-      font-weight: 600;
-    }
-
-    .footer-meta .group-title {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 4px 10px;
-      border: 2px solid var(--border);
-      border-radius: 999px;
-      font-family: "Bodoni Moda", serif;
-      font-style: italic;
-      font-size: 16px;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      bottom: 16px;
-      transform: translateX(-50%);
-      z-index: 90;
-      display: flex;
-      gap: 0;
-      border: 2px solid var(--border);
-      border-radius: 999px;
-      overflow: hidden;
-      background: var(--red);
-      box-shadow: var(--shadow);
-    }
-
-    .bottom-nav a {
-      color: #000;
-      font-weight: 800;
-      font-size: 16px;
-      padding: 16px 22px;
-      border-right: 2px solid #000;
-      transition: background var(--ease), color var(--ease);
-    }
-
-    .bottom-nav a:last-child { border-right: 0; }
-    .bottom-nav a:hover {
-      background: #000;
-      color: var(--red);
-    }
-
-    @media (max-width: 1100px) {
-      .hero-grid,
-      .about-contact,
-      .footer-meta,
-      .hero-caption,
-      .hero-top,
-      .hero-bottom { grid-template-columns: 1fr; }
-      .works-grid { grid-template-columns: 1fr; }
-      .strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .section-title-row { flex-direction: column; align-items: flex-start; }
-      .section-title-row .meta { text-align: left; }
-    }
-
-    @media (max-width: 760px) {
-      .hero-title,
-      .footer-block h2,
-      .section-title-row h2,
-      .about-card h3,
-      .contact-card h3 {
-        font-size: clamp(52px, 18vw, 110px);
-      }
-      .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .film-divider span { width: 12px; height: 12px; }
-      .bottom-nav {
-        width: calc(100% - 18px);
-        justify-content: space-between;
-      }
-      .bottom-nav a {
-        flex: 1 1 25%;
-        text-align: center;
-        padding: 14px 10px;
-        font-size: 15px;
-      }
-      .work-item,
-      .footer-meta { grid-template-columns: 1fr; }
-      .work-type { justify-self: start; }
-      .hero-inner,
-      .about-card,
-      .contact-card,
-      .footer-block { padding-left: 16px; padding-right: 16px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <div class="ticker">Kino Archive — film editor / director — trailers, features, documentary, rhythm, structure, montage</div>
-
-    <section class="hero" id="home">
-      <div class="hero-inner">
-        <div class="hero-top">
-          <div class="brand">Aidan Serik<small>Film Editor / Director</small></div>
-          <div class="top-links">
-            <a href="#work">Work</a>
-            <a href="#about">About</a>
-            <a href="#contact">Call</a>
+      <main>
+        <section id="home" className="px-3 pt-3 sm:px-4 lg:px-6 lg:pt-4">
+          <div className="rounded-[2rem] border border-red-500 bg-red-500 px-6 py-4 text-center text-lg text-black sm:text-2xl">
+            Kino Archive — created to save inspiration and your vision*
           </div>
-        </div>
 
-        <h1 class="hero-title">Kino <br> Archive</h1>
-
-        <div class="hero-caption">
-          <p>Portfolio built like a film interface: archive logic, frame-based works, oversized titles, and a cinematic material feel. Based in Tbilisi and Almaty, working worldwide.</p>
-          <div class="scroll-note">Scroll <span class="arrow">↓</span></div>
-        </div>
-      </div>
-    </section>
-
-    <div class="film-divider" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
-
-    <section class="strip">
-      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
-      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
-      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
-      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
-      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
-      <div class="strip-frame"><img src="aidan-portrait.JPG" alt="Aidan Serik portrait"></div>
-    </section>
-
-    <section class="section" id="work">
-      <div class="section-title-row">
-        <h2>Selected Work</h2>
-        <div class="meta">Each project is presented like a film frame: title strip, frame window, and archive note.</div>
-      </div>
-
-      <div class="works-grid">
-        <article class="work-card">
-          <div class="work-head"><strong>Women in Lenovo Leadership</strong><span>Director · documentary series · 2019</span></div>
-          <div class="film-window"><iframe src="https://www.youtube.com/embed/AjeegLB0cR4?rel=0" title="Women in Lenovo Leadership" allowfullscreen></iframe></div>
-          <div class="work-foot"><strong>Public-facing lead reel</strong><span>Portrait-led documentary storytelling</span></div>
-        </article>
-
-        <article class="work-card">
-          <div class="work-head"><strong>Go Viral</strong><span>Editor · short documentary · 2018</span></div>
-          <div class="film-window"><iframe src="https://www.youtube.com/embed/mYmn1BOXJT4?rel=0" title="Go Viral" allowfullscreen></iframe></div>
-          <div class="work-foot"><strong>Measured progression</strong><span>Editorial rhythm and narrative clarity</span></div>
-        </article>
-
-        <article class="work-card">
-          <div class="work-head"><strong>Adren CS:GO</strong><span>Editor · short documentary · 2019</span></div>
-          <div class="film-window"><iframe src="https://www.youtube.com/embed/CmohrAsusaY?rel=0" title="Adren CS GO" allowfullscreen></iframe></div>
-          <div class="work-foot"><strong>Contemporary energy</strong><span>Sharper pacing and audience pull</span></div>
-        </article>
-
-        <article class="work-card">
-          <div class="work-head"><strong>OT</strong><span>Editor · feature film · 2020</span></div>
-          <div class="film-window"><iframe src="https://www.youtube.com/embed/LZEonboLtXg?rel=0" title="OT feature film" allowfullscreen></iframe></div>
-          <div class="work-foot"><strong>Feature-led material</strong><span>Trailer presentation for public portfolio</span></div>
-        </article>
-      </div>
-    </section>
-
-    <div class="archive-banner">
-      <div class="track">Noire ✶ Retro ✶ 4x3 ✶ Kino Archive ✶ Movie ✶ Montage ✶ Trailer ✶ Documentary ✶ Feature ✶ Noire ✶ Retro ✶ 4x3 ✶ Kino Archive ✶ Movie ✶ Montage ✶ Trailer ✶ Documentary ✶ Feature ✶</div>
-    </div>
-
-    <section class="section">
-      <div class="section-title-row">
-        <h2>Credits</h2>
-        <div class="meta">A compact list for clients who need the factual side of the portfolio quickly.</div>
-      </div>
-
-      <div class="work-list">
-        <div class="work-item"><div class="work-year">2023</div><div><div class="work-title">DYAD</div><div class="work-copy">Director · short film</div></div><div class="work-type">Private</div></div>
-        <div class="work-item"><div class="work-year">2022</div><div><div class="work-title">Joqtau</div><div class="work-copy">Editor · feature film</div></div><div class="work-type">Private</div></div>
-        <div class="work-item"><div class="work-year">2022</div><div><div class="work-title">We Live Here</div><div class="work-copy">Editor · full-length documentary</div></div><div class="work-type">Excerpt</div></div>
-        <div class="work-item"><div class="work-year">2022</div><div><div class="work-title">Buttons</div><div class="work-copy">Editor · short film</div></div><div class="work-type">Selected</div></div>
-        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Madina</div><div class="work-copy">Editor · feature film · trailer on MUBI</div></div><a class="work-type" href="https://mubi.com/en/films/madina/trailer" target="_blank" rel="noreferrer noopener">Watch</a></div>
-        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Critical Mass</div><div class="work-copy">Editor · short documentary</div></div><a class="work-type" href="https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs" target="_blank" rel="noreferrer noopener">Watch</a></div>
-        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Silk Road</div><div class="work-copy">Editor · short documentary series</div></div><a class="work-type" href="https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG" target="_blank" rel="noreferrer noopener">Watch</a></div>
-        <div class="work-item"><div class="work-year">2021</div><div><div class="work-title">Worxspace</div><div class="work-copy">Editor · short fashion film</div></div><a class="work-type" href="https://vimeo.com/735383174?share=copy" target="_blank" rel="noreferrer noopener">Watch</a></div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="about-contact">
-        <div class="about-card">
-          <h3>About</h3>
-          <p>Aidan Serik is a film editor and director based in Tbilisi and Almaty, working worldwide. The site is intentionally built like a film archive and physical strip: bold titles, hard contrast, frame windows, and clear project indexing. Behind the style is a straightforward offer — feature editing, documentary structure, trailer work, and a director’s eye for rhythm.</p>
-          <div class="about-photo"><img src="aidan-portrait.JPG" alt="Aidan Serik"></div>
-        </div>
-
-        <div class="contact-card" id="contact">
-          <h3>Call</h3>
-          <p>For feature films, documentary editing, trailers, and private materials, get in touch directly. Public links are just part of the archive.</p>
-          <div class="contacts">
-            <a href="mailto:aidan.serik@gmail.com"><span>Email</span><span>aidan.serik@gmail.com</span></a>
-            <a href="tel:+77011071470"><span>Phone</span><span>+7 701 107 14 70</span></a>
-            <a href="#"><span>Upwork</span><span>Add your profile link</span></a>
-            <a href="https://vimeo.com" target="_blank" rel="noreferrer noopener"><span>Vimeo</span><span>Selected public materials</span></a>
+          <div className="relative mt-4 overflow-hidden rounded-[2rem] border border-red-500 bg-black">
+            <img
+              src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000&auto=format&fit=crop"
+              alt="Hero background"
+              className="h-[78vh] w-full object-cover opacity-60"
+            />
+            <div className="absolute inset-0 bg-black/10" />
+            <div className="absolute inset-x-0 top-8 px-4 sm:top-10 sm:px-8 lg:px-10">
+              <p className="text-center text-base sm:text-xl">Kino Archive — created to save inspiration and your vision*</p>
+            </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+              <h1 className="display-tight max-w-6xl text-[72px] font-black uppercase text-red-500 sm:text-[110px] md:text-[150px] lg:text-[220px]">
+                Kino Archive
+              </h1>
+              <div className="mt-8 inline-flex flex-wrap items-center justify-center rounded-full border border-red-500 bg-black/85 p-3 shadow-2xl shadow-red-500/10">
+                {pills.map((pill, i) => (
+                  <button
+                    key={pill}
+                    className={`rounded-full px-6 py-4 text-lg font-bold transition ${
+                      i === 1 ? "bg-red-500 text-black" : "bg-black text-red-500 hover:bg-red-500 hover:text-black"
+                    }`}
+                  >
+                    {pill}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <footer class="footer-block">
-      <h2>Footer Kino</h2>
-      <div class="footer-meta">
-        <p>Film editor / director<br>Based in Tbilisi and Almaty<br>Working worldwide</p>
-        <div>
-          <div class="group-title">Social</div>
-          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer noopener">LinkedIn</a><br>
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer noopener">Instagram</a><br>
-          <a href="https://vimeo.com" target="_blank" rel="noreferrer noopener">Vimeo</a>
-        </div>
-        <div>
-          <div class="group-title">Index</div>
-          <a href="#home">Home</a><br>
-          <a href="#work">Work</a><br>
-          <a href="#about">About</a><br>
-          <a href="#contact">Call</a>
-        </div>
-      </div>
-    </footer>
-  </div>
+        <section className="px-3 pt-4 sm:px-4 lg:px-6">
+          <div className="overflow-hidden rounded-[2rem] border border-red-500 bg-black">
+            <div className="grid gap-3 border-b border-red-500 p-3 md:grid-cols-6">
+              {[
+                "ArtHouse",
+                "Noire",
+                "Retro",
+                "4x3",
+                "Kino Archive",
+                "Pseudo Art",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-full border border-red-500 px-4 py-3 text-center font-serif text-2xl italic text-red-500"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-2 xl:grid-cols-3">
+              {projects.map((project) => (
+                <article key={project.title} className="group">
+                  <div className="rounded-[1.75rem] border border-red-500 bg-red-500 p-4 text-black">
+                    <h3 className="text-3xl font-medium leading-none">
+                      {project.title} — {project.category}
+                    </h3>
+                    <p className="mt-2 text-2xl">{project.tag}</p>
+                  </div>
+                  <div className="mt-3 overflow-hidden rounded-[1.75rem] border border-red-500 bg-zinc-950">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-80 w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-  <nav class="bottom-nav" aria-label="Primary">
-    <a href="#home">Home</a>
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#contact">Call</a>
-  </nav>
-</body>
-</html>
+        <section id="about" className="px-3 pt-4 sm:px-4 lg:px-6">
+          <div className="relative overflow-hidden rounded-[2rem] border border-red-500 bg-black px-6 py-10 sm:px-10 sm:py-14 lg:px-16 lg:py-20">
+            <div className="absolute inset-y-0 left-0 hidden w-20 items-center justify-center lg:flex">
+              <div className="flex h-48 w-48 items-center justify-center rounded-full border-[18px] border-red-500">
+                <div className="flex h-28 w-28 items-center justify-center rounded-full border-[10px] border-red-500 text-4xl font-bold">◐</div>
+              </div>
+            </div>
+            <div className="absolute inset-y-0 right-0 hidden w-20 items-center justify-center lg:flex">
+              <div className="flex h-48 w-48 items-center justify-center rounded-full border-[18px] border-red-500">
+                <div className="flex h-28 w-28 items-center justify-center rounded-full border-[10px] border-red-500 text-4xl font-bold">◑</div>
+              </div>
+            </div>
+
+            <div className="mx-auto max-w-5xl rounded-[2rem] border-4 border-dashed border-red-500 p-6 text-center sm:p-10 lg:p-14">
+              <h2 className="text-4xl font-black sm:text-6xl lg:text-7xl">Lock into the core</h2>
+              <p className="mx-auto mt-8 max-w-4xl font-serif text-3xl italic leading-tight sm:text-5xl lg:text-6xl">
+                Clear, focused explorations of cinematic style and visual storytelling.
+              </p>
+              <button className="mt-10 w-full rounded-[1.75rem] bg-red-500 px-8 py-8 font-serif text-4xl italic text-black transition hover:scale-[0.99]">
+                Click me :)
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="work" className="px-3 pt-4 sm:px-4 lg:px-6">
+          <div className="overflow-hidden rounded-[2rem] border border-red-500 bg-black">
+            <div className="grid gap-4 p-4 lg:grid-cols-[1.4fr_1fr]">
+              <div className="overflow-hidden rounded-[1.75rem] border border-red-500 bg-zinc-950">
+                <img
+                  src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1800&auto=format&fit=crop"
+                  alt="Favorite project"
+                  className="h-full min-h-[460px] w-full object-cover"
+                />
+              </div>
+              <div className="rounded-[1.75rem] border border-red-500 bg-black p-6 sm:p-8 lg:p-10">
+                <div className="rounded-full border border-red-500 px-4 py-2 text-right text-xl italic font-serif w-fit ml-auto">
+                  Social
+                </div>
+                <div className="mt-4 space-y-2 text-right text-2xl sm:text-4xl">
+                  <a href="#" className="block hover:underline">LinkedIn</a>
+                  <a href="#" className="block hover:underline">Instagram</a>
+                  <a href="#" className="block hover:underline">Behance</a>
+                  <a href="#" className="block hover:underline">X</a>
+                </div>
+
+                <div className="mt-10 rounded-full border border-red-500 px-4 py-2 text-right text-xl italic font-serif w-fit ml-auto">
+                  Index
+                </div>
+                <div className="mt-4 space-y-2 text-right text-2xl sm:text-4xl">
+                  <a href="#home" className="block hover:underline">Home</a>
+                  <a href="#work" className="block hover:underline">Work</a>
+                  <a href="#about" className="block hover:underline">About</a>
+                  <a href="#contact" className="block hover:underline">Call</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-4 px-4 pb-4 md:grid-cols-2">
+              <div className="rounded-[1.75rem] border border-red-500 bg-black p-6 text-5xl font-black sm:text-7xl lg:text-8xl">
+                Footer<br />Kino ▸
+              </div>
+              <div className="rounded-[1.75rem] border border-red-500 bg-black p-4">
+                <div className="rounded-[1.5rem] border border-red-500 bg-red-500 p-4 text-black">
+                  <div className="grid grid-cols-[1.3fr_1.3fr_0.6fr] gap-3 border-b border-black pb-4 text-lg font-bold sm:text-2xl">
+                    <div>Style</div>
+                    <div>Work</div>
+                    <div className="text-right">Year</div>
+                  </div>
+                  <div className="mt-4 space-y-3">
+                    {archiveRows.map(([style, work, year]) => (
+                      <div
+                        key={`${style}-${work}`}
+                        className="grid grid-cols-[1.3fr_1.3fr_0.6fr] items-center gap-3 rounded-full border border-black px-4 py-4 text-base sm:text-xl"
+                      >
+                        <div>{style}</div>
+                        <div>{work}</div>
+                        <div className="text-right">{year}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-3 pt-4 sm:px-4 lg:px-6">
+          <div className="rounded-[2rem] border border-red-500 bg-black p-3">
+            <div className="overflow-hidden rounded-[1.75rem] border border-red-500">
+              <img
+                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop"
+                alt="Wide gallery"
+                className="h-72 w-full object-cover sm:h-96"
+              />
+            </div>
+            <div className="my-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              {[
+                "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=900&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?q=80&w=900&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=900&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=900&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=900&auto=format&fit=crop",
+              ].map((src, i) => (
+                <div key={i} className="overflow-hidden rounded-[1.5rem] border border-red-500">
+                  <img src={src} alt={`Gallery ${i + 1}`} className="h-48 w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="px-3 py-4 sm:px-4 lg:px-6 lg:py-6">
+          <div className="rounded-[2rem] border border-red-500 bg-red-500 p-3">
+            <div className="rounded-[1.75rem] border border-red-500 bg-black px-6 py-10 sm:px-10 sm:py-14">
+              <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
+                <div>
+                  <h2 className="display-tight text-[64px] font-black uppercase sm:text-[100px] lg:text-[160px]">
+                    Footer
+                    <br />
+                    Kino ▸
+                  </h2>
+                </div>
+                <div className="space-y-8 text-right">
+                  <div>
+                    <div className="inline-block rounded-full border border-red-500 px-4 py-2 font-serif text-xl italic">
+                      Social
+                    </div>
+                    <div className="mt-4 space-y-2 text-3xl">
+                      <a href="#" className="block hover:underline">LinkedIn</a>
+                      <a href="#" className="block hover:underline">Instagram</a>
+                      <a href="#" className="block hover:underline">Facebook</a>
+                      <a href="#" className="block hover:underline">X</a>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="inline-block rounded-full border border-red-500 px-4 py-2 font-serif text-xl italic">
+                      Index
+                    </div>
+                    <div className="mt-4 space-y-2 text-3xl">
+                      <a href="#home" className="block hover:underline">Home</a>
+                      <a href="#work" className="block hover:underline">Work</a>
+                      <a href="#about" className="block hover:underline">About</a>
+                      <a href="#contact" className="block hover:underline">Call</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 grid gap-4 md:grid-cols-2">
+                <input
+                  placeholder="Email"
+                  className="rounded-[1.5rem] border border-red-500 bg-black px-7 py-6 text-2xl text-red-500 placeholder:text-red-700 outline-none transition focus:border-red-400"
+                />
+                <button className="rounded-[1.5rem] border border-red-500 bg-black px-7 py-6 text-center font-serif text-4xl italic text-red-500 transition hover:bg-red-500 hover:text-black sm:text-6xl">
+                  Contact Us
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div className="fixed bottom-4 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 md:flex">
+        {[
+          ["Home", "#home"],
+          ["Work", "#work"],
+          ["About", "#about"],
+          ["Call", "#contact"],
+        ].map(([label, href], i) => (
+          <a
+            key={label}
+            href={href}
+            className={`rounded-full border border-red-500 px-7 py-4 text-2xl font-semibold text-red-500 shadow-xl shadow-black/40 transition hover:bg-red-500 hover:text-black ${
+              i === 1 ? "bg-red-500 text-black" : "bg-black/90"
+            }`}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
