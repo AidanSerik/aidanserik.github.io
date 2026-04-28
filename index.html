@@ -1,311 +1,917 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aidan Serik</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aidan Serik — Editor / Director</title>
 
 <style>
-
 :root{
-  --blue:#6C8EBF;
-  --bg:#0b0c0f;
-  --text:#eaeaea;
+  --blue:#5f8fa8;
+  --black:#030303;
+  --soft:#c8d8df;
+  --radius:34px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter;
+  background:var(--blue);
+  color:var(--black);
+  font-family:Arial, Helvetica, sans-serif;
   overflow-x:hidden;
 }
 
-/* NAV */
-
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
-  z-index:100;
-  backdrop-filter:blur(10px);
-}
-
-nav a{
-  color:white;
-  margin-left:20px;
-  text-decoration:none;
-  opacity:.7;
-}
-nav a:hover{opacity:1}
-
-/* HERO */
-
-.hero{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  text-align:center;
-}
-
-.hero h1{
-  font-size:80px;
-  font-family:Playfair Display;
-  z-index:2;
-}
-
-.hero video{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.4;
-}
-
-/* GRID */
-
-.section{
-  padding:120px 10%;
-}
-
-.section h2{
-  margin-bottom:40px;
-  font-size:28px;
-  font-family:Playfair Display;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.card{
-  position:relative;
-  cursor:pointer;
-  overflow:hidden;
-  border-radius:14px;
-}
-
-.card img{
-  width:100%;
-  display:block;
-  transition:.5s;
-}
-
-.card:hover img{
-  transform:scale(1.05);
-}
-
-.card span{
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  font-size:14px;
-  opacity:.8;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  padding:40px;
-  z-index:999;
-}
-
-.modal.active{display:flex}
-
-.modal-content{
-  max-width:900px;
-  width:100%;
-}
-
-.modal video{
-  width:100%;
-  margin-bottom:20px;
-}
-
-.close{
-  position:absolute;
-  top:20px;
-  right:30px;
-  font-size:30px;
-  cursor:pointer;
-}
-
 /* film grain */
-
-body::after{
+body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity:.05;
   pointer-events:none;
+  z-index:9999;
+  opacity:.13;
+  background:
+    repeating-radial-gradient(circle, rgba(255,255,255,.35) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.07) 0 1px, transparent 1px 3px);
+  mix-blend-mode:overlay;
 }
 
+a{color:inherit;text-decoration:none}
+
+/* nav */
+.nav{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  z-index:1000;
+  display:flex;
+  background:rgba(95,143,168,.78);
+  backdrop-filter:blur(18px);
+  border:1.5px solid var(--black);
+  border-radius:999px;
+  overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,.3);
+}
+
+.nav a{
+  padding:14px 22px;
+  font-size:13px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  border-right:1.5px solid var(--black);
+  transition:.25s ease;
+}
+
+.nav a:last-child{border-right:0}
+
+.nav a:hover{
+  background:var(--black);
+  color:var(--blue);
+}
+
+/* subtle cinema icons */
+.cinema-bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+
+.icon{
+  position:absolute;
+  color:rgba(3,3,3,.13);
+  font-size:clamp(42px,7vw,120px);
+  animation:float 12s ease-in-out infinite alternate;
+}
+
+.icon:nth-child(1){top:13%;right:8%;animation-delay:0s}
+.icon:nth-child(2){top:48%;left:4%;animation-delay:2s}
+.icon:nth-child(3){bottom:12%;right:16%;animation-delay:4s}
+
+@keyframes float{
+  from{transform:translateY(0) rotate(-8deg)}
+  to{transform:translateY(-38px) rotate(8deg)}
+}
+
+/* hero */
+.hero{
+  position:relative;
+  z-index:1;
+  margin:10px;
+  height:94vh;
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--black);
+}
+
+.hero-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  animation:heroFade 24s infinite;
+}
+
+.hero-slide:nth-child(1){animation-delay:0s}
+.hero-slide:nth-child(2){animation-delay:6s}
+.hero-slide:nth-child(3){animation-delay:12s}
+.hero-slide:nth-child(4){animation-delay:18s}
+
+.hero-slide video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(.74) contrast(1.12) brightness(.75);
+  transform:scale(1.04);
+  animation:slowZoom 12s ease-in-out infinite alternate;
+}
+
+@keyframes heroFade{
+  0%,20%{opacity:1}
+  25%,100%{opacity:0}
+}
+
+@keyframes slowZoom{
+  from{transform:scale(1.03)}
+  to{transform:scale(1.12)}
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,.76)),
+    linear-gradient(to right, rgba(0,0,0,.58), transparent 64%);
+  z-index:1;
+}
+
+.hero-kicker{
+  position:absolute;
+  z-index:2;
+  top:34px;
+  left:36px;
+  color:var(--blue);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  position:absolute;
+  z-index:2;
+  left:32px;
+  bottom:96px;
+  color:var(--blue);
+  font-size:clamp(78px,15vw,230px);
+  line-height:.76;
+  letter-spacing:-.08em;
+  font-weight:950;
+  mix-blend-mode:screen;
+}
+
+.hero-caption{
+  position:absolute;
+  z-index:2;
+  left:36px;
+  bottom:36px;
+  max-width:760px;
+  color:rgba(200,216,223,.92);
+  font-size:clamp(18px,2vw,28px);
+  line-height:1.08;
+  font-weight:700;
+}
+
+/* marquee */
+.marquee{
+  position:relative;
+  z-index:1;
+  margin:10px;
+  border-radius:28px;
+  background:var(--black);
+  color:var(--blue);
+  overflow:hidden;
+  white-space:nowrap;
+  padding:20px 0;
+}
+
+.marquee-track{
+  display:inline-block;
+  font-family:Georgia,serif;
+  font-size:clamp(38px,6vw,88px);
+  font-style:italic;
+  animation:marquee 28s linear infinite;
+}
+
+@keyframes marquee{
+  to{transform:translateX(-50%)}
+}
+
+/* section titles */
+.section-title{
+  position:relative;
+  z-index:1;
+  margin:10px;
+  padding:38px 34px;
+  border-radius:var(--radius);
+  background:var(--black);
+  color:var(--blue);
+}
+
+.section-title small{
+  display:block;
+  margin-bottom:18px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.section-title h2{
+  font-size:clamp(62px,11vw,170px);
+  line-height:.82;
+  letter-spacing:-.075em;
+}
+
+/* selected works */
+.work{
+  position:relative;
+  z-index:1;
+  margin:10px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.poster{
+  position:relative;
+  min-height:560px;
+  border-radius:30px;
+  overflow:hidden;
+  background:var(--black);
+  color:var(--blue);
+  box-shadow:0 22px 80px rgba(0,0,0,.18);
+  transition:.65s cubic-bezier(.19,1,.22,1);
+}
+
+.poster:hover{
+  transform:translateY(-10px);
+  box-shadow:0 44px 120px rgba(0,0,0,.34);
+}
+
+.poster video{
+  width:100%;
+  height:100%;
+  min-height:560px;
+  object-fit:cover;
+  display:block;
+  filter:saturate(.82) contrast(1.08) brightness(.86);
+  transition:.9s cubic-bezier(.19,1,.22,1);
+}
+
+.poster:hover video{
+  transform:scale(1.055);
+  filter:saturate(.95) contrast(1.12) brightness(.92);
+}
+
+.poster::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.92), transparent 55%);
+}
+
+.poster-info{
+  position:absolute;
+  z-index:2;
+  left:22px;
+  right:22px;
+  bottom:22px;
+}
+
+.poster-info h3{
+  font-size:clamp(28px,3vw,48px);
+  line-height:.9;
+  letter-spacing:-.045em;
+}
+
+.poster-info p{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.25;
+  color:rgba(200,216,223,.92);
+}
+
+.badge{
+  position:absolute;
+  z-index:3;
+  top:18px;
+  right:18px;
+  padding:9px 14px;
+  border-radius:999px;
+  background:rgba(95,143,168,.9);
+  color:var(--black);
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+/* works archive */
+.works-list{
+  position:relative;
+  z-index:1;
+  margin:10px;
+  padding:34px;
+  border-radius:var(--radius);
+  background:var(--black);
+  color:var(--blue);
+}
+
+.work-row{
+  display:grid;
+  grid-template-columns:1fr 1.6fr .7fr;
+  gap:18px;
+  padding:17px 24px;
+  margin-bottom:10px;
+  border:1.5px solid rgba(95,143,168,.8);
+  border-radius:999px;
+  font-size:clamp(15px,1.6vw,22px);
+  transition:.25s ease;
+}
+
+.work-row:hover{
+  background:var(--blue);
+  color:var(--black);
+  transform:translateX(8px);
+}
+
+/* about */
+.about{
+  position:relative;
+  z-index:1;
+  margin:10px;
+  min-height:88vh;
+  border-radius:var(--radius);
+  background:var(--black);
+  color:var(--blue);
+  padding:48px;
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:48px;
+  align-items:center;
+}
+
+.about-photo{
+  width:100%;
+  max-width:420px;
+  justify-self:center;
+  border-radius:28px;
+  overflow:hidden;
+  border:1.5px solid rgba(95,143,168,.7);
+  box-shadow:0 40px 120px rgba(0,0,0,.55);
+  transform:rotate(-1.2deg);
+}
+
+.about-photo img{
+  width:100%;
+  display:block;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  filter:saturate(.72) contrast(1.08);
+}
+
+.about-text h2{
+  font-size:clamp(64px,10vw,160px);
+  line-height:.82;
+  letter-spacing:-.075em;
+  margin-bottom:24px;
+}
+
+.about-text p{
+  max-width:850px;
+  font-size:clamp(24px,3.2vw,48px);
+  line-height:1.02;
+  font-weight:900;
+}
+
+.about-links{
+  margin-top:32px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.about-links a{
+  border:1.5px solid var(--blue);
+  border-radius:999px;
+  padding:14px 20px;
+  font-size:13px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  transition:.25s ease;
+}
+
+.about-links a:hover{
+  background:var(--blue);
+  color:var(--black);
+}
+
+/* contact */
+footer{
+  position:relative;
+  z-index:1;
+  margin:10px;
+  min-height:70vh;
+  border-radius:var(--radius);
+  background:var(--black);
+  color:var(--blue);
+  padding:48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+footer h2{
+  font-size:clamp(72px,13vw,210px);
+  line-height:.78;
+  letter-spacing:-.08em;
+}
+
+.contact{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.contact a,
+.contact input{
+  border:1.5px solid var(--blue);
+  border-radius:24px;
+  padding:24px;
+  background:transparent;
+  color:var(--blue);
+  font-size:22px;
+  font-weight:900;
+}
+
+.contact a{
+  background:var(--blue);
+  color:var(--black);
+  text-align:center;
+  font-family:Georgia,serif;
+  font-size:38px;
+  font-style:italic;
+}
+
+/* modals */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:none;
+  padding:18px;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(14px);
+}
+
+.modal:target{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal-box{
+  width:min(1120px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:32px;
+  background:var(--blue);
+  color:var(--black);
+  padding:28px;
+  border:2px solid var(--black);
+  box-shadow:0 44px 140px rgba(0,0,0,.55);
+  animation:modalIn .35s ease both;
+}
+
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(18px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.close{
+  position:sticky;
+  top:0;
+  float:right;
+  background:var(--black);
+  color:var(--blue);
+  border-radius:999px;
+  padding:12px 18px;
+  font-size:13px;
+  font-weight:900;
+  text-transform:uppercase;
+  z-index:2;
+}
+
+.project-modal-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:28px;
+  clear:both;
+}
+
+.trailer{
+  border-radius:24px;
+  overflow:hidden;
+  background:var(--black);
+  border:2px solid var(--black);
+}
+
+.trailer video{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+}
+
+.project-copy h2{
+  font-size:clamp(48px,7vw,96px);
+  line-height:.84;
+  letter-spacing:-.07em;
+  margin-bottom:18px;
+}
+
+.project-copy p{
+  font-size:18px;
+  line-height:1.35;
+  max-width:560px;
+  font-weight:700;
+}
+
+.project-meta{
+  margin-top:22px;
+  display:grid;
+  gap:8px;
+  font-size:14px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.press-block{
+  margin-top:28px;
+  padding-top:22px;
+  border-top:2px solid var(--black);
+}
+
+.press-block h3{
+  margin-bottom:10px;
+  font-size:18px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.press-block a{
+  display:block;
+  padding:13px 0;
+  border-bottom:1.5px solid rgba(3,3,3,.7);
+  font-size:17px;
+  font-weight:850;
+}
+
+/* reveal */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .9s ease, transform .9s cubic-bezier(.19,1,.22,1);
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media(max-width:1100px){
+  .work{grid-template-columns:repeat(2,1fr)}
+  .project-modal-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:760px){
+  .work,
+  .about,
+  .work-row,
+  .contact{
+    grid-template-columns:1fr;
+  }
+
+  .poster,.poster video{min-height:470px}
+  .nav a{padding:12px 12px;font-size:11px}
+  .about{padding:30px}
+  .hero h1{bottom:118px}
+}
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div>Aidan Serik</div>
-  <div>
-    <a href="#">Home</a>
-    <a href="#">Works</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </div>
+<div class="cinema-bg">
+  <div class="icon">▶</div>
+  <div class="icon">◉</div>
+  <div class="icon">▮▮</div>
+</div>
+
+<nav class="nav">
+  <a href="#home">Home</a>
+  <a href="#work">Selected</a>
+  <a href="#works">Works</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-slide"><video src="we-live-here-preview.mp4" autoplay muted loop playsinline></video></div>
+  <div class="hero-slide"><video src="joqtau-preview.mp4" autoplay muted loop playsinline></video></div>
+  <div class="hero-slide"><video src="letherdance-preview.mp4" autoplay muted loop playsinline></video></div>
+  <div class="hero-slide"><video src="trippin-preview.mp4" autoplay muted loop playsinline></video></div>
 
-<section class="hero">
-  <video autoplay muted loop src="we-live-here-preview.mp4"></video>
-  <h1>Aidan Serik</h1>
-</section>
-
-<!-- WORKS -->
-
-<section class="section">
-  <h2>Selected Works</h2>
-
-  <div class="grid">
-
-    <!-- WE LIVE HERE -->
-    <div class="card" onclick="openModal('we-live')">
-      <img src="we-live-here-poster.jpg">
-      <span>We Live Here</span>
-    </div>
-
-    <!-- MADINA -->
-    <div class="card" onclick="openModal('madina')">
-      <img src="madina-poster.jpg">
-      <span>Madina</span>
-    </div>
-
-    <!-- JOQTAU -->
-    <div class="card" onclick="openModal('joqtau')">
-      <img src="joqtau-poster.jpg">
-      <span>Joqtau</span>
-    </div>
-
-    <!-- DYAD -->
-    <div class="card" onclick="openModal('dyad')">
-      <img src="dyad-poster.jpg">
-      <span>DYAD</span>
-    </div>
-
-    <!-- LET HER DANCE -->
-    <div class="card" onclick="openModal('dance')">
-      <img src="letherdance-poster.jpg">
-      <span>Let Her Dance</span>
-    </div>
-
-    <!-- PRESENCE -->
-    <div class="card" onclick="openModal('presence')">
-      <img src="presence-poster.jpg">
-      <span>Presence</span>
-    </div>
-
-    <!-- PRYANIKI -->
-    <div class="card" onclick="openModal('pryaniki')">
-      <img src="pryaniki-poster.jpg">
-      <span>Gingerbread for Her Dad</span>
-    </div>
-
+  <div class="hero-kicker">Editor / Director</div>
+  <h1>Aidan<br>Serik</h1>
+  <div class="hero-caption">
+    Cinematic editing for documentary, fiction, short film, and feature cinema.
   </div>
 </section>
 
-<!-- MODAL -->
+<div class="marquee">
+  <div class="marquee-track">
+    Aidan Serik ✱ Editor ✱ Director ✱ Documentary ✱ Feature Film ✱ Short Film ✱ Tbilisi ✱ Almaty ✱
+    Aidan Serik ✱ Editor ✱ Director ✱ Documentary ✱ Feature Film ✱ Short Film ✱ Tbilisi ✱ Almaty ✱
+  </div>
+</div>
 
-<div class="modal" id="modal">
-  <div class="close" onclick="closeModal()">✕</div>
-  <div class="modal-content" id="modalContent"></div>
+<section id="work">
+  <div class="section-title reveal">
+    <small>Selected works</small>
+    <h2>Films</h2>
+  </div>
+
+  <div class="work">
+    <a class="poster reveal" href="#project-we-live-here">
+      <span class="badge">Press</span>
+      <video src="we-live-here-preview.mp4" autoplay muted loop playsinline></video>
+      <div class="poster-info">
+        <h3>We Live Here</h3>
+        <p>Editor / Feature documentary</p>
+      </div>
+    </a>
+
+    <a class="poster reveal" href="#project-joqtau">
+      <span class="badge">Press</span>
+      <video src="joqtau-preview.mp4" autoplay muted loop playsinline></video>
+      <div class="poster-info">
+        <h3>Joqtau</h3>
+        <p>Editor / Feature film</p>
+      </div>
+    </a>
+
+    <a class="poster reveal" href="#project-let-her-dance">
+      <span class="badge">Film</span>
+      <video src="letherdance-preview.mp4" autoplay muted loop playsinline></video>
+      <div class="poster-info">
+        <h3>Let Her Dance</h3>
+        <p>Visual film</p>
+      </div>
+    </a>
+
+    <a class="poster reveal" href="#project-trippin">
+      <span class="badge">Film</span>
+      <video src="trippin-preview.mp4" autoplay muted loop playsinline></video>
+      <div class="poster-info">
+        <h3>Trippin</h3>
+        <p>Short visual project</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section id="works">
+  <div class="section-title reveal">
+    <small>Archive</small>
+    <h2>Works</h2>
+  </div>
+
+  <div class="works-list reveal">
+    <div class="work-row"><div>Director</div><div>Women in Lenovo Leadership</div><div>2019</div></div>
+    <div class="work-row"><div>Editor</div><div>Go Viral</div><div>2018</div></div>
+    <div class="work-row"><div>Editor</div><div>Adren CS:GO</div><div>2019</div></div>
+    <div class="work-row"><div>Director</div><div>Youth 4 Human Rights</div><div>2019</div></div>
+    <div class="work-row"><div>Interview Editor</div><div>Tihii Svet Documentary Studio</div><div>2019–2020</div></div>
+    <div class="work-row"><div>Editor</div><div>Don’t Give Up</div><div>2019</div></div>
+    <div class="work-row"><div>Editor</div><div>OT / Fire</div><div>2020</div></div>
+    <div class="work-row"><div>Editor</div><div>Warm Lake</div><div>2020</div></div>
+    <div class="work-row"><div>Editor</div><div>Critical Mass</div><div>2021</div></div>
+    <div class="work-row"><div>Editor</div><div>Madina</div><div>2021</div></div>
+    <div class="work-row"><div>Editor</div><div>Silk Road</div><div>2021</div></div>
+    <div class="work-row"><div>Editor</div><div>Worxspace</div><div>2021</div></div>
+    <div class="work-row"><div>Editor</div><div>We Live Here</div><div>2022–now</div></div>
+    <div class="work-row"><div>Editor</div><div>Joqtau</div><div>2022</div></div>
+    <div class="work-row"><div>Editor</div><div>Buttons</div><div>2022</div></div>
+    <div class="work-row"><div>Director</div><div>DYAD</div><div>2023</div></div>
+    <div class="work-row"><div>Visual</div><div>Let Her Dance</div><div>—</div></div>
+    <div class="work-row"><div>Visual</div><div>Trippin</div><div>—</div></div>
+  </div>
+</section>
+
+<section id="about" class="about reveal">
+  <div class="about-photo">
+    <img src="aidan-portrait.jpg" alt="Aidan Serik portrait">
+  </div>
+
+  <div class="about-text">
+    <h2>About</h2>
+    <p>
+      Aidan Serik is an editor and director based between Tbilisi and Almaty, working internationally across documentary, fiction, short film, and feature cinema.
+    </p>
+
+    <div class="about-links">
+      <a href="#project-aidan">Press / Awards</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" class="reveal">
+  <h2>Contact<br>Aidan</h2>
+
+  <div class="contact">
+    <input placeholder="Email">
+    <a href="mailto:hello@aidanserik.com">Contact</a>
+  </div>
+</footer>
+
+<!-- PROJECT MODALS -->
+
+<div id="project-we-live-here" class="modal">
+  <div class="modal-box">
+    <a class="close" href="#work">Close</a>
+
+    <div class="project-modal-grid">
+      <div class="trailer">
+        <video src="we-live-here-preview.mp4" controls></video>
+      </div>
+
+      <div class="project-copy">
+        <h2>We Live Here</h2>
+        <p>
+          A feature documentary exploring generational memory, land, and the long echoes of nuclear testing in Kazakhstan.
+        </p>
+
+        <div class="project-meta">
+          <div>Role: Editor</div>
+          <div>Format: Feature documentary</div>
+          <div>Period: 2022–now</div>
+        </div>
+
+        <div class="press-block">
+          <h3>Press</h3>
+          <a href="https://variety.com/2025/film/global/we-live-here-syndicado-cphdox-1236328082/" target="_blank">Variety</a>
+          <a href="https://takeonecinema.net/2025/we-live-here/" target="_blank">Take One Cinema</a>
+          <a href="https://www.hollywoodreporter.com/movies/movie-news/we-live-here-documentary-kazakhstan-nuclear-test-site-1236165093/" target="_blank">The Hollywood Reporter</a>
+          <a href="https://povmagazine.com/we-live-here-review-probing-generational-fallout/" target="_blank">POV Magazine</a>
+          <a href="https://www.moderntimes.review/we-live-here/" target="_blank">Modern Times Review</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="project-joqtau" class="modal">
+  <div class="modal-box">
+    <a class="close" href="#work">Close</a>
+
+    <div class="project-modal-grid">
+      <div class="trailer">
+        <video src="joqtau-preview.mp4" controls></video>
+      </div>
+
+      <div class="project-copy">
+        <h2>Joqtau</h2>
+        <p>
+          A poetic feature film built around grief, ritual, memory, and the landscape of loss.
+        </p>
+
+        <div class="project-meta">
+          <div>Role: Editor</div>
+          <div>Format: Feature film</div>
+          <div>Year: 2022</div>
+        </div>
+
+        <div class="press-block">
+          <h3>Press</h3>
+          <a href="https://www.locarnofestival.ch/news/2024/daily/spotlight-on-aruan-anartays-joqtau.html" target="_blank">Locarno Festival</a>
+          <a href="https://variety.com/2024/film/global/parallax-joqtau-washhh-locarno-1236092474/" target="_blank">Variety</a>
+          <a href="https://the-steppe.com/razvlecheniya/kino/joqtau-kak-aruan-anartaj-osmysljaet-zhanr-traurnoj-pesni-v-kino" target="_blank">The Steppe</a>
+          <a href="https://asianmoviepulse.com/2025/06/film-review-joqtau-2024-by-arha-anartay/" target="_blank">Asian Movie Pulse</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="project-let-her-dance" class="modal">
+  <div class="modal-box">
+    <a class="close" href="#work">Close</a>
+
+    <div class="project-modal-grid">
+      <div class="trailer">
+        <video src="letherdance-preview.mp4" controls></video>
+      </div>
+
+      <div class="project-copy">
+        <h2>Let Her Dance</h2>
+        <p>
+          A visual film built around movement, body language, atmosphere, and cinematic texture.
+        </p>
+
+        <div class="project-meta">
+          <div>Format: Visual film</div>
+          <div>Preview available</div>
+        </div>
+
+        <div class="press-block">
+          <h3>Press</h3>
+          <a href="#work">Press links can be added here.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="project-trippin" class="modal">
+  <div class="modal-box">
+    <a class="close" href="#work">Close</a>
+
+    <div class="project-modal-grid">
+      <div class="trailer">
+        <video src="trippin-preview.mp4" controls></video>
+      </div>
+
+      <div class="project-copy">
+        <h2>Trippin</h2>
+        <p>
+          A short visual project focused on rhythm, movement, travel, and image-led storytelling.
+        </p>
+
+        <div class="project-meta">
+          <div>Format: Short visual project</div>
+          <div>Preview available</div>
+        </div>
+
+        <div class="press-block">
+          <h3>Press</h3>
+          <a href="#work">Press links can be added here.</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="project-aidan" class="modal">
+  <div class="modal-box">
+    <a class="close" href="#about">Close</a>
+
+    <div class="project-copy">
+      <h2>Aidan / Awards</h2>
+      <p>
+        Selected press, awards, and professional references.
+      </p>
+
+      <div class="press-block">
+        <h3>Press</h3>
+        <a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank">Variety — Madina</a>
+        <a href="https://manshuq.com/career-aidan-serik-09-2023" target="_blank">Critics’ Choice 2024 — Nominee for Best Editor, Madina</a>
+        <a href="https://www.imdb.com/name/nm16334791/" target="_blank">IMDb — Aidan Serik</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
+const reveals = document.querySelectorAll(".reveal");
 
-function openModal(project){
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.14 });
 
-let content = ""
-
-if(project==="we-live"){
-content=`
-<video controls src="we-live-here-preview.mp4"></video>
-<p>Feature documentary.</p>
-<p><a href="https://variety.com/2025/film/global/we-live-here-syndicado-cphdox-1236328082/" target="_blank">Press</a></p>
-`
-}
-
-if(project==="madina"){
-content=`
-<img src="madina-poster.jpg" style="width:100%">
-<p>Feature film.</p>
-<p><a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank">Press</a></p>
-`
-}
-
-if(project==="joqtau"){
-content=`
-<video controls src="joqtau-preview.mp4"></video>
-<p>Feature film.</p>
-<p><a href="https://variety.com/2024/film/global/parallax-joqtau-washhh-locarno-1236092474/" target="_blank">Press</a></p>
-`
-}
-
-if(project==="dyad"){
-content=`
-<video controls src="trippin-preview.mp4"></video>
-<p>Short film.</p>
-<p><a href="https://www.imdb.com/name/nm16334791/" target="_blank">Press</a></p>
-`
-}
-
-if(project==="dance"){
-content=`
-<video controls src="letherdance-preview.mp4"></video>
-<p>Visual film.</p>
-`
-}
-
-if(project==="presence"){
-content=`
-<img src="presence-poster.jpg" style="width:100%">
-<p>Visual project.</p>
-`
-}
-
-if(project==="pryaniki"){
-content=`
-<img src="pryaniki-poster.jpg" style="width:100%">
-<p>Short film.</p>
-<p><a href="https://thefilmverdict.com/gingerbread-for-her-dad/" target="_blank">Press</a></p>
-`
-}
-
-document.getElementById("modalContent").innerHTML=content
-document.getElementById("modal").classList.add("active")
-}
-
-function closeModal(){
-document.getElementById("modal").classList.remove("active")
-}
-
+reveals.forEach(el => observer.observe(el));
 </script>
 
 </body>
