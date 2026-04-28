@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aidan Serik — Editor / Director</title>
 
+<link rel="icon" href='data:image/svg+xml,
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<rect width="100" height="100" rx="18" fill="%23030303"/>
+<circle cx="32" cy="34" r="16" fill="%235f8fa8"/>
+<circle cx="68" cy="34" r="16" fill="%235f8fa8"/>
+<path d="M20 72h60" stroke="%235f8fa8" stroke-width="10" stroke-linecap="round"/>
+</svg>'>
+
 <style>
 :root{
   --blue:#5f8fa8;
@@ -23,23 +31,56 @@ body{
   overflow-x:hidden;
 }
 
-/* film grain */
+body,
+a,
+button {
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Ctext y='28' font-size='28'%3E✂%EF%B8%8F%3C/text%3E%3C/svg%3E") 6 6,
+    crosshair;
+}
+
+video,
+input {
+  cursor:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Ctext y='28' font-size='28'%3E🎞%EF%B8%8F%3C/text%3E%3C/svg%3E") 6 6,
+    pointer;
+}
+
+/* grain + scan */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:9999;
-  opacity:.13;
+  opacity:.16;
   background:
     repeating-radial-gradient(circle, rgba(255,255,255,.35) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(0deg, rgba(0,0,0,.07) 0 1px, transparent 1px 3px);
+    repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 1px, transparent 1px 3px);
   mix-blend-mode:overlay;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:-20%;
+  pointer-events:none;
+  z-index:9998;
+  opacity:.14;
+  background:
+    linear-gradient(90deg, transparent 12%, rgba(255,255,255,.22) 12.1%, transparent 12.25%),
+    linear-gradient(90deg, transparent 68%, rgba(0,0,0,.3) 68.1%, transparent 68.25%);
+  animation:scratch 4s linear infinite;
+}
+
+@keyframes scratch{
+  from{transform:translateY(-30px)}
+  to{transform:translateY(30px)}
 }
 
 a{color:inherit;text-decoration:none}
 
-/* nav */
+/* NAV */
 .nav{
   position:fixed;
   left:50%;
@@ -47,32 +88,39 @@ a{color:inherit;text-decoration:none}
   transform:translateX(-50%);
   z-index:1000;
   display:flex;
-  background:rgba(95,143,168,.78);
+  background:rgba(95,143,168,.82);
   backdrop-filter:blur(18px);
   border:1.5px solid var(--black);
   border-radius:999px;
   overflow:hidden;
-  box-shadow:0 24px 80px rgba(0,0,0,.3);
+  box-shadow:0 24px 80px rgba(0,0,0,.32);
 }
 
-.nav a{
+.nav a,
+.sound-toggle{
   padding:14px 22px;
   font-size:13px;
   font-weight:900;
   text-transform:uppercase;
   letter-spacing:.08em;
   border-right:1.5px solid var(--black);
-  transition:.25s ease;
+  transition:.22s ease;
+  background:transparent;
+  color:var(--black);
+  cursor:pointer;
 }
 
-.nav a:last-child{border-right:0}
+.sound-toggle{
+  border:0;
+}
 
-.nav a:hover{
+.nav a:hover,
+.sound-toggle:hover{
   background:var(--black);
   color:var(--blue);
 }
 
-/* subtle cinema icons */
+/* cinema background icons */
 .cinema-bg{
   position:fixed;
   inset:0;
@@ -83,21 +131,22 @@ a{color:inherit;text-decoration:none}
 
 .icon{
   position:absolute;
-  color:rgba(3,3,3,.13);
+  color:rgba(3,3,3,.12);
   font-size:clamp(42px,7vw,120px);
-  animation:float 12s ease-in-out infinite alternate;
+  animation:float 11s ease-in-out infinite alternate;
 }
 
 .icon:nth-child(1){top:13%;right:8%;animation-delay:0s}
 .icon:nth-child(2){top:48%;left:4%;animation-delay:2s}
 .icon:nth-child(3){bottom:12%;right:16%;animation-delay:4s}
+.icon:nth-child(4){top:74%;left:68%;animation-delay:6s}
 
 @keyframes float{
   from{transform:translateY(0) rotate(-8deg)}
   to{transform:translateY(-38px) rotate(8deg)}
 }
 
-/* hero */
+/* HERO */
 .hero{
   position:relative;
   z-index:1;
@@ -108,35 +157,30 @@ a{color:inherit;text-decoration:none}
   background:var(--black);
 }
 
+/* hard cut slideshow */
 .hero-slide{
   position:absolute;
   inset:0;
   opacity:0;
-  animation:heroFade 24s infinite;
+  animation:hardCut 16s steps(1,end) infinite;
 }
 
 .hero-slide:nth-child(1){animation-delay:0s}
-.hero-slide:nth-child(2){animation-delay:6s}
-.hero-slide:nth-child(3){animation-delay:12s}
-.hero-slide:nth-child(4){animation-delay:18s}
+.hero-slide:nth-child(2){animation-delay:4s}
+.hero-slide:nth-child(3){animation-delay:8s}
+.hero-slide:nth-child(4){animation-delay:12s}
 
 .hero-slide video{
   width:100%;
   height:100%;
   object-fit:cover;
-  filter:saturate(.74) contrast(1.12) brightness(.75);
+  filter:saturate(.74) contrast(1.14) brightness(.74);
   transform:scale(1.04);
-  animation:slowZoom 12s ease-in-out infinite alternate;
 }
 
-@keyframes heroFade{
-  0%,20%{opacity:1}
+@keyframes hardCut{
+  0%,24.9%{opacity:1}
   25%,100%{opacity:0}
-}
-
-@keyframes slowZoom{
-  from{transform:scale(1.03)}
-  to{transform:scale(1.12)}
 }
 
 .hero::after{
@@ -144,8 +188,8 @@ a{color:inherit;text-decoration:none}
   position:absolute;
   inset:0;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,.76)),
-    linear-gradient(to right, rgba(0,0,0,.58), transparent 64%);
+    linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,.78)),
+    linear-gradient(to right, rgba(0,0,0,.6), transparent 64%);
   z-index:1;
 }
 
@@ -172,6 +216,14 @@ a{color:inherit;text-decoration:none}
   letter-spacing:-.08em;
   font-weight:950;
   mix-blend-mode:screen;
+  animation:titlePunch 2.8s steps(2,end) infinite;
+}
+
+@keyframes titlePunch{
+  0%,86%{transform:translate(0,0)}
+  88%{transform:translate(-3px,2px)}
+  90%{transform:translate(4px,-2px)}
+  92%,100%{transform:translate(0,0)}
 }
 
 .hero-caption{
@@ -184,6 +236,25 @@ a{color:inherit;text-decoration:none}
   font-size:clamp(18px,2vw,28px);
   line-height:1.08;
   font-weight:700;
+}
+
+/* film perforation strip */
+.perf-strip{
+  position:relative;
+  z-index:1;
+  height:54px;
+  margin:10px;
+  border-radius:20px;
+  background:
+    repeating-linear-gradient(90deg, var(--black) 0 14px, var(--blue) 14px 26px);
+  overflow:hidden;
+}
+
+.perf-strip::after{
+  content:"";
+  position:absolute;
+  inset:13px 0;
+  background:var(--black);
 }
 
 /* marquee */
@@ -259,7 +330,7 @@ a{color:inherit;text-decoration:none}
 }
 
 .poster:hover{
-  transform:translateY(-10px);
+  transform:translateY(-10px) rotate(-.5deg);
   box-shadow:0 44px 120px rgba(0,0,0,.34);
 }
 
@@ -275,7 +346,7 @@ a{color:inherit;text-decoration:none}
 
 .poster:hover video{
   transform:scale(1.055);
-  filter:saturate(.95) contrast(1.12) brightness(.92);
+  filter:saturate(.95) contrast(1.14) brightness(.92);
 }
 
 .poster::after{
@@ -321,7 +392,7 @@ a{color:inherit;text-decoration:none}
   letter-spacing:.08em;
 }
 
-/* works archive */
+/* works */
 .works-list{
   position:relative;
   z-index:1;
@@ -350,7 +421,7 @@ a{color:inherit;text-decoration:none}
   transform:translateX(8px);
 }
 
-/* about */
+/* ABOUT: film reveal */
 .about{
   position:relative;
   z-index:1;
@@ -361,9 +432,21 @@ a{color:inherit;text-decoration:none}
   color:var(--blue);
   padding:48px;
   display:grid;
-  grid-template-columns:.8fr 1.2fr;
+  grid-template-columns:.75fr 1.25fr;
   gap:48px;
   align-items:center;
+  overflow:hidden;
+}
+
+.about::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:42px;
+  background:
+    repeating-linear-gradient(90deg, var(--blue) 0 12px, var(--black) 12px 24px);
 }
 
 .about-photo{
@@ -375,6 +458,12 @@ a{color:inherit;text-decoration:none}
   border:1.5px solid rgba(95,143,168,.7);
   box-shadow:0 40px 120px rgba(0,0,0,.55);
   transform:rotate(-1.2deg);
+  animation:filmDrop .9s cubic-bezier(.19,1,.22,1) both;
+}
+
+@keyframes filmDrop{
+  from{opacity:0;transform:translateY(-120px) rotate(-7deg)}
+  to{opacity:1;transform:translateY(0) rotate(-1.2deg)}
 }
 
 .about-photo img{
@@ -610,7 +699,7 @@ footer h2{
   }
 
   .poster,.poster video{min-height:470px}
-  .nav a{padding:12px 12px;font-size:11px}
+  .nav a,.sound-toggle{padding:12px 12px;font-size:11px}
   .about{padding:30px}
   .hero h1{bottom:118px}
 }
@@ -619,10 +708,17 @@ footer h2{
 
 <body>
 
+<audio class="clickSound" src="click.mp3" preload="auto"></audio>
+<audio class="clickSound" src="click-01.mp3" preload="auto"></audio>
+<audio class="clickSound" src="click-02.mp3" preload="auto"></audio>
+<audio class="clickSound" src="click-03.mp3" preload="auto"></audio>
+<audio id="projectSound" src="project-open.mp3" preload="auto"></audio>
+
 <div class="cinema-bg">
   <div class="icon">▶</div>
   <div class="icon">◉</div>
   <div class="icon">▮▮</div>
+  <div class="icon">⌁</div>
 </div>
 
 <nav class="nav">
@@ -631,6 +727,7 @@ footer h2{
   <a href="#works">Works</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
+  <button class="sound-toggle" id="soundToggle">Sound Off</button>
 </nav>
 
 <section id="home" class="hero">
@@ -646,6 +743,8 @@ footer h2{
   </div>
 </section>
 
+<div class="perf-strip"></div>
+
 <div class="marquee">
   <div class="marquee-track">
     Aidan Serik ✱ Editor ✱ Director ✱ Documentary ✱ Feature Film ✱ Short Film ✱ Tbilisi ✱ Almaty ✱
@@ -660,7 +759,7 @@ footer h2{
   </div>
 
   <div class="work">
-    <a class="poster reveal" href="#project-we-live-here">
+    <a class="poster reveal project-link" href="#project-we-live-here">
       <span class="badge">Press</span>
       <video src="we-live-here-preview.mp4" autoplay muted loop playsinline></video>
       <div class="poster-info">
@@ -669,7 +768,7 @@ footer h2{
       </div>
     </a>
 
-    <a class="poster reveal" href="#project-joqtau">
+    <a class="poster reveal project-link" href="#project-joqtau">
       <span class="badge">Press</span>
       <video src="joqtau-preview.mp4" autoplay muted loop playsinline></video>
       <div class="poster-info">
@@ -678,7 +777,7 @@ footer h2{
       </div>
     </a>
 
-    <a class="poster reveal" href="#project-let-her-dance">
+    <a class="poster reveal project-link" href="#project-let-her-dance">
       <span class="badge">Film</span>
       <video src="letherdance-preview.mp4" autoplay muted loop playsinline></video>
       <div class="poster-info">
@@ -687,7 +786,7 @@ footer h2{
       </div>
     </a>
 
-    <a class="poster reveal" href="#project-trippin">
+    <a class="poster reveal project-link" href="#project-trippin">
       <span class="badge">Film</span>
       <video src="trippin-preview.mp4" autoplay muted loop playsinline></video>
       <div class="poster-info">
@@ -738,7 +837,7 @@ footer h2{
     </p>
 
     <div class="about-links">
-      <a href="#project-aidan">Press / Awards</a>
+      <a href="#project-aidan" class="project-link">Press / Awards</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -753,29 +852,19 @@ footer h2{
   </div>
 </footer>
 
-<!-- PROJECT MODALS -->
-
 <div id="project-we-live-here" class="modal">
   <div class="modal-box">
     <a class="close" href="#work">Close</a>
-
     <div class="project-modal-grid">
-      <div class="trailer">
-        <video src="we-live-here-preview.mp4" controls></video>
-      </div>
-
+      <div class="trailer"><video src="we-live-here-preview.mp4" controls></video></div>
       <div class="project-copy">
         <h2>We Live Here</h2>
-        <p>
-          A feature documentary exploring generational memory, land, and the long echoes of nuclear testing in Kazakhstan.
-        </p>
-
+        <p>A feature documentary exploring generational memory, land, and the long echoes of nuclear testing in Kazakhstan.</p>
         <div class="project-meta">
           <div>Role: Editor</div>
           <div>Format: Feature documentary</div>
           <div>Period: 2022–now</div>
         </div>
-
         <div class="press-block">
           <h3>Press</h3>
           <a href="https://variety.com/2025/film/global/we-live-here-syndicado-cphdox-1236328082/" target="_blank">Variety</a>
@@ -792,24 +881,16 @@ footer h2{
 <div id="project-joqtau" class="modal">
   <div class="modal-box">
     <a class="close" href="#work">Close</a>
-
     <div class="project-modal-grid">
-      <div class="trailer">
-        <video src="joqtau-preview.mp4" controls></video>
-      </div>
-
+      <div class="trailer"><video src="joqtau-preview.mp4" controls></video></div>
       <div class="project-copy">
         <h2>Joqtau</h2>
-        <p>
-          A poetic feature film built around grief, ritual, memory, and the landscape of loss.
-        </p>
-
+        <p>A poetic feature film built around grief, ritual, memory, and the landscape of loss.</p>
         <div class="project-meta">
           <div>Role: Editor</div>
           <div>Format: Feature film</div>
           <div>Year: 2022</div>
         </div>
-
         <div class="press-block">
           <h3>Press</h3>
           <a href="https://www.locarnofestival.ch/news/2024/daily/spotlight-on-aruan-anartays-joqtau.html" target="_blank">Locarno Festival</a>
@@ -825,23 +906,15 @@ footer h2{
 <div id="project-let-her-dance" class="modal">
   <div class="modal-box">
     <a class="close" href="#work">Close</a>
-
     <div class="project-modal-grid">
-      <div class="trailer">
-        <video src="letherdance-preview.mp4" controls></video>
-      </div>
-
+      <div class="trailer"><video src="letherdance-preview.mp4" controls></video></div>
       <div class="project-copy">
         <h2>Let Her Dance</h2>
-        <p>
-          A visual film built around movement, body language, atmosphere, and cinematic texture.
-        </p>
-
+        <p>A visual film built around movement, body language, atmosphere, and cinematic texture.</p>
         <div class="project-meta">
           <div>Format: Visual film</div>
           <div>Preview available</div>
         </div>
-
         <div class="press-block">
           <h3>Press</h3>
           <a href="#work">Press links can be added here.</a>
@@ -854,23 +927,15 @@ footer h2{
 <div id="project-trippin" class="modal">
   <div class="modal-box">
     <a class="close" href="#work">Close</a>
-
     <div class="project-modal-grid">
-      <div class="trailer">
-        <video src="trippin-preview.mp4" controls></video>
-      </div>
-
+      <div class="trailer"><video src="trippin-preview.mp4" controls></video></div>
       <div class="project-copy">
         <h2>Trippin</h2>
-        <p>
-          A short visual project focused on rhythm, movement, travel, and image-led storytelling.
-        </p>
-
+        <p>A short visual project focused on rhythm, movement, travel, and image-led storytelling.</p>
         <div class="project-meta">
           <div>Format: Short visual project</div>
           <div>Preview available</div>
         </div>
-
         <div class="press-block">
           <h3>Press</h3>
           <a href="#work">Press links can be added here.</a>
@@ -883,13 +948,9 @@ footer h2{
 <div id="project-aidan" class="modal">
   <div class="modal-box">
     <a class="close" href="#about">Close</a>
-
     <div class="project-copy">
       <h2>Aidan / Awards</h2>
-      <p>
-        Selected press, awards, and professional references.
-      </p>
-
+      <p>Selected press, awards, and professional references.</p>
       <div class="press-block">
         <h3>Press</h3>
         <a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank">Variety — Madina</a>
@@ -912,6 +973,51 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.14 });
 
 reveals.forEach(el => observer.observe(el));
+
+let soundOn = false;
+
+const soundToggle = document.getElementById("soundToggle");
+const clickSounds = Array.from(document.querySelectorAll(".clickSound"));
+const projectSound = document.getElementById("projectSound");
+
+function playRandomClick(volume = 0.2) {
+  if (!soundOn || clickSounds.length === 0) return;
+
+  const sound = clickSounds[Math.floor(Math.random() * clickSounds.length)];
+  sound.currentTime = 0;
+  sound.volume = volume;
+  sound.play().catch(() => {});
+}
+
+function playProjectOpen() {
+  if (!soundOn || !projectSound) return;
+
+  projectSound.currentTime = 0;
+  projectSound.volume = 0.35;
+  projectSound.play().catch(() => {});
+}
+
+soundToggle.addEventListener("click", () => {
+  soundOn = !soundOn;
+  soundToggle.textContent = soundOn ? "Sound On" : "Sound Off";
+  playRandomClick(0.35);
+});
+
+document.querySelectorAll("a, button").forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    playRandomClick(0.14);
+  });
+
+  el.addEventListener("click", () => {
+    playRandomClick(0.22);
+  });
+});
+
+document.querySelectorAll(".project-link").forEach(el => {
+  el.addEventListener("click", () => {
+    playProjectOpen();
+  });
+});
 </script>
 
 </body>
