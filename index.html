@@ -4,359 +4,279 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Aidan Serik — Editor / Director</title>
-
-<link rel="icon" href='data:image/svg+xml,
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-<rect width="100" height="100" rx="18" fill="%23030303"/>
-<circle cx="32" cy="34" r="16" fill="%235f8fa8"/>
-<circle cx="68" cy="34" r="16" fill="%235f8fa8"/>
-<path d="M20 72h60" stroke="%235f8fa8" stroke-width="10" stroke-linecap="round"/>
-</svg>'>
+<link rel="icon" href="eye_icon.jpeg">
 
 <style>
 :root{
-  --blue:#5f8fa8;
-  --black:#030303;
-  --soft:#c8d8df;
-  --radius:34px;
+  --aubergine:#3b0820;
+  --navy:#050421;
+  --lavender:rgb(221,190,221);
+  --pink:#f0a6d8;
+  --smoke:#d9d9d4;
+  --black:#020202;
+  --radius:28px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
+
 html{scroll-behavior:smooth}
 
 body{
-  background:var(--blue);
-  color:var(--black);
+  background:var(--navy);
+  color:var(--lavender);
   font-family:Arial, Helvetica, sans-serif;
   overflow-x:hidden;
+  cursor:url("icon_pink_arrow.jpeg"), auto;
 }
 
-body,
-a,
-button {
-  cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Ctext y='28' font-size='28'%3E✂%EF%B8%8F%3C/text%3E%3C/svg%3E") 6 6,
-    crosshair;
-}
-
-video,
-input {
-  cursor:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Ctext y='28' font-size='28'%3E🎞%EF%B8%8F%3C/text%3E%3C/svg%3E") 6 6,
-    pointer;
-}
-
-/* grain + scan */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:9999;
-  opacity:.16;
+  opacity:.13;
   background:
     repeating-radial-gradient(circle, rgba(255,255,255,.35) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(0deg, rgba(0,0,0,.08) 0 1px, transparent 1px 3px);
+    linear-gradient(rgba(255,255,255,.05), rgba(0,0,0,.08));
   mix-blend-mode:overlay;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:-20%;
-  pointer-events:none;
-  z-index:9998;
-  opacity:.14;
-  background:
-    linear-gradient(90deg, transparent 12%, rgba(255,255,255,.22) 12.1%, transparent 12.25%),
-    linear-gradient(90deg, transparent 68%, rgba(0,0,0,.3) 68.1%, transparent 68.25%);
-  animation:scratch 4s linear infinite;
-}
-
-@keyframes scratch{
-  from{transform:translateY(-30px)}
-  to{transform:translateY(30px)}
 }
 
 a{color:inherit;text-decoration:none}
 
-/* NAV */
 .nav{
   position:fixed;
+  z-index:2000;
   left:50%;
   bottom:22px;
   transform:translateX(-50%);
-  z-index:1000;
   display:flex;
-  background:rgba(95,143,168,.82);
+  background:rgba(59,8,32,.78);
   backdrop-filter:blur(18px);
-  border:1.5px solid var(--black);
+  border:1.5px solid var(--lavender);
   border-radius:999px;
   overflow:hidden;
-  box-shadow:0 24px 80px rgba(0,0,0,.32);
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
 }
 
-.nav a,
-.sound-toggle{
+.nav a{
   padding:14px 22px;
   font-size:13px;
   font-weight:900;
   text-transform:uppercase;
   letter-spacing:.08em;
-  border-right:1.5px solid var(--black);
-  transition:.22s ease;
-  background:transparent;
-  color:var(--black);
-  cursor:pointer;
+  border-right:1.5px solid var(--lavender);
+  transition:.25s;
 }
 
-.sound-toggle{
-  border:0;
-}
+.nav a:last-child{border-right:0}
 
-.nav a:hover,
-.sound-toggle:hover{
-  background:var(--black);
-  color:var(--blue);
-}
-
-/* cinema background icons */
-.cinema-bg{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:0;
-  overflow:hidden;
-}
-
-.icon{
-  position:absolute;
-  color:rgba(3,3,3,.12);
-  font-size:clamp(42px,7vw,120px);
-  animation:float 11s ease-in-out infinite alternate;
-}
-
-.icon:nth-child(1){top:13%;right:8%;animation-delay:0s}
-.icon:nth-child(2){top:48%;left:4%;animation-delay:2s}
-.icon:nth-child(3){bottom:12%;right:16%;animation-delay:4s}
-.icon:nth-child(4){top:74%;left:68%;animation-delay:6s}
-
-@keyframes float{
-  from{transform:translateY(0) rotate(-8deg)}
-  to{transform:translateY(-38px) rotate(8deg)}
+.nav a:hover{
+  background:var(--lavender);
+  color:var(--navy);
 }
 
 /* HERO */
 .hero{
   position:relative;
-  z-index:1;
-  margin:10px;
-  height:94vh;
-  border-radius:var(--radius);
-  overflow:hidden;
-  background:var(--black);
-}
-
-/* hard cut slideshow */
-.hero-slide{
-  position:absolute;
-  inset:0;
-  opacity:0;
-  animation:hardCut 16s steps(1,end) infinite;
-}
-
-.hero-slide:nth-child(1){animation-delay:0s}
-.hero-slide:nth-child(2){animation-delay:4s}
-.hero-slide:nth-child(3){animation-delay:8s}
-.hero-slide:nth-child(4){animation-delay:12s}
-
-.hero-slide video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:saturate(.74) contrast(1.14) brightness(.74);
-  transform:scale(1.04);
-}
-
-@keyframes hardCut{
-  0%,24.9%{opacity:1}
-  25%,100%{opacity:0}
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
+  min-height:100vh;
+  padding:24px;
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:28px;
+  align-items:center;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,.78)),
-    linear-gradient(to right, rgba(0,0,0,.6), transparent 64%);
-  z-index:1;
+    radial-gradient(circle at 80% 20%, rgba(221,190,221,.22), transparent 28%),
+    radial-gradient(circle at 10% 80%, rgba(240,166,216,.16), transparent 30%),
+    var(--navy);
+}
+
+.hero-title h1{
+  font-size:clamp(76px,13vw,210px);
+  line-height:.78;
+  letter-spacing:-.08em;
+  color:var(--lavender);
+}
+
+.hero-title p{
+  margin-top:28px;
+  max-width:620px;
+  font-size:clamp(20px,2.4vw,36px);
+  line-height:1.05;
+  font-weight:800;
 }
 
 .hero-kicker{
-  position:absolute;
-  z-index:2;
-  top:34px;
-  left:36px;
-  color:var(--blue);
+  margin-bottom:18px;
   font-size:13px;
   font-weight:900;
-  letter-spacing:.22em;
+  letter-spacing:.18em;
   text-transform:uppercase;
+  color:var(--pink);
 }
 
-.hero h1{
-  position:absolute;
-  z-index:2;
-  left:32px;
-  bottom:96px;
-  color:var(--blue);
-  font-size:clamp(78px,15vw,230px);
-  line-height:.76;
-  letter-spacing:-.08em;
-  font-weight:950;
-  mix-blend-mode:screen;
-  animation:titlePunch 2.8s steps(2,end) infinite;
-}
-
-@keyframes titlePunch{
-  0%,86%{transform:translate(0,0)}
-  88%{transform:translate(-3px,2px)}
-  90%{transform:translate(4px,-2px)}
-  92%,100%{transform:translate(0,0)}
-}
-
-.hero-caption{
-  position:absolute;
-  z-index:2;
-  left:36px;
-  bottom:36px;
-  max-width:760px;
-  color:rgba(200,216,223,.92);
-  font-size:clamp(18px,2vw,28px);
-  line-height:1.08;
-  font-weight:700;
-}
-
-/* film perforation strip */
-.perf-strip{
+.tv-stack{
   position:relative;
-  z-index:1;
-  height:54px;
-  margin:10px;
-  border-radius:20px;
-  background:
-    repeating-linear-gradient(90deg, var(--black) 0 14px, var(--blue) 14px 26px);
-  overflow:hidden;
+  min-height:620px;
 }
 
-.perf-strip::after{
+.tv{
+  position:absolute;
+  width:42%;
+  aspect-ratio:4/3;
+  border-radius:18px;
+  background:var(--black);
+  border:12px solid #1b1718;
+  box-shadow:
+    inset 0 0 0 2px rgba(221,190,221,.35),
+    0 40px 110px rgba(0,0,0,.55);
+  overflow:hidden;
+  transform:rotate(var(--r));
+  animation:floatTV 6s ease-in-out infinite alternate;
+}
+
+.tv::before{
   content:"";
   position:absolute;
-  inset:13px 0;
+  inset:8%;
+  border-radius:14px;
   background:var(--black);
+  z-index:2;
+  border:2px solid rgba(221,190,221,.28);
+  pointer-events:none;
 }
 
-/* marquee */
+.tv img{
+  position:absolute;
+  inset:8%;
+  width:84%;
+  height:84%;
+  object-fit:cover;
+  border-radius:12px;
+  filter:saturate(.75) contrast(1.18);
+  animation:signal 2.4s infinite steps(2);
+}
+
+.tv::after{
+  content:"";
+  position:absolute;
+  inset:8%;
+  z-index:4;
+  border-radius:12px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0 1px, transparent 1px 4px),
+    linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+  mix-blend-mode:screen;
+  pointer-events:none;
+}
+
+.tv.one{left:3%;top:10%;--r:-5deg}
+.tv.two{left:34%;top:3%;--r:3deg;animation-delay:.5s}
+.tv.three{left:22%;top:42%;--r:1deg;animation-delay:1s}
+.tv.four{right:1%;top:35%;--r:5deg;animation-delay:1.5s}
+
+@keyframes floatTV{
+  from{transform:translateY(0) rotate(var(--r))}
+  to{transform:translateY(-14px) rotate(calc(var(--r) + 1deg))}
+}
+
+@keyframes signal{
+  0%,100%{filter:saturate(.72) contrast(1.12)}
+  50%{filter:saturate(.9) contrast(1.35) hue-rotate(4deg)}
+}
+
+/* MARQUEE */
 .marquee{
-  position:relative;
-  z-index:1;
   margin:10px;
-  border-radius:28px;
-  background:var(--black);
-  color:var(--blue);
   overflow:hidden;
   white-space:nowrap;
-  padding:20px 0;
+  border-radius:999px;
+  background:var(--lavender);
+  color:var(--navy);
+  padding:18px 0;
 }
 
-.marquee-track{
+.marquee div{
   display:inline-block;
   font-family:Georgia,serif;
-  font-size:clamp(38px,6vw,88px);
+  font-size:clamp(34px,5.5vw,80px);
   font-style:italic;
   animation:marquee 28s linear infinite;
 }
 
-@keyframes marquee{
-  to{transform:translateX(-50%)}
-}
+@keyframes marquee{to{transform:translateX(-50%)}}
 
-/* section titles */
+/* SECTIONS */
 .section-title{
-  position:relative;
-  z-index:1;
   margin:10px;
-  padding:38px 34px;
+  padding:36px;
   border-radius:var(--radius);
-  background:var(--black);
-  color:var(--blue);
+  background:var(--aubergine);
+  color:var(--lavender);
 }
 
 .section-title small{
   display:block;
   margin-bottom:18px;
+  color:var(--pink);
   font-size:13px;
   font-weight:900;
-  letter-spacing:.2em;
+  letter-spacing:.18em;
   text-transform:uppercase;
 }
 
 .section-title h2{
-  font-size:clamp(62px,11vw,170px);
+  font-size:clamp(58px,11vw,165px);
   line-height:.82;
   letter-spacing:-.075em;
 }
 
-/* selected works */
+/* WORK */
 .work{
-  position:relative;
-  z-index:1;
   margin:10px;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px;
+  gap:12px;
 }
 
-.poster{
+.project{
   position:relative;
   min-height:560px;
   border-radius:30px;
   overflow:hidden;
-  background:var(--black);
-  color:var(--blue);
-  box-shadow:0 22px 80px rgba(0,0,0,.18);
-  transition:.65s cubic-bezier(.19,1,.22,1);
+  background:var(--aubergine);
+  box-shadow:0 35px 100px rgba(0,0,0,.35);
+  transition:.6s cubic-bezier(.19,1,.22,1);
 }
 
-.poster:hover{
-  transform:translateY(-10px) rotate(-.5deg);
-  box-shadow:0 44px 120px rgba(0,0,0,.34);
+.project:hover{
+  transform:translateY(-12px);
+  box-shadow:0 55px 140px rgba(0,0,0,.55);
 }
 
-.poster video{
+.project img{
   width:100%;
   height:100%;
   min-height:560px;
   object-fit:cover;
   display:block;
-  filter:saturate(.82) contrast(1.08) brightness(.86);
-  transition:.9s cubic-bezier(.19,1,.22,1);
+  filter:saturate(.78) contrast(1.1) brightness(.78);
+  transition:.7s cubic-bezier(.19,1,.22,1);
 }
 
-.poster:hover video{
+.project:hover img{
   transform:scale(1.055);
-  filter:saturate(.95) contrast(1.14) brightness(.92);
+  filter:saturate(.95) contrast(1.18) brightness(.9);
 }
 
-.poster::after{
+.project::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top, rgba(0,0,0,.92), transparent 55%);
+  background:linear-gradient(to top, rgba(5,4,33,.96), transparent 58%);
 }
 
-.poster-info{
+.project-info{
   position:absolute;
   z-index:2;
   left:22px;
@@ -364,106 +284,40 @@ a{color:inherit;text-decoration:none}
   bottom:22px;
 }
 
-.poster-info h3{
-  font-size:clamp(28px,3vw,48px);
+.project-info h3{
+  font-size:clamp(30px,3.2vw,50px);
   line-height:.9;
-  letter-spacing:-.045em;
+  letter-spacing:-.05em;
 }
 
-.poster-info p{
+.project-info p{
   margin-top:10px;
+  color:rgba(221,190,221,.86);
   font-size:14px;
   line-height:1.25;
-  color:rgba(200,216,223,.92);
 }
 
-.badge{
-  position:absolute;
-  z-index:3;
-  top:18px;
-  right:18px;
-  padding:9px 14px;
-  border-radius:999px;
-  background:rgba(95,143,168,.9);
-  color:var(--black);
-  font-size:12px;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-}
-
-/* works */
-.works-list{
-  position:relative;
-  z-index:1;
-  margin:10px;
-  padding:34px;
-  border-radius:var(--radius);
-  background:var(--black);
-  color:var(--blue);
-}
-
-.work-row{
-  display:grid;
-  grid-template-columns:1fr 1.6fr .7fr;
-  gap:18px;
-  padding:17px 24px;
-  margin-bottom:10px;
-  border:1.5px solid rgba(95,143,168,.8);
-  border-radius:999px;
-  font-size:clamp(15px,1.6vw,22px);
-  transition:.25s ease;
-}
-
-.work-row:hover{
-  background:var(--blue);
-  color:var(--black);
-  transform:translateX(8px);
-}
-
-/* ABOUT: film reveal */
+/* ABOUT */
 .about{
-  position:relative;
-  z-index:1;
   margin:10px;
   min-height:88vh;
-  border-radius:var(--radius);
-  background:var(--black);
-  color:var(--blue);
   padding:48px;
+  border-radius:var(--radius);
+  background:var(--lavender);
+  color:var(--navy);
   display:grid;
-  grid-template-columns:.75fr 1.25fr;
+  grid-template-columns:.8fr 1.2fr;
   gap:48px;
   align-items:center;
-  overflow:hidden;
-}
-
-.about::before{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:42px;
-  background:
-    repeating-linear-gradient(90deg, var(--blue) 0 12px, var(--black) 12px 24px);
 }
 
 .about-photo{
-  width:100%;
   max-width:420px;
   justify-self:center;
-  border-radius:28px;
+  border-radius:30px;
   overflow:hidden;
-  border:1.5px solid rgba(95,143,168,.7);
-  box-shadow:0 40px 120px rgba(0,0,0,.55);
-  transform:rotate(-1.2deg);
-  animation:filmDrop .9s cubic-bezier(.19,1,.22,1) both;
-}
-
-@keyframes filmDrop{
-  from{opacity:0;transform:translateY(-120px) rotate(-7deg)}
-  to{opacity:1;transform:translateY(0) rotate(-1.2deg)}
+  box-shadow:0 40px 120px rgba(5,4,33,.35);
+  transform:rotate(-1.5deg);
 }
 
 .about-photo img{
@@ -471,63 +325,64 @@ a{color:inherit;text-decoration:none}
   display:block;
   aspect-ratio:4/5;
   object-fit:cover;
-  filter:saturate(.72) contrast(1.08);
 }
 
-.about-text h2{
-  font-size:clamp(64px,10vw,160px);
-  line-height:.82;
+.about h2{
+  font-size:clamp(66px,11vw,160px);
+  line-height:.8;
   letter-spacing:-.075em;
   margin-bottom:24px;
 }
 
-.about-text p{
-  max-width:850px;
-  font-size:clamp(24px,3.2vw,48px);
-  line-height:1.02;
+.about p{
+  max-width:840px;
+  font-size:clamp(23px,3vw,44px);
+  line-height:1.05;
   font-weight:900;
 }
 
-.about-links{
-  margin-top:32px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.about-links a{
-  border:1.5px solid var(--blue);
-  border-radius:999px;
-  padding:14px 20px;
-  font-size:13px;
-  font-weight:900;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  transition:.25s ease;
-}
-
-.about-links a:hover{
-  background:var(--blue);
-  color:var(--black);
-}
-
-/* contact */
-footer{
-  position:relative;
-  z-index:1;
+/* CREDITS */
+.credits{
   margin:10px;
-  min-height:70vh;
+  padding:34px;
   border-radius:var(--radius);
-  background:var(--black);
-  color:var(--blue);
+  background:var(--aubergine);
+  color:var(--lavender);
+}
+
+.credit-row{
+  display:grid;
+  grid-template-columns:1fr 1.5fr .6fr;
+  gap:18px;
+  padding:16px 22px;
+  margin-bottom:10px;
+  border:1.5px solid rgba(221,190,221,.75);
+  border-radius:999px;
+  font-size:clamp(15px,1.6vw,22px);
+  transition:.25s;
+}
+
+.credit-row:hover{
+  background:var(--lavender);
+  color:var(--navy);
+  transform:translateX(8px);
+}
+
+/* FOOTER */
+footer{
+  margin:10px;
+  min-height:68vh;
+  border-radius:var(--radius);
   padding:48px;
+  background:var(--navy);
+  color:var(--lavender);
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
 
 footer h2{
-  font-size:clamp(72px,13vw,210px);
+  font-size:clamp(72px,13vw,205px);
   line-height:.78;
   letter-spacing:-.08em;
 }
@@ -538,35 +393,35 @@ footer h2{
   gap:16px;
 }
 
-.contact a,
-.contact input{
-  border:1.5px solid var(--blue);
+.contact input,
+.contact a{
+  border:1.5px solid var(--lavender);
   border-radius:24px;
   padding:24px;
   background:transparent;
-  color:var(--blue);
+  color:var(--lavender);
   font-size:22px;
   font-weight:900;
 }
 
 .contact a{
-  background:var(--blue);
-  color:var(--black);
+  background:var(--lavender);
+  color:var(--navy);
   text-align:center;
   font-family:Georgia,serif;
-  font-size:38px;
   font-style:italic;
+  font-size:38px;
 }
 
-/* modals */
+/* MODAL */
 .modal{
   position:fixed;
   inset:0;
   z-index:5000;
   display:none;
   padding:18px;
-  background:rgba(0,0,0,.78);
-  backdrop-filter:blur(14px);
+  background:rgba(5,4,33,.82);
+  backdrop-filter:blur(16px);
 }
 
 .modal:target{
@@ -577,19 +432,18 @@ footer h2{
 
 .modal-box{
   width:min(1120px,100%);
-  max-height:90vh;
+  max-height:88vh;
   overflow:auto;
-  border-radius:32px;
-  background:var(--blue);
-  color:var(--black);
-  padding:28px;
-  border:2px solid var(--black);
-  box-shadow:0 44px 140px rgba(0,0,0,.55);
+  padding:34px;
+  border-radius:34px;
+  background:var(--lavender);
+  color:var(--navy);
+  box-shadow:0 50px 150px rgba(0,0,0,.65);
   animation:modalIn .35s ease both;
 }
 
 @keyframes modalIn{
-  from{opacity:0;transform:translateY(18px) scale(.98)}
+  from{opacity:0;transform:translateY(20px) scale(.98)}
   to{opacity:1;transform:translateY(0) scale(1)}
 }
 
@@ -597,87 +451,83 @@ footer h2{
   position:sticky;
   top:0;
   float:right;
-  background:var(--black);
-  color:var(--blue);
-  border-radius:999px;
   padding:12px 18px;
+  border-radius:999px;
+  background:var(--navy);
+  color:var(--lavender);
   font-size:13px;
   font-weight:900;
   text-transform:uppercase;
-  z-index:2;
 }
 
-.project-modal-grid{
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:28px;
-  clear:both;
-}
-
-.trailer{
-  border-radius:24px;
-  overflow:hidden;
-  background:var(--black);
-  border:2px solid var(--black);
-}
-
-.trailer video{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  display:block;
-}
-
-.project-copy h2{
-  font-size:clamp(48px,7vw,96px);
-  line-height:.84;
-  letter-spacing:-.07em;
-  margin-bottom:18px;
-}
-
-.project-copy p{
-  font-size:18px;
-  line-height:1.35;
-  max-width:560px;
-  font-weight:700;
+.modal-box h2{
+  margin:20px 0 22px;
+  font-size:clamp(52px,8vw,110px);
+  line-height:.82;
+  letter-spacing:-.075em;
 }
 
 .project-meta{
-  margin-top:22px;
   display:grid;
-  gap:8px;
-  font-size:14px;
-  font-weight:900;
+  grid-template-columns:1.15fr .85fr;
+  gap:28px;
+}
+
+.trailer{
+  position:relative;
+  aspect-ratio:16/9;
+  border-radius:24px;
+  overflow:hidden;
+  background:var(--navy);
+  box-shadow:0 24px 70px rgba(5,4,33,.28);
+}
+
+.trailer iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
+
+.desc p{
+  margin-bottom:18px;
+  font-size:20px;
+  line-height:1.35;
+  font-weight:750;
+}
+
+.desc strong{
+  display:block;
+  margin-bottom:6px;
+  color:var(--aubergine);
   text-transform:uppercase;
   letter-spacing:.08em;
+  font-size:13px;
 }
 
-.press-block{
+.press-list{
   margin-top:28px;
   padding-top:22px;
-  border-top:2px solid var(--black);
+  border-top:1.5px solid var(--navy);
 }
 
-.press-block h3{
+.press-list h3{
   margin-bottom:10px;
-  font-size:18px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
+  font-size:22px;
 }
 
-.press-block a{
+.press-list a{
   display:block;
-  padding:13px 0;
-  border-bottom:1.5px solid rgba(3,3,3,.7);
-  font-size:17px;
-  font-weight:850;
+  padding:12px 0;
+  border-bottom:1px solid rgba(5,4,33,.35);
+  font-size:18px;
+  font-weight:800;
 }
 
-/* reveal */
+/* REVEAL */
 .reveal{
   opacity:0;
   transform:translateY(28px);
-  transition:opacity .9s ease, transform .9s cubic-bezier(.19,1,.22,1);
+  transition:.9s cubic-bezier(.19,1,.22,1);
 }
 
 .reveal.show{
@@ -686,142 +536,91 @@ footer h2{
 }
 
 @media(max-width:1100px){
+  .hero{grid-template-columns:1fr}
+  .tv-stack{min-height:560px}
   .work{grid-template-columns:repeat(2,1fr)}
-  .project-modal-grid{grid-template-columns:1fr}
+  .project-meta{grid-template-columns:1fr}
 }
 
 @media(max-width:760px){
-  .work,
-  .about,
-  .work-row,
-  .contact{
-    grid-template-columns:1fr;
-  }
-
-  .poster,.poster video{min-height:470px}
-  .nav a,.sound-toggle{padding:12px 12px;font-size:11px}
-  .about{padding:30px}
-  .hero h1{bottom:118px}
+  .work,.about,.credit-row,.contact{grid-template-columns:1fr}
+  .hero{padding:16px}
+  .tv-stack{min-height:430px}
+  .project,.project img{min-height:460px}
+  .nav a{padding:12px 13px;font-size:11px}
 }
 </style>
 </head>
 
 <body>
 
-<audio class="clickSound" src="click.mp3" preload="auto"></audio>
-<audio class="clickSound" src="click-01.mp3" preload="auto"></audio>
-<audio class="clickSound" src="click-02.mp3" preload="auto"></audio>
-<audio class="clickSound" src="click-03.mp3" preload="auto"></audio>
-<audio id="projectSound" src="project-open.mp3" preload="auto"></audio>
-
-<div class="cinema-bg">
-  <div class="icon">▶</div>
-  <div class="icon">◉</div>
-  <div class="icon">▮▮</div>
-  <div class="icon">⌁</div>
-</div>
-
 <nav class="nav">
   <a href="#home">Home</a>
-  <a href="#work">Selected</a>
-  <a href="#works">Works</a>
+  <a href="#work">Projects</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
-  <button class="sound-toggle" id="soundToggle">Sound Off</button>
 </nav>
 
 <section id="home" class="hero">
-  <div class="hero-slide"><video src="we-live-here-preview.mp4" autoplay muted loop playsinline></video></div>
-  <div class="hero-slide"><video src="joqtau-preview.mp4" autoplay muted loop playsinline></video></div>
-  <div class="hero-slide"><video src="letherdance-preview.mp4" autoplay muted loop playsinline></video></div>
-  <div class="hero-slide"><video src="trippin-preview.mp4" autoplay muted loop playsinline></video></div>
+  <div class="hero-title">
+    <div class="hero-kicker">No sound / signal only</div>
+    <h1>Aidan<br>Serik</h1>
+    <p>Editor and director shaping fiction, documentary and cinematic memory through rhythm, structure and image.</p>
+  </div>
 
-  <div class="hero-kicker">Editor / Director</div>
-  <h1>Aidan<br>Serik</h1>
-  <div class="hero-caption">
-    Cinematic editing for documentary, fiction, short film, and feature cinema.
+  <div class="tv-stack">
+    <div class="tv one"><img src="little-love_still_03.jpg" alt=""></div>
+    <div class="tv two"><img src="madina_still_02.jpg" alt=""></div>
+    <div class="tv three"><img src="ot_still_01.jpg" alt=""></div>
+    <div class="tv four"><img src="little-love_still_12.jpg" alt=""></div>
   </div>
 </section>
 
-<div class="perf-strip"></div>
-
 <div class="marquee">
-  <div class="marquee-track">
-    Aidan Serik ✱ Editor ✱ Director ✱ Documentary ✱ Feature Film ✱ Short Film ✱ Tbilisi ✱ Almaty ✱
-    Aidan Serik ✱ Editor ✱ Director ✱ Documentary ✱ Feature Film ✱ Short Film ✱ Tbilisi ✱ Almaty ✱
+  <div>
+    Aidan Serik ✦ Editor ✦ Director ✦ Feature Film ✦ Documentary ✦ Festival Work ✦ Tbilisi / Almaty ✦
+    Aidan Serik ✦ Editor ✦ Director ✦ Feature Film ✦ Documentary ✦ Festival Work ✦ Tbilisi / Almaty ✦
   </div>
 </div>
 
 <section id="work">
   <div class="section-title reveal">
-    <small>Selected works</small>
-    <h2>Films</h2>
+    <small>Projects open as a screen</small>
+    <h2>Selected Works</h2>
   </div>
 
   <div class="work">
-    <a class="poster reveal project-link" href="#project-we-live-here">
-      <span class="badge">Press</span>
-      <video src="we-live-here-preview.mp4" autoplay muted loop playsinline></video>
-      <div class="poster-info">
+    <a class="project reveal" href="#project-we-live-here">
+      <img src="welihere-poster.jpg" alt="We Live Here poster">
+      <div class="project-info">
         <h3>We Live Here</h3>
-        <p>Editor / Feature documentary</p>
+        <p>Editor / Feature documentary / 2022–current</p>
       </div>
     </a>
 
-    <a class="poster reveal project-link" href="#project-joqtau">
-      <span class="badge">Press</span>
-      <video src="joqtau-preview.mp4" autoplay muted loop playsinline></video>
-      <div class="poster-info">
+    <a class="project reveal" href="#project-madina">
+      <img src="madina-poster.jpg" alt="Madina poster">
+      <div class="project-info">
+        <h3>Madina</h3>
+        <p>Editor / Feature film / 2021</p>
+      </div>
+    </a>
+
+    <a class="project reveal" href="#project-joqtau">
+      <img src="joqtau-poster.jpg" alt="Joqtau poster">
+      <div class="project-info">
         <h3>Joqtau</h3>
-        <p>Editor / Feature film</p>
+        <p>Editor / Feature film / 2022</p>
       </div>
     </a>
 
-    <a class="poster reveal project-link" href="#project-let-her-dance">
-      <span class="badge">Film</span>
-      <video src="letherdance-preview.mp4" autoplay muted loop playsinline></video>
-      <div class="poster-info">
-        <h3>Let Her Dance</h3>
-        <p>Visual film</p>
+    <a class="project reveal" href="#project-dyad">
+      <img src="dyad-poster.jpg" alt="DYAD poster">
+      <div class="project-info">
+        <h3>DYAD</h3>
+        <p>Director / Short film / 2023</p>
       </div>
     </a>
-
-    <a class="poster reveal project-link" href="#project-trippin">
-      <span class="badge">Film</span>
-      <video src="trippin-preview.mp4" autoplay muted loop playsinline></video>
-      <div class="poster-info">
-        <h3>Trippin</h3>
-        <p>Short visual project</p>
-      </div>
-    </a>
-  </div>
-</section>
-
-<section id="works">
-  <div class="section-title reveal">
-    <small>Archive</small>
-    <h2>Works</h2>
-  </div>
-
-  <div class="works-list reveal">
-    <div class="work-row"><div>Director</div><div>Women in Lenovo Leadership</div><div>2019</div></div>
-    <div class="work-row"><div>Editor</div><div>Go Viral</div><div>2018</div></div>
-    <div class="work-row"><div>Editor</div><div>Adren CS:GO</div><div>2019</div></div>
-    <div class="work-row"><div>Director</div><div>Youth 4 Human Rights</div><div>2019</div></div>
-    <div class="work-row"><div>Interview Editor</div><div>Tihii Svet Documentary Studio</div><div>2019–2020</div></div>
-    <div class="work-row"><div>Editor</div><div>Don’t Give Up</div><div>2019</div></div>
-    <div class="work-row"><div>Editor</div><div>OT / Fire</div><div>2020</div></div>
-    <div class="work-row"><div>Editor</div><div>Warm Lake</div><div>2020</div></div>
-    <div class="work-row"><div>Editor</div><div>Critical Mass</div><div>2021</div></div>
-    <div class="work-row"><div>Editor</div><div>Madina</div><div>2021</div></div>
-    <div class="work-row"><div>Editor</div><div>Silk Road</div><div>2021</div></div>
-    <div class="work-row"><div>Editor</div><div>Worxspace</div><div>2021</div></div>
-    <div class="work-row"><div>Editor</div><div>We Live Here</div><div>2022–now</div></div>
-    <div class="work-row"><div>Editor</div><div>Joqtau</div><div>2022</div></div>
-    <div class="work-row"><div>Editor</div><div>Buttons</div><div>2022</div></div>
-    <div class="work-row"><div>Director</div><div>DYAD</div><div>2023</div></div>
-    <div class="work-row"><div>Visual</div><div>Let Her Dance</div><div>—</div></div>
-    <div class="work-row"><div>Visual</div><div>Trippin</div><div>—</div></div>
   </div>
 </section>
 
@@ -830,48 +629,95 @@ footer h2{
     <img src="aidan-portrait.jpg" alt="Aidan Serik portrait">
   </div>
 
-  <div class="about-text">
+  <div>
     <h2>About</h2>
-    <p>
-      Aidan Serik is an editor and director based between Tbilisi and Almaty, working internationally across documentary, fiction, short film, and feature cinema.
-    </p>
+    <p>Aidan Serik is an editor and director based between Tbilisi and Almaty, working internationally across documentary, fiction, short film and feature cinema.</p>
+  </div>
+</section>
 
-    <div class="about-links">
-      <a href="#project-aidan" class="project-link">Press / Awards</a>
-      <a href="#contact">Contact</a>
-    </div>
+<section>
+  <div class="section-title reveal">
+    <small>Archive of credits</small>
+    <h2>Filmography</h2>
+  </div>
+
+  <div class="credits reveal">
+    <div class="credit-row"><div>Director</div><div>Women in Lenovo Leadership</div><div>2019</div></div>
+    <div class="credit-row"><div>Editor</div><div>Go Viral</div><div>2018</div></div>
+    <div class="credit-row"><div>Editor</div><div>Adren CS:GO</div><div>2019</div></div>
+    <div class="credit-row"><div>Director</div><div>Youth 4 Human Rights</div><div>2019</div></div>
+    <div class="credit-row"><div>Interview Editor</div><div>Tihii Svet Documentary Studio</div><div>2019–2020</div></div>
+    <div class="credit-row"><div>Editor</div><div>Don’t Give Up</div><div>2019</div></div>
+    <div class="credit-row"><div>Editor</div><div>OT / Fire</div><div>2020</div></div>
+    <div class="credit-row"><div>Editor</div><div>Warm Lake</div><div>2020</div></div>
+    <div class="credit-row"><div>Editor</div><div>Critical Mass</div><div>2021</div></div>
+    <div class="credit-row"><div>Editor</div><div>Madina</div><div>2021</div></div>
+    <div class="credit-row"><div>Editor</div><div>Silk Road</div><div>2021</div></div>
+    <div class="credit-row"><div>Editor</div><div>Worxspace</div><div>2021</div></div>
+    <div class="credit-row"><div>Editor</div><div>We Live Here</div><div>2022–now</div></div>
+    <div class="credit-row"><div>Editor</div><div>Joqtau</div><div>2022</div></div>
+    <div class="credit-row"><div>Editor</div><div>Buttons</div><div>2022</div></div>
+    <div class="credit-row"><div>Director</div><div>DYAD</div><div>2023</div></div>
   </div>
 </section>
 
 <footer id="contact" class="reveal">
   <h2>Contact<br>Aidan</h2>
-
   <div class="contact">
     <input placeholder="Email">
     <a href="mailto:hello@aidanserik.com">Contact</a>
   </div>
 </footer>
 
+<!-- PROJECT MODALS -->
+
 <div id="project-we-live-here" class="modal">
   <div class="modal-box">
     <a class="close" href="#work">Close</a>
-    <div class="project-modal-grid">
-      <div class="trailer"><video src="we-live-here-preview.mp4" controls></video></div>
-      <div class="project-copy">
-        <h2>We Live Here</h2>
-        <p>A feature documentary exploring generational memory, land, and the long echoes of nuclear testing in Kazakhstan.</p>
-        <div class="project-meta">
-          <div>Role: Editor</div>
-          <div>Format: Feature documentary</div>
-          <div>Period: 2022–now</div>
-        </div>
-        <div class="press-block">
+    <h2>We Live Here</h2>
+
+    <div class="project-meta">
+      <div class="trailer">
+        <iframe src="https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/preview" allow="fullscreen"></iframe>
+      </div>
+
+      <div class="desc">
+        <p><strong>Role</strong>Editor</p>
+        <p><strong>Project</strong>Feature-length documentary exploring memory, place and the generational aftermath of nuclear testing in Kazakhstan.</p>
+        <p><strong>Work</strong>Narrative structure, emotional pacing, scene rhythm and long-form documentary continuity.</p>
+
+        <div class="press-list">
           <h3>Press</h3>
           <a href="https://variety.com/2025/film/global/we-live-here-syndicado-cphdox-1236328082/" target="_blank">Variety</a>
-          <a href="https://takeonecinema.net/2025/we-live-here/" target="_blank">Take One Cinema</a>
           <a href="https://www.hollywoodreporter.com/movies/movie-news/we-live-here-documentary-kazakhstan-nuclear-test-site-1236165093/" target="_blank">The Hollywood Reporter</a>
           <a href="https://povmagazine.com/we-live-here-review-probing-generational-fallout/" target="_blank">POV Magazine</a>
-          <a href="https://www.moderntimes.review/we-live-here/" target="_blank">Modern Times Review</a>
+          <a href="https://takeonecinema.net/2025/we-live-here/" target="_blank">Take One Cinema</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="project-madina" class="modal">
+  <div class="modal-box">
+    <a class="close" href="#work">Close</a>
+    <h2>Madina</h2>
+
+    <div class="project-meta">
+      <div class="trailer">
+        <iframe src="https://www.youtube.com/embed/LZEonboLtXg" allow="fullscreen"></iframe>
+      </div>
+
+      <div class="desc">
+        <p><strong>Role</strong>Editor</p>
+        <p><strong>Project</strong>Feature film shaped around women’s stories, social pressure and interior emotional conflict.</p>
+        <p><strong>Work</strong>Story rhythm, scene architecture, performance sensitivity and feature-length pacing.</p>
+
+        <div class="press-list">
+          <h3>Press</h3>
+          <a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank">Variety</a>
+          <a href="https://klassiki.online/madina-aizhan-kassymbek-womens-stories-kazakhstan/" target="_blank">Klassiki</a>
+          <a href="https://www.droog.com/program/asian-movie-night-x-qyzqaras-madina-screening/" target="_blank">Droog</a>
         </div>
       </div>
     </div>
@@ -881,81 +727,49 @@ footer h2{
 <div id="project-joqtau" class="modal">
   <div class="modal-box">
     <a class="close" href="#work">Close</a>
-    <div class="project-modal-grid">
-      <div class="trailer"><video src="joqtau-preview.mp4" controls></video></div>
-      <div class="project-copy">
-        <h2>Joqtau</h2>
-        <p>A poetic feature film built around grief, ritual, memory, and the landscape of loss.</p>
-        <div class="project-meta">
-          <div>Role: Editor</div>
-          <div>Format: Feature film</div>
-          <div>Year: 2022</div>
-        </div>
-        <div class="press-block">
+    <h2>Joqtau</h2>
+
+    <div class="project-meta">
+      <div class="trailer">
+        <iframe src="https://drive.google.com/file/d/1l2ri-6PSz4RQEu_n17IsBr6xmcnSsY1X/preview" allow="fullscreen"></iframe>
+      </div>
+
+      <div class="desc">
+        <p><strong>Role</strong>Editor</p>
+        <p><strong>Project</strong>Feature film meditating on grief, ritual and inherited memory through a poetic cinematic language.</p>
+        <p><strong>Work</strong>Atmospheric pacing, visual continuity, silence, duration and tonal structure.</p>
+
+        <div class="press-list">
           <h3>Press</h3>
           <a href="https://www.locarnofestival.ch/news/2024/daily/spotlight-on-aruan-anartays-joqtau.html" target="_blank">Locarno Festival</a>
           <a href="https://variety.com/2024/film/global/parallax-joqtau-washhh-locarno-1236092474/" target="_blank">Variety</a>
-          <a href="https://the-steppe.com/razvlecheniya/kino/joqtau-kak-aruan-anartaj-osmysljaet-zhanr-traurnoj-pesni-v-kino" target="_blank">The Steppe</a>
           <a href="https://asianmoviepulse.com/2025/06/film-review-joqtau-2024-by-arha-anartay/" target="_blank">Asian Movie Pulse</a>
+          <a href="https://www.siff.net/festival/archives/festival-2025/joqtau" target="_blank">SIFF</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div id="project-let-her-dance" class="modal">
+<div id="project-dyad" class="modal">
   <div class="modal-box">
     <a class="close" href="#work">Close</a>
-    <div class="project-modal-grid">
-      <div class="trailer"><video src="letherdance-preview.mp4" controls></video></div>
-      <div class="project-copy">
-        <h2>Let Her Dance</h2>
-        <p>A visual film built around movement, body language, atmosphere, and cinematic texture.</p>
-        <div class="project-meta">
-          <div>Format: Visual film</div>
-          <div>Preview available</div>
-        </div>
-        <div class="press-block">
-          <h3>Press</h3>
-          <a href="#work">Press links can be added here.</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <h2>DYAD</h2>
 
-<div id="project-trippin" class="modal">
-  <div class="modal-box">
-    <a class="close" href="#work">Close</a>
-    <div class="project-modal-grid">
-      <div class="trailer"><video src="trippin-preview.mp4" controls></video></div>
-      <div class="project-copy">
-        <h2>Trippin</h2>
-        <p>A short visual project focused on rhythm, movement, travel, and image-led storytelling.</p>
-        <div class="project-meta">
-          <div>Format: Short visual project</div>
-          <div>Preview available</div>
-        </div>
-        <div class="press-block">
-          <h3>Press</h3>
-          <a href="#work">Press links can be added here.</a>
-        </div>
+    <div class="project-meta">
+      <div class="trailer">
+        <iframe src="https://drive.google.com/file/d/1xI83zVJkROkVWfYqE8rzaYOYmKHAUqvh/preview" allow="fullscreen"></iframe>
       </div>
-    </div>
-  </div>
-</div>
 
-<div id="project-aidan" class="modal">
-  <div class="modal-box">
-    <a class="close" href="#about">Close</a>
-    <div class="project-copy">
-      <h2>Aidan / Awards</h2>
-      <p>Selected press, awards, and professional references.</p>
-      <div class="press-block">
-        <h3>Press</h3>
-        <a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank">Variety — Madina</a>
-        <a href="https://manshuq.com/career-aidan-serik-09-2023" target="_blank">Critics’ Choice 2024 — Nominee for Best Editor, Madina</a>
-        <a href="https://www.imdb.com/name/nm16334791/" target="_blank">IMDb — Aidan Serik</a>
+      <div class="desc">
+        <p><strong>Role</strong>Director</p>
+        <p><strong>Project</strong>Short film built around image, presence and psychological tension.</p>
+        <p><strong>Work</strong>Direction, visual concept, performance tone and cinematic atmosphere.</p>
+
+        <div class="press-list">
+          <h3>Press</h3>
+          <a href="https://www.imdb.com/name/nm16334791/" target="_blank">Baiqonyr IX Award for Best Editing — IMDb</a>
+        </div>
       </div>
     </div>
   </div>
@@ -963,61 +777,12 @@ footer h2{
 
 <script>
 const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add("show"); }
   });
-}, { threshold: 0.14 });
-
-reveals.forEach(el => observer.observe(el));
-
-let soundOn = false;
-
-const soundToggle = document.getElementById("soundToggle");
-const clickSounds = Array.from(document.querySelectorAll(".clickSound"));
-const projectSound = document.getElementById("projectSound");
-
-function playRandomClick(volume = 0.2) {
-  if (!soundOn || clickSounds.length === 0) return;
-
-  const sound = clickSounds[Math.floor(Math.random() * clickSounds.length)];
-  sound.currentTime = 0;
-  sound.volume = volume;
-  sound.play().catch(() => {});
-}
-
-function playProjectOpen() {
-  if (!soundOn || !projectSound) return;
-
-  projectSound.currentTime = 0;
-  projectSound.volume = 0.35;
-  projectSound.play().catch(() => {});
-}
-
-soundToggle.addEventListener("click", () => {
-  soundOn = !soundOn;
-  soundToggle.textContent = soundOn ? "Sound On" : "Sound Off";
-  playRandomClick(0.35);
-});
-
-document.querySelectorAll("a, button").forEach(el => {
-  el.addEventListener("mouseenter", () => {
-    playRandomClick(0.14);
-  });
-
-  el.addEventListener("click", () => {
-    playRandomClick(0.22);
-  });
-});
-
-document.querySelectorAll(".project-link").forEach(el => {
-  el.addEventListener("click", () => {
-    playProjectOpen();
-  });
-});
+},{threshold:.14});
+reveals.forEach(el=>observer.observe(el));
 </script>
 
 </body>
