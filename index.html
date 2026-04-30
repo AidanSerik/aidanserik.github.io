@@ -8,6 +8,8 @@
 <style>
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   background: #f2f0ea;
@@ -40,174 +42,206 @@ img, video {
 }
 
 .header-center { text-align: center; }
-.header-right { text-align: right; }
 
-.hero {
+.header-right {
+  text-align: right;
+}
+
+.header a {
+  margin-left: 14px;
+}
+
+.page {
   min-height: 100vh;
-  padding: 110px 24px 30px;
-  display: grid;
-  grid-template-columns: 0.9fr 1.4fr;
-  gap: 28px;
+  padding: 100px 24px 60px;
   border-bottom: 1px solid #111;
 }
 
-.hero-title {
+.hero {
+  min-height: 55vh;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+  align-items: end;
+  margin-bottom: 70px;
+}
+
+.hero h1 {
   margin: 0;
-  font-size: clamp(58px, 11vw, 180px);
+  font-size: clamp(58px, 12vw, 180px);
   line-height: 0.82;
   letter-spacing: -0.08em;
   text-transform: uppercase;
 }
 
-.hero-copy {
-  align-self: end;
-  font-size: clamp(24px, 4vw, 64px);
+.hero p {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 62px);
   line-height: 0.95;
   letter-spacing: -0.055em;
 }
 
-.hero-small {
-  margin-top: 30px;
-  max-width: 520px;
-  font-size: 15px;
-  line-height: 1.4;
-  letter-spacing: 0;
-}
-
-.index-layout {
-  display: grid;
-  grid-template-columns: 48vw 1fr;
-  min-height: 100vh;
+.section-title {
+  margin: 0 0 20px;
+  padding-bottom: 12px;
   border-bottom: 1px solid #111;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
 }
 
-.preview-panel {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  background: #111;
+.selected-project {
+  border-bottom: 1px solid #111;
+  padding: 28px 0 44px;
+  cursor: pointer;
+}
+
+.selected-project-top {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.selected-project-title {
+  font-size: clamp(42px, 7vw, 110px);
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+.selected-project-meta {
+  align-self: end;
+  font-size: 14px;
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.three-boxes {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr 1fr;
+  gap: 14px;
+}
+
+.box {
+  border: 1px solid #111;
+  background: #ddd;
+  min-height: 320px;
+  position: relative;
   overflow: hidden;
 }
 
-.preview-panel img,
-.preview-panel video {
+.box-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  background: #f2f0ea;
+  border: 1px solid #111;
+  padding: 6px 9px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+}
+
+.box img,
+.box video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.preview-caption {
-  position: absolute;
-  left: 20px;
-  bottom: 18px;
-  right: 20px;
-  color: white;
+.empty-box {
+  height: 100%;
+  min-height: 320px;
   display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.work-index {
-  padding: 90px 24px 40px;
-}
-
-.category {
-  margin-bottom: 80px;
-}
-
-.category-title {
-  margin: 0;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #111;
+  align-items: center;
+  justify-content: center;
   font-size: 13px;
-  letter-spacing: 0.13em;
   text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-.project-row {
+.archive-row {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr 0.35fr;
+  grid-template-columns: 1.2fr 0.8fr 0.35fr;
   gap: 18px;
   padding: 18px 0;
   border-bottom: 1px solid #111;
   cursor: pointer;
 }
 
-.project-row:hover {
+.archive-row:hover,
+.selected-project:hover {
   font-style: italic;
 }
 
-.project-title {
-  font-size: clamp(26px, 3.2vw, 54px);
+.archive-title {
+  font-size: clamp(28px, 4vw, 64px);
   line-height: 0.9;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.06em;
   text-transform: uppercase;
 }
 
-.project-meta,
-.project-year {
+.archive-meta,
+.archive-year {
   font-size: 14px;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
-.project-year {
+.archive-year {
   text-align: right;
 }
 
-.project-mobile-image {
-  display: none;
-  margin-top: 14px;
-}
-
-.project-mobile-image img,
-.project-mobile-image video {
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.about {
-  min-height: 100vh;
+.about-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 34px;
-  padding: 90px 24px;
-  border-bottom: 1px solid #111;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 40px;
+  align-items: start;
 }
 
-.about img {
+.about-photo {
   max-width: 520px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  border: 1px solid #111;
 }
 
-.about-text h2 {
-  margin: 0 0 28px;
-  font-size: clamp(42px, 7vw, 110px);
-  line-height: 0.9;
-  letter-spacing: -0.07em;
-  text-transform: uppercase;
+.about-text {
+  font-size: clamp(30px, 5vw, 82px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  margin: 0 0 40px;
 }
 
-.about-text p {
-  margin: 0 0 32px;
-  font-size: clamp(22px, 3vw, 44px);
-  line-height: 1;
-  letter-spacing: -0.045em;
-}
-
-.press-links {
+.link-list {
   border-top: 1px solid #111;
 }
 
-.press-links a {
+.link-list a {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   padding: 14px 0;
   border-bottom: 1px solid #111;
   font-size: 14px;
+}
+
+.contact-big {
+  font-size: clamp(44px, 9vw, 140px);
+  line-height: 0.85;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+}
+
+.contact-email {
+  display: inline-block;
+  margin-top: 36px;
+  font-size: clamp(28px, 5vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  border-bottom: 1px solid #111;
 }
 
 .modal {
@@ -233,7 +267,7 @@ img, video {
   height: 44px;
   border: 1px solid #111;
   border-radius: 50%;
-  background: transparent;
+  background: #f2f0ea;
   cursor: pointer;
   font-size: 22px;
 }
@@ -290,19 +324,6 @@ img, video {
   letter-spacing: -0.06em;
 }
 
-.modal-press {
-  border-top: 1px solid #111;
-}
-
-.modal-press a {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 14px 0;
-  border-bottom: 1px solid #111;
-  font-size: 14px;
-}
-
 .modal-gallery {
   margin-top: 50px;
   display: grid;
@@ -335,39 +356,29 @@ img, video {
 }
 
 @media (max-width: 900px) {
-  .hero,
-  .index-layout,
-  .about,
-  .modal-info {
-    grid-template-columns: 1fr;
-  }
-
-  .preview-panel {
-    display: none;
-  }
-
-  .project-row {
-    grid-template-columns: 1fr;
-  }
-
-  .project-year {
-    text-align: left;
-  }
-
-  .project-mobile-image {
-    display: block;
-  }
-
-  .modal-gallery {
-    grid-template-columns: 1fr;
-  }
-
   .header {
     grid-template-columns: 1fr 1fr;
   }
 
   .header-center {
     display: none;
+  }
+
+  .hero,
+  .selected-project-top,
+  .three-boxes,
+  .archive-row,
+  .about-grid,
+  .modal-info {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-year {
+    text-align: left;
+  }
+
+  .modal-gallery {
+    grid-template-columns: 1fr;
   }
 }
 </style>
@@ -379,55 +390,57 @@ img, video {
   <div>Aidan Serik</div>
   <div class="header-center">Film Editor</div>
   <div class="header-right">
-    <a href="#works">Works</a> / <a href="#about">About</a>
+    <a href="#home">Selected</a>
+    <a href="#works">Works</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </div>
 </header>
 
-<section class="hero">
-  <h1 class="hero-title">Selected<br>Works</h1>
-  <div class="hero-copy">
-    Film editing, documentary, fiction and short-form moving image.
-    <div class="hero-small">
-      Selected projects are presented as poster / preview / stills. Full archive is separated below in Works.
+<section class="page" id="home">
+  <div class="hero">
+    <h1>Selected<br>Works</h1>
+    <p>Film editing, documentary, fiction and short-form moving image.</p>
+  </div>
+
+  <h2 class="section-title">Selected Works</h2>
+  <div id="selectedWorks"></div>
+</section>
+
+<section class="page" id="works">
+  <h2 class="section-title">Works</h2>
+  <div id="archiveWorks"></div>
+</section>
+
+<section class="page" id="about">
+  <h2 class="section-title">About</h2>
+
+  <div class="about-grid">
+    <img class="about-photo" src="aidan-portrait.jpg" alt="Aidan Serik portrait">
+
+    <div>
+      <p class="about-text">
+        Aidan Serik is a film editor working between rhythm, emotional structure and cinematic memory.
+      </p>
+
+      <div class="link-list">
+        <a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank"><span>Variety</span><span>Madina</span></a>
+        <a href="https://manshuq.com/career-aidan-serik-09-2023" target="_blank"><span>Manshuq</span><span>Career Interview</span></a>
+        <a href="https://www.imdb.com/name/nm16334791/" target="_blank"><span>IMDb</span><span>Aidan Serik</span></a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="index-layout" id="works">
-  <div class="preview-panel" id="previewPanel">
-    <img id="mainPreview" src="madina-poster.jpg" alt="">
-    <div class="preview-caption">
-      <span id="previewTitle">Madina</span>
-      <span id="previewRole">Editor / 2021</span>
-    </div>
-  </div>
-
-  <div class="work-index" id="workIndex"></div>
-</section>
-
-<section class="about" id="about">
-  <div>
-    <img src="aidan-portrait.jpg" alt="Aidan Serik portrait">
-  </div>
-
-  <div class="about-text">
-    <h2>About</h2>
-    <p>
-      Aidan Serik is a film editor working between rhythm, emotional structure and cinematic memory.
-    </p>
-
-    <div class="press-links">
-      <a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank"><span>Variety</span><span>Madina</span></a>
-      <a href="https://manshuq.com/career-aidan-serik-09-2023" target="_blank"><span>Manshuq</span><span>Career Interview</span></a>
-      <a href="https://www.imdb.com/name/nm16334791/" target="_blank"><span>IMDb</span><span>Aidan Serik</span></a>
-      <a href="https://variety.com/2025/film/global/we-live-here-syndicado-cphdox-1236328082/" target="_blank"><span>Variety</span><span>We Live Here</span></a>
-    </div>
-  </div>
+<section class="page" id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-big">For work,<br>screenings<br>and inquiries.</div>
+  <a class="contact-email" href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
 </section>
 
 <footer class="footer">
   <span>© Aidan Serik</span>
-  <span>Selected Works / Works / About</span>
+  <span>Film Editor</span>
 </footer>
 
 <div class="modal" id="modal">
@@ -445,7 +458,7 @@ img, video {
 
     <div class="modal-info">
       <div class="modal-description" id="modalDescription"></div>
-      <div class="modal-press" id="modalPress"></div>
+      <div class="link-list" id="modalPress"></div>
     </div>
 
     <div class="modal-gallery" id="modalGallery"></div>
@@ -456,7 +469,7 @@ img, video {
 const projects = [
   {
     title: "Madina",
-    section: "Selected Works",
+    section: "Selected",
     category: "Feature Film",
     role: "Editor",
     year: "2021",
@@ -473,7 +486,7 @@ const projects = [
   },
   {
     title: "We Live Here",
-    section: "Selected Works",
+    section: "Selected",
     category: "Documentary Feature",
     role: "Editor",
     year: "2022–Present",
@@ -490,7 +503,7 @@ const projects = [
   },
   {
     title: "Joqtau",
-    section: "Selected Works",
+    section: "Selected",
     category: "Feature Film",
     role: "Editor",
     year: "2022",
@@ -507,7 +520,7 @@ const projects = [
   },
   {
     title: "Roxwear x Trippin",
-    section: "Selected Works",
+    section: "Selected",
     category: "Commercial / Branded",
     role: "Editor",
     year: "Selected Work",
@@ -535,9 +548,7 @@ const projects = [
     stills: ["dyad-poster.jpg"],
     trailer: "https://drive.google.com/file/d/1xI83zVJkROkVWfYqE8rzaYOYmKHAUqvh/view?usp=sharing",
     description: "A short film directed by Aidan Serik. Baiqonyr IX Award for Best Editing.",
-    press: [
-      ["Manshuq", "https://manshuq.com/career-aidan-serik-09-2023"]
-    ]
+    press: [["Manshuq", "https://manshuq.com/career-aidan-serik-09-2023"]]
   },
   {
     title: "OT / Fire",
@@ -550,9 +561,7 @@ const projects = [
     stills: ["ot_still_01.jpg", "ot_still_02.jpg", "ot_still_03.jpg"],
     trailer: "https://youtu.be/LZEonboLtXg?si=pnQKy_xRHZKp791j",
     description: "A social drama with elements of comedy, edited by Aidan Serik.",
-    press: [
-      ["Variety", "https://variety.com/2021/film/reviews/fire-review-ot-1235087408/"]
-    ]
+    press: [["Variety", "https://variety.com/2021/film/reviews/fire-review-ot-1235087408/"]]
   },
   {
     title: "Warm Lake",
@@ -578,126 +587,85 @@ const projects = [
     stills: ["pryaniki-poster.jpg"],
     trailer: "",
     description: "A short film with press coverage across European film publications.",
-    press: [
-      ["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"]
-    ]
-  },
-  {
-    title: "Little Love",
-    section: "Works",
-    category: "Short Film",
-    role: "Editor",
-    year: "Selected Work",
-    poster: "little-love-poster.jpg",
-    preview: "little-love_still_01.jpg",
-    stills: [
-      "little-love_still_01.jpg",
-      "little-love_still_02.jpg",
-      "little-love_still_03.jpg"
-    ],
-    trailer: "",
-    description: "A selected short-form project from the archive.",
-    press: []
-  },
-  {
-    title: "Let Her Dance",
-    section: "Works",
-    category: "Short Film",
-    role: "Editor",
-    year: "Selected Work",
-    poster: "letherdance-poster.jpg",
-    preview: "letherdance-preview.mp4",
-    stills: ["letherdance-poster.jpg"],
-    trailer: "",
-    description: "A selected short-form project from the archive.",
-    press: []
+    press: [["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"]]
   }
 ];
 
-const sections = ["Selected Works", "Works"];
-const workIndex = document.getElementById("workIndex");
-let currentPreviewElement = document.getElementById("mainPreview");
-
 function isVideo(file) {
-  if (!file) return false;
-  return file.toLowerCase().indexOf(".mp4") > -1 || file.toLowerCase().indexOf(".webm") > -1;
+  return file && (file.toLowerCase().includes(".mp4") || file.toLowerCase().includes(".webm"));
 }
 
-function setMainPreview(project) {
-  document.getElementById("previewTitle").innerText = project.title;
-  document.getElementById("previewRole").innerText = project.role + " / " + project.year;
+function mediaBox(label, file, fallbackText) {
+  let html = '<div class="box">';
+  html += '<div class="box-label">' + label + '</div>';
 
-  const oldPreview = document.getElementById("mainPreview");
-
-  if (isVideo(project.preview)) {
-    oldPreview.outerHTML = '<video id="mainPreview" src="' + project.preview + '" autoplay muted loop playsinline></video>';
+  if (!file) {
+    html += '<div class="empty-box">' + fallbackText + '</div>';
+  } else if (isVideo(file)) {
+    html += '<video src="' + file + '" autoplay muted loop playsinline></video>';
   } else {
-    oldPreview.outerHTML = '<img id="mainPreview" src="' + project.preview + '" alt="">';
+    html += '<img src="' + file + '" alt="">';
   }
+
+  html += '</div>';
+  return html;
 }
 
-function createMobileMedia(project) {
-  if (isVideo(project.preview)) {
-    return '<video src="' + project.preview + '" autoplay muted loop playsinline></video>';
-  }
-  return '<img src="' + project.preview + '" alt="">';
+function renderSelected() {
+  const container = document.getElementById("selectedWorks");
+  let html = "";
+
+  projects.forEach(function(project) {
+    if (project.section === "Selected") {
+      const still = project.stills[0] || "";
+
+      html += '<article class="selected-project" onclick="openProjectByTitle(\'' + project.title.replace(/'/g, "\\'") + '\')">';
+      html += '<div class="selected-project-top">';
+      html += '<div class="selected-project-title">' + project.title + '</div>';
+      html += '<div class="selected-project-meta">' + project.role + '<br>' + project.category + '<br>' + project.year + '</div>';
+      html += '</div>';
+
+      html += '<div class="three-boxes">';
+      html += mediaBox("Poster", project.poster, "Poster coming soon");
+      html += mediaBox("Preview", project.preview, "Preview coming soon");
+      html += mediaBox("Still", still, "Still coming soon");
+      html += '</div>';
+
+      html += '</article>';
+    }
+  });
+
+  container.innerHTML = html;
 }
 
-function renderIndex() {
-  sections.forEach(function(sectionName) {
-    const group = document.createElement("div");
-    group.className = "category";
+function renderArchive() {
+  const container = document.getElementById("archiveWorks");
+  let html = "";
 
-    let html = '<h2 class="category-title">' + sectionName + '</h2>';
-
-    projects.forEach(function(project) {
-      if (project.section === sectionName) {
-        html += '<div class="project-row" data-title="' + project.title + '">';
-        html += '<div>';
-        html += '<div class="project-title">' + project.title + '</div>';
-        html += '<div class="project-mobile-image">' + createMobileMedia(project) + '</div>';
-        html += '</div>';
-        html += '<div class="project-meta">' + project.role + '<br>' + project.category + '</div>';
-        html += '<div class="project-year">' + project.year + '</div>';
-        html += '</div>';
-      }
-    });
-
-    group.innerHTML = html;
-    workIndex.appendChild(group);
+  projects.forEach(function(project) {
+    if (project.section === "Works") {
+      html += '<article class="archive-row" onclick="openProjectByTitle(\'' + project.title.replace(/'/g, "\\'") + '\')">';
+      html += '<div class="archive-title">' + project.title + '</div>';
+      html += '<div class="archive-meta">' + project.role + '<br>' + project.category + '</div>';
+      html += '<div class="archive-year">' + project.year + '</div>';
+      html += '</article>';
+    }
   });
 
-  const rows = document.querySelectorAll(".project-row");
-
-  rows.forEach(function(row) {
-    const title = row.getAttribute("data-title");
-    const project = projects.find(function(item) {
-      return item.title === title;
-    });
-
-    row.addEventListener("mouseenter", function() {
-      setMainPreview(project);
-    });
-
-    row.addEventListener("click", function() {
-      openProject(project);
-    });
-  });
+  container.innerHTML = html;
 }
 
 function youtubeEmbed(url) {
   const match = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([^&?]+)/);
-  if (match) return "https://www.youtube.com/embed/" + match[1];
-  return "";
+  return match ? "https://www.youtube.com/embed/" + match[1] : "";
 }
 
 function vimeoEmbed(url) {
   const match = url.match(/vimeo\.com\/(\d+)/);
-  if (match) return "https://player.vimeo.com/video/" + match[1];
-  return "";
+  return match ? "https://player.vimeo.com/video/" + match[1] : "";
 }
 
-function mediaHTML(project) {
+function modalMedia(project) {
   if (!project.trailer) {
     if (isVideo(project.preview)) {
       return '<video src="' + project.preview + '" controls playsinline></video>';
@@ -708,15 +676,18 @@ function mediaHTML(project) {
   const yt = youtubeEmbed(project.trailer);
   const vm = vimeoEmbed(project.trailer);
 
-  if (yt) {
-    return '<iframe src="' + yt + '" allowfullscreen></iframe>';
-  }
-
-  if (vm) {
-    return '<iframe src="' + vm + '" allowfullscreen></iframe>';
-  }
+  if (yt) return '<iframe src="' + yt + '" allowfullscreen></iframe>';
+  if (vm) return '<iframe src="' + vm + '" allowfullscreen></iframe>';
 
   return '<a href="' + project.trailer + '" target="_blank"><img src="' + project.poster + '" alt=""></a>';
+}
+
+function openProjectByTitle(title) {
+  const project = projects.find(function(item) {
+    return item.title === title;
+  });
+
+  if (project) openProject(project);
 }
 
 function openProject(project) {
@@ -727,7 +698,7 @@ function openProject(project) {
   document.getElementById("modalRole").innerText = project.role + " / " + project.category;
   document.getElementById("modalYear").innerText = project.year;
   document.getElementById("modalDescription").innerText = project.description;
-  document.getElementById("modalMedia").innerHTML = mediaHTML(project);
+  document.getElementById("modalMedia").innerHTML = modalMedia(project);
 
   let pressHTML = "";
 
@@ -760,7 +731,8 @@ function closeProject() {
   document.getElementById("modalMedia").innerHTML = "";
 }
 
-renderIndex();
+renderSelected();
+renderArchive();
 </script>
 
 </body>
