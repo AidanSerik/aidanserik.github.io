@@ -6,15 +6,20 @@
 <title>Aidan Serik — Film Editor</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
   background: #f2f0ea;
   color: #111;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -22,7 +27,8 @@ a {
   text-decoration: none;
 }
 
-img, video {
+img,
+video {
   display: block;
   width: 100%;
 }
@@ -39,50 +45,55 @@ img, video {
   color: white;
   mix-blend-mode: difference;
   font-size: 14px;
+  letter-spacing: 0.02em;
 }
 
-.header-center { text-align: center; }
+.header-center {
+  text-align: center;
+}
 
 .header-right {
   text-align: right;
 }
 
 .header a {
-  margin-left: 14px;
+  margin-left: 16px;
 }
 
-.page {
+.home-hero {
   min-height: 100vh;
-  padding: 100px 24px 60px;
-  border-bottom: 1px solid #111;
-}
-
-.hero {
-  min-height: 55vh;
+  padding: 100px 24px 40px;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 30px;
   align-items: end;
-  margin-bottom: 70px;
+  border-bottom: 1px solid #111;
 }
 
-.hero h1 {
+.home-hero h1 {
   margin: 0;
-  font-size: clamp(58px, 12vw, 180px);
-  line-height: 0.82;
-  letter-spacing: -0.08em;
+  font-size: clamp(64px, 13vw, 210px);
+  line-height: 0.78;
+  letter-spacing: -0.09em;
   text-transform: uppercase;
 }
 
-.hero p {
+.home-hero p {
   margin: 0;
-  font-size: clamp(24px, 4vw, 62px);
-  line-height: 0.95;
-  letter-spacing: -0.055em;
+  max-width: 900px;
+  font-size: clamp(28px, 5vw, 78px);
+  line-height: 0.92;
+  letter-spacing: -0.065em;
+}
+
+.section-page {
+  min-height: 100vh;
+  padding: 100px 24px 70px;
+  border-bottom: 1px solid #111;
 }
 
 .section-title {
-  margin: 0 0 20px;
+  margin: 0 0 22px;
   padding-bottom: 12px;
   border-bottom: 1px solid #111;
   font-size: 13px;
@@ -90,77 +101,127 @@ img, video {
   letter-spacing: 0.13em;
 }
 
-.selected-project {
+.scrolly-project {
+  height: 330vh;
+  position: relative;
   border-bottom: 1px solid #111;
-  padding: 28px 0 44px;
-  cursor: pointer;
 }
 
-.selected-project-top {
+.scrolly-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #f2f0ea;
+}
+
+.project-heading {
+  position: absolute;
+  left: 24px;
+  top: 80px;
+  right: 24px;
+  z-index: 5;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 20px;
-  margin-bottom: 18px;
+  gap: 24px;
+  pointer-events: none;
 }
 
-.selected-project-title {
-  font-size: clamp(42px, 7vw, 110px);
-  line-height: 0.85;
-  letter-spacing: -0.07em;
+.project-heading h2 {
+  margin: 0;
+  font-size: clamp(48px, 9vw, 145px);
+  line-height: 0.82;
+  letter-spacing: -0.08em;
   text-transform: uppercase;
 }
 
-.selected-project-meta {
+.project-heading p {
+  margin: 0;
   align-self: end;
   font-size: 14px;
   line-height: 1.35;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
 }
 
-.three-boxes {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr 1fr;
-  gap: 14px;
+.scrolly-track {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 18vw;
+  padding-left: 52vw;
+  padding-right: 30vw;
+  will-change: transform;
 }
 
-.box {
-  border: 1px solid #111;
-  background: #ddd;
-  min-height: 320px;
+.visual-card {
+  flex: 0 0 auto;
   position: relative;
+  border: 1px solid #111;
+  background: #d8d5cc;
+  cursor: pointer;
   overflow: hidden;
 }
 
-.box-label {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 2;
-  background: #f2f0ea;
-  border: 1px solid #111;
-  padding: 6px 9px;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.11em;
+.visual-card.poster {
+  width: min(38vw, 520px);
+  aspect-ratio: 2 / 3;
 }
 
-.box img,
-.box video {
+.visual-card.preview {
+  width: min(70vw, 980px);
+  aspect-ratio: 16 / 9;
+}
+
+.visual-card.still {
+  width: min(58vw, 820px);
+  aspect-ratio: 16 / 10;
+}
+
+.visual-card img,
+.visual-card video {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+.visual-label {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 3;
+  padding: 6px 9px;
+  border: 1px solid #111;
+  background: #f2f0ea;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+}
+
 .empty-box {
+  width: 100%;
   height: 100%;
-  min-height: 320px;
+  min-height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.open-note {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 8;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.archive-list {
+  border-top: 1px solid #111;
 }
 
 .archive-row {
@@ -172,15 +233,14 @@ img, video {
   cursor: pointer;
 }
 
-.archive-row:hover,
-.selected-project:hover {
+.archive-row:hover {
   font-style: italic;
 }
 
 .archive-title {
-  font-size: clamp(28px, 4vw, 64px);
-  line-height: 0.9;
-  letter-spacing: -0.06em;
+  font-size: clamp(30px, 5vw, 78px);
+  line-height: 0.88;
+  letter-spacing: -0.065em;
   text-transform: uppercase;
 }
 
@@ -198,7 +258,6 @@ img, video {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: 40px;
-  align-items: start;
 }
 
 .about-photo {
@@ -209,10 +268,10 @@ img, video {
 }
 
 .about-text {
+  margin: 0 0 40px;
   font-size: clamp(30px, 5vw, 82px);
   line-height: 0.95;
   letter-spacing: -0.06em;
-  margin: 0 0 40px;
 }
 
 .link-list {
@@ -229,18 +288,18 @@ img, video {
 }
 
 .contact-big {
-  font-size: clamp(44px, 9vw, 140px);
-  line-height: 0.85;
-  letter-spacing: -0.08em;
+  font-size: clamp(50px, 11vw, 170px);
+  line-height: 0.82;
+  letter-spacing: -0.09em;
   text-transform: uppercase;
 }
 
 .contact-email {
   display: inline-block;
-  margin-top: 36px;
-  font-size: clamp(28px, 5vw, 76px);
+  margin-top: 42px;
+  font-size: clamp(28px, 5vw, 78px);
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.055em;
   border-bottom: 1px solid #111;
 }
 
@@ -324,28 +383,50 @@ img, video {
   letter-spacing: -0.06em;
 }
 
-.modal-gallery {
+.stills-slider {
   margin-top: 50px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  position: relative;
+  border: 1px solid #111;
+  background: #d8d5cc;
+  overflow: hidden;
 }
 
-.modal-gallery img,
-.empty-still {
+.stills-slider-inner {
+  display: flex;
+  transition: transform 0.45s ease;
+}
+
+.stills-slide {
+  flex: 0 0 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.stills-slide img,
+.stills-slide video {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 100%;
   object-fit: cover;
 }
 
-.empty-still {
-  border: 1px solid #111;
+.slider-controls {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  border-top: 1px solid #111;
+}
+
+.slider-controls button {
+  width: 50%;
+  padding: 14px;
+  border: 0;
+  background: #f2f0ea;
   font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.slider-controls button:first-child {
+  border-right: 1px solid #111;
 }
 
 .footer {
@@ -364,21 +445,55 @@ img, video {
     display: none;
   }
 
-  .hero,
-  .selected-project-top,
-  .three-boxes,
+  .home-hero,
+  .project-heading,
   .archive-row,
   .about-grid,
   .modal-info {
     grid-template-columns: 1fr;
   }
 
-  .archive-year {
-    text-align: left;
+  .scrolly-project {
+    height: auto;
   }
 
-  .modal-gallery {
-    grid-template-columns: 1fr;
+  .scrolly-sticky {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: 100px 24px 50px;
+  }
+
+  .project-heading {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    margin-bottom: 24px;
+  }
+
+  .scrolly-track {
+    transform: none !important;
+    display: grid;
+    gap: 14px;
+    padding: 0;
+  }
+
+  .visual-card.poster,
+  .visual-card.preview,
+  .visual-card.still {
+    width: 100%;
+  }
+
+  .open-note {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    margin-top: 18px;
+  }
+
+  .archive-year {
+    text-align: left;
   }
 }
 </style>
@@ -390,29 +505,28 @@ img, video {
   <div>Aidan Serik</div>
   <div class="header-center">Film Editor</div>
   <div class="header-right">
-    <a href="#home">Selected</a>
+    <a href="#home">Home</a>
     <a href="#works">Works</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
 
-<section class="page" id="home">
-  <div class="hero">
-    <h1>Selected<br>Works</h1>
-    <p>Film editing, documentary, fiction and short-form moving image.</p>
-  </div>
+<main>
 
-  <h2 class="section-title">Selected Works</h2>
-  <div id="selectedWorks"></div>
+<section class="home-hero" id="home">
+  <h1>Selected<br>Works</h1>
+  <p>Film editing, documentary, fiction and short-form moving image.</p>
 </section>
 
-<section class="page" id="works">
+<div id="selectedScroll"></div>
+
+<section class="section-page" id="works">
   <h2 class="section-title">Works</h2>
-  <div id="archiveWorks"></div>
+  <div class="archive-list" id="archiveWorks"></div>
 </section>
 
-<section class="page" id="about">
+<section class="section-page" id="about">
   <h2 class="section-title">About</h2>
 
   <div class="about-grid">
@@ -432,11 +546,13 @@ img, video {
   </div>
 </section>
 
-<section class="page" id="contact">
+<section class="section-page" id="contact">
   <h2 class="section-title">Contact</h2>
   <div class="contact-big">For work,<br>screenings<br>and inquiries.</div>
   <a class="contact-email" href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
 </section>
+
+</main>
 
 <footer class="footer">
   <span>© Aidan Serik</span>
@@ -461,7 +577,13 @@ img, video {
       <div class="link-list" id="modalPress"></div>
     </div>
 
-    <div class="modal-gallery" id="modalGallery"></div>
+    <div class="stills-slider" id="stillsSlider">
+      <div class="stills-slider-inner" id="stillsSliderInner"></div>
+      <div class="slider-controls">
+        <button onclick="prevStill()">Previous</button>
+        <button onclick="nextStill()">Next</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -536,7 +658,6 @@ const projects = [
     description: "A branded short-form project built around rhythm, movement and contemporary visual culture.",
     press: []
   },
-
   {
     title: "DYAD",
     section: "Works",
@@ -591,16 +712,19 @@ const projects = [
   }
 ];
 
+let currentStills = [];
+let currentStillIndex = 0;
+
 function isVideo(file) {
   return file && (file.toLowerCase().includes(".mp4") || file.toLowerCase().includes(".webm"));
 }
 
-function mediaBox(label, file, fallbackText) {
-  let html = '<div class="box">';
-  html += '<div class="box-label">' + label + '</div>';
+function visualHTML(label, file, type) {
+  let html = '<div class="visual-card ' + type + '">';
+  html += '<div class="visual-label">' + label + '</div>';
 
   if (!file) {
-    html += '<div class="empty-box">' + fallbackText + '</div>';
+    html += '<div class="empty-box">' + label + ' coming soon</div>';
   } else if (isVideo(file)) {
     html += '<video src="' + file + '" autoplay muted loop playsinline></video>';
   } else {
@@ -611,31 +735,60 @@ function mediaBox(label, file, fallbackText) {
   return html;
 }
 
-function renderSelected() {
-  const container = document.getElementById("selectedWorks");
+function renderSelectedScroll() {
+  const container = document.getElementById("selectedScroll");
   let html = "";
 
   projects.forEach(function(project) {
     if (project.section === "Selected") {
-      const still = project.stills[0] || "";
+      const firstStill = project.stills[0] || "";
 
-      html += '<article class="selected-project" onclick="openProjectByTitle(\'' + project.title.replace(/'/g, "\\'") + '\')">';
-      html += '<div class="selected-project-top">';
-      html += '<div class="selected-project-title">' + project.title + '</div>';
-      html += '<div class="selected-project-meta">' + project.role + '<br>' + project.category + '<br>' + project.year + '</div>';
+      html += '<section class="scrolly-project" data-title="' + project.title + '">';
+      html += '<div class="scrolly-sticky">';
+      html += '<div class="project-heading">';
+      html += '<h2>' + project.title + '</h2>';
+      html += '<p>' + project.role + '<br>' + project.category + '<br>' + project.year + '</p>';
       html += '</div>';
 
-      html += '<div class="three-boxes">';
-      html += mediaBox("Poster", project.poster, "Poster coming soon");
-      html += mediaBox("Preview", project.preview, "Preview coming soon");
-      html += mediaBox("Still", still, "Still coming soon");
+      html += '<div class="scrolly-track">';
+      html += visualHTML("Poster", project.poster, "poster");
+      html += visualHTML("Preview", project.preview, "preview");
+      html += visualHTML("Stills", firstStill, "still");
       html += '</div>';
 
-      html += '</article>';
+      html += '<div class="open-note">Click anywhere on project to open</div>';
+      html += '</div>';
+      html += '</section>';
     }
   });
 
   container.innerHTML = html;
+
+  document.querySelectorAll(".scrolly-project").forEach(function(section) {
+    section.addEventListener("click", function() {
+      openProjectByTitle(section.getAttribute("data-title"));
+    });
+  });
+}
+
+function updateHorizontalScroll() {
+  if (window.innerWidth <= 900) return;
+
+  document.querySelectorAll(".scrolly-project").forEach(function(section) {
+    const sticky = section.querySelector(".scrolly-sticky");
+    const track = section.querySelector(".scrolly-track");
+    const rect = section.getBoundingClientRect();
+    const total = section.offsetHeight - window.innerHeight;
+    let progress = -rect.top / total;
+
+    if (progress < 0) progress = 0;
+    if (progress > 1) progress = 1;
+
+    const maxMove = track.scrollWidth - window.innerWidth + window.innerWidth * 0.18;
+    const move = -progress * maxMove;
+
+    track.style.transform = "translate3d(" + move + "px, 0, 0)";
+  });
 }
 
 function renderArchive() {
@@ -712,17 +865,52 @@ function openProject(project) {
 
   document.getElementById("modalPress").innerHTML = pressHTML;
 
-  let galleryHTML = "";
-
-  project.stills.forEach(function(still) {
-    if (still) {
-      galleryHTML += '<img src="' + still + '" alt="">';
-    } else {
-      galleryHTML += '<div class="empty-still">Still coming soon</div>';
-    }
+  currentStills = project.stills.filter(function(still) {
+    return still;
   });
 
-  document.getElementById("modalGallery").innerHTML = galleryHTML;
+  if (currentStills.length === 0) {
+    currentStills = [""];
+  }
+
+  currentStillIndex = 0;
+  renderStillsSlider();
+}
+
+function renderStillsSlider() {
+  const inner = document.getElementById("stillsSliderInner");
+  let html = "";
+
+  currentStills.forEach(function(still) {
+    html += '<div class="stills-slide">';
+
+    if (!still) {
+      html += '<div class="empty-box">Still coming soon</div>';
+    } else if (isVideo(still)) {
+      html += '<video src="' + still + '" autoplay muted loop playsinline></video>';
+    } else {
+      html += '<img src="' + still + '" alt="">';
+    }
+
+    html += '</div>';
+  });
+
+  inner.innerHTML = html;
+  inner.style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
+}
+
+function nextStill() {
+  if (currentStills.length <= 1) return;
+  currentStillIndex = currentStillIndex + 1;
+  if (currentStillIndex >= currentStills.length) currentStillIndex = 0;
+  document.getElementById("stillsSliderInner").style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
+}
+
+function prevStill() {
+  if (currentStills.length <= 1) return;
+  currentStillIndex = currentStillIndex - 1;
+  if (currentStillIndex < 0) currentStillIndex = currentStills.length - 1;
+  document.getElementById("stillsSliderInner").style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
 }
 
 function closeProject() {
@@ -731,8 +919,12 @@ function closeProject() {
   document.getElementById("modalMedia").innerHTML = "";
 }
 
-renderSelected();
+renderSelectedScroll();
 renderArchive();
+updateHorizontalScroll();
+
+window.addEventListener("scroll", updateHorizontalScroll);
+window.addEventListener("resize", updateHorizontalScroll);
 </script>
 
 </body>
