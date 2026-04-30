@@ -6,20 +6,13 @@
 <title>Aidan Serik — Film Editor</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   background: #f2f0ea;
   color: #111;
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
 }
 
 a {
@@ -27,10 +20,9 @@ a {
   text-decoration: none;
 }
 
-img,
-video {
+img, video {
   display: block;
-  max-width: 100%;
+  width: 100%;
 }
 
 .header {
@@ -42,19 +34,13 @@ video {
   padding: 18px 24px;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  font-size: 14px;
-  mix-blend-mode: difference;
   color: white;
+  mix-blend-mode: difference;
+  font-size: 14px;
 }
 
-.header-center {
-  text-align: center;
-}
-
-.header-right {
-  text-align: right;
-}
+.header-center { text-align: center; }
+.header-right { text-align: right; }
 
 .hero {
   min-height: 100vh;
@@ -66,10 +52,10 @@ video {
 }
 
 .hero-title {
+  margin: 0;
   font-size: clamp(58px, 11vw, 180px);
   line-height: 0.82;
   letter-spacing: -0.08em;
-  margin: 0;
   text-transform: uppercase;
 }
 
@@ -78,7 +64,6 @@ video {
   font-size: clamp(24px, 4vw, 64px);
   line-height: 0.95;
   letter-spacing: -0.055em;
-  max-width: 900px;
 }
 
 .hero-small {
@@ -86,6 +71,7 @@ video {
   max-width: 520px;
   font-size: 15px;
   line-height: 1.4;
+  letter-spacing: 0;
 }
 
 .index-layout {
@@ -116,9 +102,9 @@ video {
   bottom: 18px;
   right: 20px;
   color: white;
-  font-size: 12px;
   display: flex;
   justify-content: space-between;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -128,16 +114,16 @@ video {
 }
 
 .category {
-  margin-bottom: 70px;
+  margin-bottom: 80px;
 }
 
 .category-title {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #111;
   font-size: 13px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #111;
-  margin-bottom: 0;
 }
 
 .project-row {
@@ -147,7 +133,6 @@ video {
   padding: 18px 0;
   border-bottom: 1px solid #111;
   cursor: pointer;
-  align-items: start;
 }
 
 .project-row:hover {
@@ -161,13 +146,13 @@ video {
   text-transform: uppercase;
 }
 
-.project-meta {
+.project-meta,
+.project-year {
   font-size: 14px;
   line-height: 1.3;
 }
 
 .project-year {
-  font-size: 14px;
   text-align: right;
 }
 
@@ -178,7 +163,6 @@ video {
 
 .project-mobile-image img,
 .project-mobile-image video {
-  width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
@@ -193,7 +177,6 @@ video {
 }
 
 .about img {
-  width: 100%;
   max-width: 520px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -208,10 +191,10 @@ video {
 }
 
 .about-text p {
+  margin: 0 0 32px;
   font-size: clamp(22px, 3vw, 44px);
   line-height: 1;
   letter-spacing: -0.045em;
-  margin: 0 0 32px;
 }
 
 .press-links {
@@ -246,11 +229,11 @@ video {
   top: 18px;
   right: 20px;
   z-index: 120;
-  background: transparent;
-  border: 1px solid #111;
   width: 44px;
   height: 44px;
+  border: 1px solid #111;
   border-radius: 50%;
+  background: transparent;
   cursor: pointer;
   font-size: 22px;
 }
@@ -327,10 +310,21 @@ video {
   gap: 12px;
 }
 
-.modal-gallery img {
+.modal-gallery img,
+.empty-still {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+}
+
+.empty-still {
+  border: 1px solid #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .footer {
@@ -384,21 +378,23 @@ video {
 <header class="header">
   <div>Aidan Serik</div>
   <div class="header-center">Film Editor</div>
-  <div class="header-right"><a href="#about">Information</a></div>
+  <div class="header-right">
+    <a href="#works">Works</a> / <a href="#about">About</a>
+  </div>
 </header>
 
 <section class="hero">
-  <h1 class="hero-title">Aidan<br>Serik</h1>
+  <h1 class="hero-title">Selected<br>Works</h1>
   <div class="hero-copy">
-    Film editor working across fiction, documentary and short-form cinema.
+    Film editing, documentary, fiction and short-form moving image.
     <div class="hero-small">
-      Selected works presented as an editorial film archive: posters, previews, stills, trailers, descriptions and press.
+      Selected projects are presented as poster / preview / stills. Full archive is separated below in Works.
     </div>
   </div>
 </section>
 
 <section class="index-layout" id="works">
-  <div class="preview-panel">
+  <div class="preview-panel" id="previewPanel">
     <img id="mainPreview" src="madina-poster.jpg" alt="">
     <div class="preview-caption">
       <span id="previewTitle">Madina</span>
@@ -415,7 +411,7 @@ video {
   </div>
 
   <div class="about-text">
-    <h2>Information</h2>
+    <h2>About</h2>
     <p>
       Aidan Serik is a film editor working between rhythm, emotional structure and cinematic memory.
     </p>
@@ -431,7 +427,7 @@ video {
 
 <footer class="footer">
   <span>© Aidan Serik</span>
-  <span>Selected Works</span>
+  <span>Selected Works / Works / About</span>
 </footer>
 
 <div class="modal" id="modal">
@@ -460,14 +456,15 @@ video {
 const projects = [
   {
     title: "Madina",
-    category: "Feature & Long Form",
+    section: "Selected Works",
+    category: "Feature Film",
     role: "Editor",
     year: "2021",
     poster: "madina-poster.jpg",
-    preview: "madina-poster.jpg",
-    stills: ["madina_still_01.jpg", "madina_still_02.jpg", "madina_still_03.jpg", "madina_still_04.jpg", "madina_still_05.jpg", "madina_still_06.jpg"],
+    preview: "madina_preview_02.mp4",
+    stills: ["madina_still_07.jpg"],
     trailer: "https://mubi.com/en/films/madina/trailer",
-    description: "A feature film edited by Aidan Serik. The film follows a woman navigating work, family and patriarchal pressure in contemporary Kazakhstan.",
+    description: "A feature film edited by Aidan Serik.",
     press: [
       ["Variety", "https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/"],
       ["MUBI", "https://mubi.com/en/films/madina/trailer"],
@@ -475,25 +472,62 @@ const projects = [
     ]
   },
   {
+    title: "We Live Here",
+    section: "Selected Works",
+    category: "Documentary Feature",
+    role: "Editor",
+    year: "2022–Present",
+    poster: "welivehere-poster.jpg",
+    preview: "welivehere-preview.mp4",
+    stills: [""],
+    trailer: "https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link",
+    description: "A full-length documentary exploring memory, place and generational fallout in Kazakhstan.",
+    press: [
+      ["Variety", "https://variety.com/2025/film/global/we-live-here-syndicado-cphdox-1236328082/"],
+      ["The Hollywood Reporter", "https://www.hollywoodreporter.com/movies/movie-news/we-live-here-documentary-kazakhstan-nuclear-test-site-1236165093/"],
+      ["POV Magazine", "https://povmagazine.com/we-live-here-review-probing-generational-fallout/"]
+    ]
+  },
+  {
     title: "Joqtau",
-    category: "Feature & Long Form",
+    section: "Selected Works",
+    category: "Feature Film",
     role: "Editor",
     year: "2022",
     poster: "joqtau-poster.jpg",
     preview: "joqtau-preview.mp4",
-    stills: ["joqtau.jpg", "joqtau-poster.jpg"],
+    stills: ["joqtau.jpg"],
     trailer: "https://drive.google.com/file/d/1l2ri-6PSz4RQEu_n17IsBr6xmcnSsY1X/view?usp=drive_link",
     description: "A feature film shaped as a poetic meditation on grief, land and legacy.",
     press: [
       ["Locarno Festival", "https://www.locarnofestival.ch/news/2024/daily/spotlight-on-aruan-anartays-joqtau.html"],
       ["Variety", "https://variety.com/2024/film/global/parallax-joqtau-washhh-locarno-1236092474/"],
-      ["The Steppe", "https://the-steppe.com/razvlecheniya/kino/joqtau-kak-aruan-anartaj-osmysljaet-zhanr-traurnoj-pesni-v-kino"],
       ["Asian Movie Pulse", "https://asianmoviepulse.com/2025/06/film-review-joqtau-2024-by-arha-anartay/"]
     ]
   },
   {
+    title: "Roxwear x Trippin",
+    section: "Selected Works",
+    category: "Commercial / Branded",
+    role: "Editor",
+    year: "Selected Work",
+    poster: "trippin_poster.png",
+    preview: "trippin-preview.mp4",
+    stills: [
+      "trippin_still_01.png",
+      "trippin_still_02.png",
+      "trippin_still_03.png",
+      "trippin_still_04.png"
+    ],
+    trailer: "",
+    description: "A branded short-form project built around rhythm, movement and contemporary visual culture.",
+    press: []
+  },
+
+  {
     title: "DYAD",
-    category: "Short Films",
+    section: "Works",
+    category: "Short Film",
     role: "Director",
     year: "2023",
     poster: "dyad-poster.jpg",
@@ -507,41 +541,23 @@ const projects = [
   },
   {
     title: "OT / Fire",
-    category: "Feature & Long Form",
+    section: "Works",
+    category: "Feature Film",
     role: "Editor",
     year: "2020",
     poster: "ot.jpg",
     preview: "ot.jpg",
-    stills: ["ot_still_01.jpg", "ot_still_02.jpg", "ot_still_03.jpg", "ot_still_04.jpg", "ot_still_05.jpg", "ot_still_06.jpg"],
+    stills: ["ot_still_01.jpg", "ot_still_02.jpg", "ot_still_03.jpg"],
     trailer: "https://youtu.be/LZEonboLtXg?si=pnQKy_xRHZKp791j",
     description: "A social drama with elements of comedy, edited by Aidan Serik.",
     press: [
-      ["Variety", "https://variety.com/2021/film/reviews/fire-review-ot-1235087408/"],
-      ["ImagineIndia", "https://imagineindiafestival.com/2021/12/12/fire-aizhana-kassymbek-kazakhstan/"],
-      ["Asian Movie Pulse", "https://asianmoviepulse.com/2022/01/film-review-fire-2021-by-aizhan-kassymbek/"]
-    ]
-  },
-  {
-    title: "We Live Here",
-    category: "Feature & Long Form",
-    role: "Editor",
-    year: "2022–Present",
-    poster: "welivehere-poster.jpg",
-    preview: "welivehere-preview.mp4",
-    stills: ["welivehere-poster.jpg"],
-    trailer: "https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link",
-    description: "A full-length documentary exploring memory, place and generational fallout in Kazakhstan.",
-    press: [
-      ["Variety", "https://variety.com/2025/film/global/we-live-here-syndicado-cphdox-1236328082/"],
-      ["The Hollywood Reporter", "https://www.hollywoodreporter.com/movies/movie-news/we-live-here-documentary-kazakhstan-nuclear-test-site-1236165093/"],
-      ["POV Magazine", "https://povmagazine.com/we-live-here-review-probing-generational-fallout/"],
-      ["Modern Times Review", "https://www.moderntimes.review/we-live-here/"],
-      ["DocPoint", "https://docpoint.fi/en/film/we-live-here/"]
+      ["Variety", "https://variety.com/2021/film/reviews/fire-review-ot-1235087408/"]
     ]
   },
   {
     title: "Warm Lake",
-    category: "Short Films",
+    section: "Works",
+    category: "Short Film",
     role: "Editor",
     year: "2020",
     poster: "warm-lake.jpg",
@@ -553,7 +569,8 @@ const projects = [
   },
   {
     title: "Gingerbread for Her Dad",
-    category: "Short Films",
+    section: "Works",
+    category: "Short Film",
     role: "Editor",
     year: "2024",
     poster: "pryaniki-poster.jpg",
@@ -562,26 +579,30 @@ const projects = [
     trailer: "",
     description: "A short film with press coverage across European film publications.",
     press: [
-      ["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"],
-      ["Cinecittà News", "https://cinecittanews.it/gingerbread-for-her-dad-alina-mustafina-ai-martedi-dellanac/"],
-      ["Roma Today", "https://www.romatoday.it/eventi/gingerbread-for-her-dad-a-i-martedi-dell-anac.html"]
+      ["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"]
     ]
   },
   {
     title: "Little Love",
-    category: "Short Films",
+    section: "Works",
+    category: "Short Film",
     role: "Editor",
     year: "Selected Work",
     poster: "little-love-poster.jpg",
     preview: "little-love_still_01.jpg",
-    stills: ["little-love_still_01.jpg", "little-love_still_02.jpg", "little-love_still_03.jpg", "little-love_still_21.jpg", "little-love_still_22.jpg", "little-love_still_23.jpg"],
+    stills: [
+      "little-love_still_01.jpg",
+      "little-love_still_02.jpg",
+      "little-love_still_03.jpg"
+    ],
     trailer: "",
     description: "A selected short-form project from the archive.",
     press: []
   },
   {
     title: "Let Her Dance",
-    category: "Short Films",
+    section: "Works",
+    category: "Short Film",
     role: "Editor",
     year: "Selected Work",
     poster: "letherdance-poster.jpg",
@@ -590,38 +611,12 @@ const projects = [
     trailer: "",
     description: "A selected short-form project from the archive.",
     press: []
-  },
-  {
-    title: "Youth 4 Human Rights",
-    category: "Branded & Social Documentary",
-    role: "Director",
-    year: "2019",
-    poster: "presence-poster.jpg",
-    preview: "presence-poster.jpg",
-    stills: ["presence-poster.jpg"],
-    trailer: "https://vimeo.com/347423378?share=copy&fl=cl&fe=ci",
-    description: "A short documentary series for Tihii Svet documentary studio and Youth 4 Human Rights.",
-    press: []
-  },
-  {
-    title: "Trippin",
-    category: "Branded & Social Documentary",
-    role: "Editor",
-    year: "Selected Work",
-    poster: "face-the-music.jpg",
-    preview: "trippin-preview.mp4",
-    stills: ["face-the-music.jpg"],
-    trailer: "",
-    description: "A short-form selected work built around rhythm, performance and contemporary culture.",
-    press: []
   }
 ];
 
-const categories = ["Feature & Long Form", "Short Films", "Branded & Social Documentary"];
+const sections = ["Selected Works", "Works"];
 const workIndex = document.getElementById("workIndex");
-const mainPreview = document.getElementById("mainPreview");
-const previewTitle = document.getElementById("previewTitle");
-const previewRole = document.getElementById("previewRole");
+let currentPreviewElement = document.getElementById("mainPreview");
 
 function isVideo(file) {
   if (!file) return false;
@@ -629,14 +624,15 @@ function isVideo(file) {
 }
 
 function setMainPreview(project) {
-  previewTitle.innerText = project.title;
-  previewRole.innerText = project.role + " / " + project.year;
+  document.getElementById("previewTitle").innerText = project.title;
+  document.getElementById("previewRole").innerText = project.role + " / " + project.year;
+
+  const oldPreview = document.getElementById("mainPreview");
 
   if (isVideo(project.preview)) {
-    mainPreview.outerHTML = '<video id="mainPreview" src="' + project.preview + '" autoplay muted loop playsinline></video>';
+    oldPreview.outerHTML = '<video id="mainPreview" src="' + project.preview + '" autoplay muted loop playsinline></video>';
   } else {
-    const current = document.getElementById("mainPreview");
-    current.outerHTML = '<img id="mainPreview" src="' + project.preview + '" alt="">';
+    oldPreview.outerHTML = '<img id="mainPreview" src="' + project.preview + '" alt="">';
   }
 }
 
@@ -648,14 +644,14 @@ function createMobileMedia(project) {
 }
 
 function renderIndex() {
-  categories.forEach(function(category) {
+  sections.forEach(function(sectionName) {
     const group = document.createElement("div");
     group.className = "category";
 
-    let html = '<h2 class="category-title">' + category + '</h2>';
+    let html = '<h2 class="category-title">' + sectionName + '</h2>';
 
     projects.forEach(function(project) {
-      if (project.category === category) {
+      if (project.section === sectionName) {
         html += '<div class="project-row" data-title="' + project.title + '">';
         html += '<div>';
         html += '<div class="project-title">' + project.title + '</div>';
@@ -703,6 +699,9 @@ function vimeoEmbed(url) {
 
 function mediaHTML(project) {
   if (!project.trailer) {
+    if (isVideo(project.preview)) {
+      return '<video src="' + project.preview + '" controls playsinline></video>';
+    }
     return '<img src="' + project.poster + '" alt="">';
   }
 
@@ -725,7 +724,7 @@ function openProject(project) {
   document.body.style.overflow = "hidden";
 
   document.getElementById("modalTitle").innerText = project.title;
-  document.getElementById("modalRole").innerText = project.role;
+  document.getElementById("modalRole").innerText = project.role + " / " + project.category;
   document.getElementById("modalYear").innerText = project.year;
   document.getElementById("modalDescription").innerText = project.description;
   document.getElementById("modalMedia").innerHTML = mediaHTML(project);
@@ -733,7 +732,7 @@ function openProject(project) {
   let pressHTML = "";
 
   if (project.press.length === 0) {
-    pressHTML = '<a>No press links yet<span></span></a>';
+    pressHTML = '<a><span>No press links yet</span><span></span></a>';
   } else {
     project.press.forEach(function(link) {
       pressHTML += '<a href="' + link[1] + '" target="_blank"><span>' + link[0] + '</span><span>Open</span></a>';
@@ -745,7 +744,11 @@ function openProject(project) {
   let galleryHTML = "";
 
   project.stills.forEach(function(still) {
-    galleryHTML += '<img src="' + still + '" alt="">';
+    if (still) {
+      galleryHTML += '<img src="' + still + '" alt="">';
+    } else {
+      galleryHTML += '<div class="empty-still">Still coming soon</div>';
+    }
   });
 
   document.getElementById("modalGallery").innerHTML = galleryHTML;
