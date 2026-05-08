@@ -640,11 +640,6 @@ video {
 
     <div class="stills-slider">
       <div class="stills-slider-inner" id="stillsSliderInner"></div>
-      <div class="slider-controls">
-        <button onclick="prevStill()">Previous still</button>
-        <button onclick="nextStill()">Next still</button>
-      </div>
-    </div>
 
     <div class="project-nav">
       <button onclick="openPreviousProject()">Previous project</button>
@@ -1191,6 +1186,11 @@ function renderStillsSlider() {
   const inner = document.getElementById("stillsSliderInner");
   let html = "";
 
+  if (stillsInterval) {
+    clearInterval(stillsInterval);
+    stillsInterval = null;
+  }
+
   currentStills.forEach(function(still) {
     html += '<div class="stills-slide">';
 
@@ -1207,6 +1207,12 @@ function renderStillsSlider() {
 
   inner.innerHTML = html;
   inner.style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
+
+  if (currentStills.length > 1) {
+    stillsInterval = setInterval(function() {
+      nextStill();
+    }, 2400);
+  }
 }
 
 function nextStill() {
