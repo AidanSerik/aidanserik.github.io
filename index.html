@@ -401,11 +401,19 @@ video {
 }
 
 .original-poster img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   max-height: 90vh;
   object-fit: contain;
-  border: 1px solid #111;
-  background: #ddd;
+  border: 0;
+  background: transparent;
+}
+  .original-poster {
+  align-items: start;
+}
+
+.original-poster img {
+  justify-self: start;
 }
 
 .original-poster-label {
