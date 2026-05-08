@@ -989,6 +989,7 @@ let currentStills = [];
 let currentStillIndex = 0;
 let homeSlideIndex = 0;
 let currentProjectIndex = 0;
+let stillsInterval = null;
 
 function isVideo(file) {
   return file && (file.toLowerCase().includes(".mp4") || file.toLowerCase().includes(".webm"));
@@ -1045,7 +1046,6 @@ function renderSelectedScroll() {
 
   projects.forEach(function(project) {
     if (project.section === "Selected") {
-      const firstStill = project.stills[0] || "";
 
       html += '<section class="scrolly-project" data-title="' + project.title + '">';
       html += '<div class="scrolly-sticky">';
@@ -1056,7 +1056,6 @@ function renderSelectedScroll() {
       html += '<div class="scrolly-track">';
       html += visualHTML("Poster", project.squarePoster || project.poster);
       html += visualHTML("Preview", project.preview);
-      html += visualHTML("Stills", firstStill);
       html += '</div>';
       html += '<div class="open-note">Click anywhere on project to open</div>';
       html += '</div>';
