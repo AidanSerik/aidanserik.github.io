@@ -9,7 +9,10 @@
 <style>
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  cursor: url("eye_icon.jpeg") 16 16, auto;
+}
 
 body {
   margin: 0;
@@ -17,6 +20,11 @@ body {
   color: #111;
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  cursor: url("eye_icon.jpeg") 16 16, auto;
+}
+
+a, button, .scrolly-project, .work-row {
+  cursor: url("eye_icon.jpeg") 16 16, pointer;
 }
 
 a {
@@ -27,6 +35,10 @@ a {
 img, video {
   display: block;
   width: 100%;
+}
+
+.is-hidden {
+  display: none !important;
 }
 
 .header {
@@ -48,7 +60,6 @@ img, video {
 
 .header a {
   margin-left: 16px;
-  cursor: pointer;
 }
 
 .home {
@@ -168,7 +179,6 @@ img, video {
   aspect-ratio: 1 / 1;
   border: 1px solid #111;
   background: #d8d5cc;
-  cursor: pointer;
   overflow: hidden;
 }
 
@@ -255,7 +265,6 @@ img, video {
   border: 1px solid #111;
   border-radius: 50%;
   background: #f2f0ea;
-  cursor: pointer;
   font-size: 22px;
 }
 
@@ -324,7 +333,6 @@ img, video {
   gap: 18px;
   padding: 18px 0;
   border-bottom: 1px solid #111;
-  cursor: pointer;
 }
 
 .work-title {
@@ -371,23 +379,23 @@ img, video {
 }
 
 .external-trailer {
-  position: relative;
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #f2f0ea;
+  text-align: center;
+  font-size: clamp(28px, 5vw, 80px);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
 }
 
 .external-trailer span {
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  z-index: 3;
-  padding: 8px 12px;
-  border: 1px solid #111;
-  background: #f2f0ea;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  border: 1px solid #f2f0ea;
+  padding: 18px 24px;
 }
 
 .modal-info {
@@ -479,7 +487,6 @@ img, video {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  cursor: pointer;
 }
 
 .project-nav button:first-child {
@@ -589,18 +596,14 @@ img, video {
 
 <div class="panel" id="aboutPanel">
   <button class="panel-close" onclick="closeAbout()">×</button>
-
   <div class="panel-inner">
     <h2 class="panel-title">About</h2>
-
     <div class="about-grid">
       <img class="about-photo" src="aidan_portrait.jpg" alt="Aidan Serik portrait">
-
       <div>
         <p class="about-text">
           Aidan Serik is a film editor working between rhythm, emotional structure and cinematic memory.
         </p>
-
         <div class="link-list">
           <a href="https://variety.com/2023/film/asia/tokyo-all-woman-crew-kazakh-madina-patriarchy-1235764762/" target="_blank"><span>Variety</span><span>Madina</span></a>
           <a href="https://manshuq.com/career-aidan-serik-09-2023" target="_blank"><span>Manshuq</span><span>Career Interview</span></a>
@@ -613,7 +616,6 @@ img, video {
 
 <div class="panel" id="worksPanel">
   <button class="panel-close" onclick="closeWorks()">×</button>
-
   <div class="panel-inner">
     <h2 class="panel-title">Works</h2>
     <div id="worksList"></div>
@@ -622,7 +624,6 @@ img, video {
 
 <div class="panel" id="projectPanel">
   <button class="panel-close" onclick="closeProject()">×</button>
-
   <div class="panel-inner">
     <h2 class="panel-title" id="modalTitle"></h2>
 
@@ -638,12 +639,12 @@ img, video {
       <div class="link-list" id="modalPress"></div>
     </div>
 
-    <div class="original-poster">
+    <div class="original-poster" id="posterBlock">
       <div class="original-poster-label">Original poster</div>
       <img id="modalPoster" src="" alt="">
     </div>
 
-    <div class="stills-slider">
+    <div class="stills-slider" id="stillsBlock">
       <div class="stills-slider-inner" id="stillsSliderInner"></div>
     </div>
 
@@ -693,7 +694,7 @@ const projects = [
     poster: "welivehere-poster.jpg",
     squarePoster: "welivehere_poster_square.jpg",
     preview: "welivehere_square_preview.mp4",
-    stills: [""],
+    stills: [],
     trailer: "https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link",
     description: "A full-length documentary exploring memory, place and generational fallout in Kazakhstan.",
     press: [
@@ -796,7 +797,6 @@ const projects = [
     description: "A selected short film edited by Aidan Serik.",
     press: []
   },
-
   {
     title: "Youth 4 Human Rights",
     section: "Works",
@@ -804,10 +804,10 @@ const projects = [
     category: "Short Documentary Series",
     role: "Director",
     year: "2019",
-    poster: "presence_poster.jpg",
-    squarePoster: "presence_square_poster.jpg",
+    poster: "",
+    squarePoster: "",
     preview: "",
-    stills: ["presence_poster.jpg"],
+    stills: [],
     trailer: "https://vimeo.com/347423378?share=copy&fl=cl&fe=ci",
     description: "Short documentary series for Tihii Svet documentary studio.",
     press: []
@@ -819,10 +819,10 @@ const projects = [
     category: "Short Documentary",
     role: "Editor",
     year: "2019",
-    poster: "facethemusic_poster.jpg",
-    squarePoster: "facethemusic_square_poster.jpg",
+    poster: "",
+    squarePoster: "",
     preview: "",
-    stills: ["facethemusic_poster.jpg"],
+    stills: [],
     trailer: "https://www.youtube.com/watch?v=CmohrAsusaY",
     description: "Short documentary for Motor production.",
     press: []
@@ -834,8 +834,8 @@ const projects = [
     category: "Short Documentary",
     role: "Editor",
     year: "2018",
-    poster: "facethemusic_poster.jpg",
-    squarePoster: "facethemusic_square_poster.jpg",
+    poster: "",
+    squarePoster: "",
     preview: "",
     stills: [],
     trailer: "https://www.youtube.com/watch?v=mYmn1BOXJT4",
@@ -849,8 +849,8 @@ const projects = [
     category: "Short Documentary",
     role: "Editor",
     year: "2021",
-    poster: "presence_poster.jpg",
-    squarePoster: "presence_square_poster.jpg",
+    poster: "",
+    squarePoster: "",
     preview: "",
     stills: [],
     trailer: "https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs",
@@ -864,8 +864,8 @@ const projects = [
     category: "Short Documentary Series",
     role: "Editor",
     year: "2021",
-    poster: "warmlake.jpg",
-    squarePoster: "warmlake_square.jpg",
+    poster: "",
+    squarePoster: "",
     preview: "",
     stills: [],
     trailer: "https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG",
@@ -932,12 +932,16 @@ const projects = [
     role: "Editor",
     year: "2024",
     poster: "pryaniki_poster.jpg",
-    squarePoster: "pryaniki_poster.jpg",
+    squarePoster: "",
     preview: "",
-    stills: ["pryaniki_poster.jpg"],
+    stills: [],
     trailer: "",
-    description: "A short film with press coverage across European film publications.",
-    press: [["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"]]
+    description: "A short film edited by Aidan Serik.",
+    press: [
+      ["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"],
+      ["Cinecittà News", "https://cinecittanews.it/gingerbread-for-her-dad-alina-mustafina-ai-martedi-dellanac/"],
+      ["Roma Today", "https://www.romatoday.it/eventi/gingerbread-for-her-dad-a-i-martedi-dell-anac.html"]
+    ]
   }
 ];
 
@@ -1110,14 +1114,14 @@ function modalMedia(project) {
     if (vm) return '<iframe src="' + vm + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
     if (gd) return '<iframe src="' + gd + '" allow="autoplay" allowfullscreen></iframe>';
 
-    return '<a class="external-trailer" href="' + project.trailer + '" target="_blank"><span>Open trailer</span><img src="' + project.poster + '" alt=""></a>';
+    return '<a class="external-trailer" href="' + project.trailer + '" target="_blank"><span>Open trailer</span></a>';
   }
 
   if (isVideo(project.preview)) {
     return '<video src="' + project.preview + '" controls playsinline></video>';
   }
 
-  return '<img src="' + project.poster + '" alt="">';
+  return "";
 }
 
 function openProjectByTitle(title) {
@@ -1139,34 +1143,57 @@ function openProject(project) {
   document.getElementById("modalTitle").innerText = project.title;
   document.getElementById("modalRole").innerText = project.role + " / " + project.category;
   document.getElementById("modalYear").innerText = project.year;
-  document.getElementById("modalDescription").innerText = project.description;
-  document.getElementById("modalMedia").innerHTML = modalMedia(project);
+  document.getElementById("modalDescription").innerText = project.description || "";
 
-  const posterElement = document.getElementById("modalPoster");
-  if (project.poster) {
-    posterElement.src = project.poster;
-    posterElement.style.display = "block";
+  const media = modalMedia(project);
+  const mediaBlock = document.getElementById("modalMedia");
+
+  if (media) {
+    mediaBlock.innerHTML = media;
+    mediaBlock.classList.remove("is-hidden");
   } else {
-    posterElement.style.display = "none";
+    mediaBlock.innerHTML = "";
+    mediaBlock.classList.add("is-hidden");
   }
 
+  const posterBlock = document.getElementById("posterBlock");
+  const posterElement = document.getElementById("modalPoster");
+
+  if (project.poster) {
+    posterElement.src = project.poster;
+    posterElement.alt = project.title;
+    posterBlock.classList.remove("is-hidden");
+  } else {
+    posterElement.src = "";
+    posterBlock.classList.add("is-hidden");
+  }
+
+  const pressBlock = document.getElementById("modalPress");
   let pressHTML = "";
 
-  if (!project.press || project.press.length === 0) {
-    pressHTML = '<a><span>No press links yet</span><span></span></a>';
-  } else {
+  if (project.press && project.press.length > 0) {
     project.press.forEach(function(link) {
       pressHTML += '<a href="' + link[1] + '" target="_blank"><span>' + link[0] + '</span><span>Open</span></a>';
     });
-  }
 
-  document.getElementById("modalPress").innerHTML = pressHTML;
+    pressBlock.innerHTML = pressHTML;
+    pressBlock.classList.remove("is-hidden");
+  } else {
+    pressBlock.innerHTML = "";
+    pressBlock.classList.add("is-hidden");
+  }
 
   currentStills = project.stills.filter(function(still) {
     return still;
   });
 
-  if (currentStills.length === 0) currentStills = [""];
+  const stillsBlock = document.getElementById("stillsBlock");
+
+  if (currentStills.length === 0) {
+    stillsBlock.classList.add("is-hidden");
+  } else {
+    stillsBlock.classList.remove("is-hidden");
+  }
 
   currentStillIndex = 0;
   renderStillsSlider();
@@ -1184,9 +1211,7 @@ function renderStillsSlider() {
   currentStills.forEach(function(still) {
     html += '<div class="stills-slide">';
 
-    if (!still) {
-      html += '<div class="empty-box">Still coming soon</div>';
-    } else if (isVideo(still)) {
+    if (isVideo(still)) {
       html += '<video src="' + still + '" autoplay muted loop playsinline></video>';
     } else {
       html += '<img src="' + still + '" alt="">';
