@@ -12,7 +12,6 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: #f2f0ea;
   color: #111;
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
@@ -1126,13 +1125,30 @@ function vimeoEmbed(url) {
   return match ? "https://player.vimeo.com/video/" + match[1] : "";
 }
 
+function googleDriveEmbed(url) {
+  const match = url.match(/\/d\/([^/]+)/);
+  return match ? "https://drive.google.com/file/d/" + match[1] + "/preview" : "";
+}
+
 function modalMedia(project) {
-  if (!project.trailer) {
-    if (isVideo(project.preview)) {
-      return '<video src="' + project.preview + '" controls playsinline></video>';
-    }
-    return '<img src="' + project.poster + '" alt="">';
+  if (project.trailer) {
+    const yt = youtubeEmbed(project.trailer);
+    const vm = vimeoEmbed(project.trailer);
+    const gd = googleDriveEmbed(project.trailer);
+
+    if (yt) return '<iframe src="' + yt + '" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+    if (vm) return '<iframe src="' + vm + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    if (gd) return '<iframe src="' + gd + '" allow="autoplay" allowfullscreen></iframe>';
+
+    return '<a href="' + project.trailer + '" target="_blank"><img src="' + project.poster + '" alt=""></a>';
   }
+
+  if (isVideo(project.preview)) {
+    return '<video src="' + project.preview + '" controls playsinline></video>';
+  }
+
+  return '<img src="' + project.poster + '" alt="">';
+}
 
   const yt = youtubeEmbed(project.trailer);
   const vm = vimeoEmbed(project.trailer);
