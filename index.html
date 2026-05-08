@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aidan Serik — Film Editor</title>
+<link rel="icon" type="image/png" href="cinema_icon_loading.png">
 
 <style>
 * { box-sizing: border-box; }
@@ -12,6 +13,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  background: #f2f0ea;
   color: #111;
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
@@ -22,8 +24,7 @@ a {
   text-decoration: none;
 }
 
-img,
-video {
+img, video {
   display: block;
   width: 100%;
 }
@@ -43,7 +44,6 @@ video {
 }
 
 .header-center { text-align: center; }
-
 .header-right { text-align: right; }
 
 .header a {
@@ -104,7 +104,7 @@ video {
 }
 
 .scrolly-project {
-  height: 330vh;
+  height: 280vh;
   position: relative;
   border-bottom: 1px solid #111;
 }
@@ -146,7 +146,8 @@ video {
   letter-spacing: 0.08em;
 }
 
-.scrolly-project:hover .project-heading h2 {
+.scrolly-project:hover .project-heading h2,
+.work-row:hover {
   font-style: italic;
 }
 
@@ -156,22 +157,19 @@ video {
   align-items: center;
   gap: 18vw;
   padding-left: 52vw;
-  padding-right: 30vw;
+  padding-right: 35vw;
   will-change: transform;
 }
 
 .visual-card {
   flex: 0 0 auto;
   position: relative;
+  width: min(48vw, 660px);
+  aspect-ratio: 1 / 1;
   border: 1px solid #111;
   background: #d8d5cc;
   cursor: pointer;
   overflow: hidden;
-}
-
-.visual-card.square {
-  width: min(48vw, 660px);
-  aspect-ratio: 1 / 1;
 }
 
 .visual-card img,
@@ -329,8 +327,6 @@ video {
   cursor: pointer;
 }
 
-.work-row:hover { font-style: italic; }
-
 .work-title {
   font-size: clamp(30px, 5vw, 78px);
   line-height: 0.88;
@@ -366,19 +362,34 @@ video {
 }
 
 .modal-media iframe,
-.modal-media video {
+.modal-media video,
+.modal-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: 0;
 }
 
-.modal-media img {
+.external-trailer {
+  position: relative;
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
-  
+
+.external-trailer span {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  z-index: 3;
+  padding: 8px 12px;
+  border: 1px solid #111;
+  background: #f2f0ea;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
 .modal-info {
   margin-top: 34px;
   display: grid;
@@ -395,9 +406,15 @@ video {
 .original-poster {
   margin-top: 50px;
   display: grid;
-  grid-template-columns: 0.6fr 1.4fr;
+  grid-template-columns: 0.4fr 1.6fr;
   gap: 24px;
   align-items: start;
+}
+
+.original-poster-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
 }
 
 .original-poster img {
@@ -407,25 +424,12 @@ video {
   object-fit: contain;
   border: 0;
   background: transparent;
-}
-  .original-poster {
-  align-items: start;
-}
-
-.original-poster img {
   justify-self: start;
-}
-
-.original-poster-label {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.13em;
 }
 
 .stills-slider {
   margin-top: 50px;
   position: relative;
-  border: 1px solid #111;
   background: #d8d5cc;
   overflow: hidden;
 }
@@ -459,14 +463,14 @@ video {
   letter-spacing: 0.1em;
 }
 
-.slider-controls,
 .project-nav {
+  margin-top: 60px;
   display: flex;
   justify-content: space-between;
   border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
 }
 
-.slider-controls button,
 .project-nav button {
   width: 50%;
   padding: 14px;
@@ -478,14 +482,8 @@ video {
   cursor: pointer;
 }
 
-.slider-controls button:first-child,
 .project-nav button:first-child {
   border-right: 1px solid #111;
-}
-
-.project-nav {
-  margin-top: 60px;
-  border-bottom: 1px solid #111;
 }
 
 .footer {
@@ -510,9 +508,7 @@ video {
     grid-template-columns: 1fr;
   }
 
-  .scrolly-project {
-    height: auto;
-  }
+  .scrolly-project { height: auto; }
 
   .scrolly-sticky {
     position: relative;
@@ -536,9 +532,7 @@ video {
     padding: 0;
   }
 
-  .visual-card.square {
-    width: 100%;
-  }
+  .visual-card { width: 100%; }
 
   .open-note {
     position: relative;
@@ -567,7 +561,6 @@ video {
 </header>
 
 <main>
-
 <section class="home" id="home">
   <div id="homeSlideshow"></div>
   <div class="home-overlay"></div>
@@ -587,7 +580,6 @@ video {
   <div class="contact-big">For work,<br>screenings<br>and inquiries.</div>
   <a class="contact-email" href="mailto:aidan.serik@gmail.com">aidan.serik@gmail.com</a>
 </section>
-
 </main>
 
 <footer class="footer">
@@ -653,6 +645,7 @@ video {
 
     <div class="stills-slider">
       <div class="stills-slider-inner" id="stillsSliderInner"></div>
+    </div>
 
     <div class="project-nav">
       <button onclick="openPreviousProject()">Previous project</button>
@@ -673,7 +666,15 @@ const projects = [
     poster: "madina_poster.jpg",
     squarePoster: "madina_square_poster.jpg",
     preview: "madina_square_preview.mp4",
-    stills: ["madina_still_07.jpg"],
+    stills: [
+      "madina_still_01.jpg",
+      "madina_still_02.jpg",
+      "madina_still_03.jpg",
+      "madina_still_04.jpg",
+      "madina_still_05.jpg",
+      "madina_still_06.jpg",
+      "madina_still_07.jpg"
+    ],
     trailer: "https://mubi.com/en/films/madina/trailer",
     description: "A feature film edited by Aidan Serik.",
     press: [
@@ -730,7 +731,12 @@ const projects = [
     poster: "trippin_poster.png",
     squarePoster: "trippin_square_poster.png",
     preview: "trippin_square_preview.mp4",
-    stills: ["trippin_still_01.png", "trippin_still_02.png", "trippin_still_03.png", "trippin_still_04.png"],
+    stills: [
+      "trippin_still_01.png",
+      "trippin_still_02.png",
+      "trippin_still_03.png",
+      "trippin_still_04.png"
+    ],
     trailer: "",
     description: "A branded short-form project built around rhythm, movement and contemporary visual culture.",
     press: []
@@ -745,7 +751,7 @@ const projects = [
     poster: "letherdance_poster.jpg",
     squarePoster: "letherdance_square_poster.jpg",
     preview: "letherdance_square_preview.mp4",
-    stills: ["letherdance-poster.jpg"],
+    stills: ["letherdance_poster.jpg"],
     trailer: "",
     description: "A selected short-form work.",
     press: []
@@ -760,7 +766,32 @@ const projects = [
     poster: "little-love-poster.jpg",
     squarePoster: "little-love_square.jpg",
     preview: "littlelove_square_preview.mp4",
-    stills: ["little-love_still_01.jpg", "little-love_still_02.jpg", "little-love_still_03.jpg"],
+    stills: [
+      "little-love_still_01.jpg",
+      "little-love_still_02.jpg",
+      "little-love_still_03.jpg",
+      "little-love_still_04.jpg",
+      "little-love_still_05.jpg",
+      "little-love_still_06.jpg",
+      "little-love_still_07.jpg",
+      "little-love_still_08.jpg",
+      "little-love_still_09.jpg",
+      "little-love_still_10.jpg",
+      "little-love_still_11.jpg",
+      "little-love_still_12.jpg",
+      "little-love_still_13.jpg",
+      "little-love_still_14.jpg",
+      "little-love_still_15.jpg",
+      "little-love_still_16.jpg",
+      "little-love_still_17.jpg",
+      "little-love_still_18.jpg",
+      "little-love_still_19.jpg",
+      "little-love_still_20.jpg",
+      "little-love_still_21.jpg",
+      "little-love_still_22.jpg",
+      "little-love_still_23.jpg",
+      "little-love_still_24.jpg"
+    ],
     trailer: "",
     description: "A selected short film edited by Aidan Serik.",
     press: []
@@ -773,10 +804,10 @@ const projects = [
     category: "Short Documentary Series",
     role: "Director",
     year: "2019",
-    poster: "presence-poster.jpg",
-    squarePoster: "presence-poster_art.jpg",
+    poster: "presence_poster.jpg",
+    squarePoster: "presence_square_poster.jpg",
     preview: "",
-    stills: ["presence-poster.jpg"],
+    stills: ["presence_poster.jpg"],
     trailer: "https://vimeo.com/347423378?share=copy&fl=cl&fe=ci",
     description: "Short documentary series for Tihii Svet documentary studio.",
     press: []
@@ -788,10 +819,10 @@ const projects = [
     category: "Short Documentary",
     role: "Editor",
     year: "2019",
-    poster: "face-the-music.jpg",
-    squarePoster: "face-the-music_art.jpg",
+    poster: "facethemusic_poster.jpg",
+    squarePoster: "facethemusic_square_poster.jpg",
     preview: "",
-    stills: ["face-the-music.jpg"],
+    stills: ["facethemusic_poster.jpg"],
     trailer: "https://www.youtube.com/watch?v=CmohrAsusaY",
     description: "Short documentary for Motor production.",
     press: []
@@ -803,8 +834,8 @@ const projects = [
     category: "Short Documentary",
     role: "Editor",
     year: "2018",
-    poster: "face-the-music.jpg",
-    squarePoster: "face-the-music_art.jpg",
+    poster: "facethemusic_poster.jpg",
+    squarePoster: "facethemusic_square_poster.jpg",
     preview: "",
     stills: [],
     trailer: "https://www.youtube.com/watch?v=mYmn1BOXJT4",
@@ -818,8 +849,8 @@ const projects = [
     category: "Short Documentary",
     role: "Editor",
     year: "2021",
-    poster: "presence-poster.jpg",
-    squarePoster: "presence-poster_art.jpg",
+    poster: "presence_poster.jpg",
+    squarePoster: "presence_square_poster.jpg",
     preview: "",
     stills: [],
     trailer: "https://youtu.be/RJVFZsYB5c4?si=BTznbvem2X7PS1Gs",
@@ -833,27 +864,12 @@ const projects = [
     category: "Short Documentary Series",
     role: "Editor",
     year: "2021",
-    poster: "warm-lake.jpg",
-    squarePoster: "warm-lake_art.jpg",
+    poster: "warmlake.jpg",
+    squarePoster: "warmlake_square.jpg",
     preview: "",
     stills: [],
     trailer: "https://youtu.be/dlZtsKOzuIw?si=IOl3ka6zYp99klVG",
     description: "Short documentary series edited by Aidan Serik.",
-    press: []
-  },
-  {
-    title: "Women in Lenovo Leadership",
-    section: "Works",
-    workSection: "Short Films",
-    category: "Short Documentary Series",
-    role: "Director",
-    year: "2019",
-    poster: "face-the-music.jpg",
-    squarePoster: "face-the-music_art.jpg",
-    preview: "",
-    stills: [],
-    trailer: "https://www.youtube.com/watch?v=AjeegLB0cR4",
-    description: "Short documentary series for Motor production.",
     press: []
   },
   {
@@ -863,42 +879,12 @@ const projects = [
     category: "Short Film",
     role: "Editor",
     year: "2020",
-    poster: "warm-lake.jpg",
-    squarePoster: "warm-lake_art.jpg",
+    poster: "warmlake.jpg",
+    squarePoster: "warmlake_square.jpg",
     preview: "",
-    stills: ["warm-lake.jpg"],
+    stills: ["warmlake.jpg"],
     trailer: "https://vimeo.com/640904442?fl=pl&fe=sh",
     description: "A short film edited by Aidan Serik.",
-    press: []
-  },
-  {
-    title: "Buttons",
-    section: "Works",
-    workSection: "Short Films",
-    category: "Short Film",
-    role: "Editor",
-    year: "2022",
-    poster: "little-love.jpg",
-    squarePoster: "little-love_art.jpg",
-    preview: "",
-    stills: [],
-    trailer: "",
-    description: "A short film edited by Aidan Serik.",
-    press: []
-  },
-  {
-    title: "Worxspace",
-    section: "Works",
-    workSection: "Short Films",
-    category: "Short Documentary",
-    role: "Editor",
-    year: "2021",
-    poster: "warm-lake.jpg",
-    squarePoster: "warm-lake_art.jpg",
-    preview: "",
-    stills: [],
-    trailer: "https://vimeo.com/735383174?share=copy",
-    description: "A short documentary film edited by Aidan Serik.",
     press: []
   },
   {
@@ -908,43 +894,13 @@ const projects = [
     category: "Short Film",
     role: "Director",
     year: "2023",
-    poster: "dyad-poster.jpg",
-    squarePoster: "dyad-poster_art.jpg",
+    poster: "dyad_poster.jpg",
+    squarePoster: "dyad_square_poster.jpg",
     preview: "",
-    stills: ["dyad-poster.jpg"],
+    stills: ["dyad_poster.jpg"],
     trailer: "https://drive.google.com/file/d/1xI83zVJkROkVWfYqE8rzaYOYmKHAUqvh/view?usp=sharing",
     description: "A short film directed by Aidan Serik. Baiqonyr IX Award for Best Editing.",
     press: [["Manshuq", "https://manshuq.com/career-aidan-serik-09-2023"]]
-  },
-  {
-    title: "Interview Editing / Tihii Svet",
-    section: "Works",
-    workSection: "Feature & Long Form",
-    category: "Interview Editing",
-    role: "Interview Editor",
-    year: "2019–2020",
-    poster: "face-the-music.jpg",
-    squarePoster: "face-the-music_art.jpg",
-    preview: "",
-    stills: [],
-    trailer: "https://vimeo.com/329319324?share=copy&fl=cl&fe=ci",
-    description: "Interview editing for Tihii Svet documentary studio.",
-    press: []
-  },
-  {
-    title: "Don't Give Up",
-    section: "Works",
-    workSection: "Feature & Long Form",
-    category: "TV Show",
-    role: "Editor",
-    year: "2019",
-    poster: "face-the-music.jpg",
-    squarePoster: "face-the-music_art.jpg",
-    preview: "",
-    stills: [],
-    trailer: "",
-    description: "TV show edited by Aidan Serik.",
-    press: []
   },
   {
     title: "OT / Fire",
@@ -953,10 +909,17 @@ const projects = [
     category: "Feature Film",
     role: "Editor",
     year: "2020",
-    poster: "ot-poster.jpg",
-    squarePoster: "ot-poster_art.jpg",
+    poster: "ot_poster.jpg",
+    squarePoster: "ot_poster_square.jpg",
     preview: "",
-    stills: ["ot_still_01.jpg", "ot_still_02.jpg", "ot_still_03.jpg"],
+    stills: [
+      "ot_still_01.jpg",
+      "ot_still_02.jpg",
+      "ot_still_03.jpg",
+      "ot_still_04.jpg",
+      "ot_still_05.jpg",
+      "ot_still_06.jpg"
+    ],
     trailer: "https://youtu.be/LZEonboLtXg?si=pnQKy_xRHZKp791j",
     description: "A social drama with elements of comedy, edited by Aidan Serik.",
     press: [["Variety", "https://variety.com/2021/film/reviews/fire-review-ot-1235087408/"]]
@@ -968,10 +931,10 @@ const projects = [
     category: "Short Film",
     role: "Editor",
     year: "2024",
-    poster: "pryaniki-poster.jpg",
-    squarePoster: "pryaniki-poster_art.jpg",
+    poster: "pryaniki_poster.jpg",
+    squarePoster: "pryaniki_poster.jpg",
     preview: "",
-    stills: ["pryaniki-poster.jpg"],
+    stills: ["pryaniki_poster.jpg"],
     trailer: "",
     description: "A short film with press coverage across European film publications.",
     press: [["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"]]
@@ -979,9 +942,9 @@ const projects = [
 ];
 
 const homePreviews = [
-  "madina_preview_02.mp4",
-  "welivehere-preview.mp4",
-  "joqtau-preview.mp4",
+  "madina_square_preview.mp4",
+  "welivehere_square_preview.mp4",
+  "joqtau_square_preview.mp4",
   "trippin_square_preview.mp4",
   "letherdance_square_preview.mp4",
   "littlelove_square_preview.mp4"
@@ -1033,7 +996,7 @@ function renderHomeSlideshow() {
 }
 
 function visualHTML(label, file) {
-  let html = '<div class="visual-card square">';
+  let html = '<div class="visual-card">';
   html += '<div class="visual-label">' + label + '</div>';
 
   if (!file) {
@@ -1054,7 +1017,6 @@ function renderSelectedScroll() {
 
   projects.forEach(function(project) {
     if (project.section === "Selected") {
-
       html += '<section class="scrolly-project" data-title="' + project.title + '">';
       html += '<div class="scrolly-sticky">';
       html += '<div class="project-heading">';
@@ -1148,7 +1110,7 @@ function modalMedia(project) {
     if (vm) return '<iframe src="' + vm + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
     if (gd) return '<iframe src="' + gd + '" allow="autoplay" allowfullscreen></iframe>';
 
-    return '<a href="' + project.trailer + '" target="_blank"><img src="' + project.poster + '" alt=""></a>';
+    return '<a class="external-trailer" href="' + project.trailer + '" target="_blank"><span>Open trailer</span><img src="' + project.poster + '" alt=""></a>';
   }
 
   if (isVideo(project.preview)) {
@@ -1156,15 +1118,6 @@ function modalMedia(project) {
   }
 
   return '<img src="' + project.poster + '" alt="">';
-}
-
-  const yt = youtubeEmbed(project.trailer);
-  const vm = vimeoEmbed(project.trailer);
-
-  if (yt) return '<iframe src="' + yt + '" allowfullscreen></iframe>';
-  if (vm) return '<iframe src="' + vm + '" allowfullscreen></iframe>';
-
-  return '<a href="' + project.trailer + '" target="_blank"><img src="' + project.poster + '" alt=""></a>';
 }
 
 function openProjectByTitle(title) {
@@ -1188,7 +1141,14 @@ function openProject(project) {
   document.getElementById("modalYear").innerText = project.year;
   document.getElementById("modalDescription").innerText = project.description;
   document.getElementById("modalMedia").innerHTML = modalMedia(project);
-  document.getElementById("modalPoster").src = project.poster || "";
+
+  const posterElement = document.getElementById("modalPoster");
+  if (project.poster) {
+    posterElement.src = project.poster;
+    posterElement.style.display = "block";
+  } else {
+    posterElement.style.display = "none";
+  }
 
   let pressHTML = "";
 
@@ -1252,13 +1212,6 @@ function nextStill() {
   document.getElementById("stillsSliderInner").style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
 }
 
-function prevStill() {
-  if (currentStills.length <= 1) return;
-  currentStillIndex = currentStillIndex - 1;
-  if (currentStillIndex < 0) currentStillIndex = currentStills.length - 1;
-  document.getElementById("stillsSliderInner").style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
-}
-
 function openNextProject() {
   const list = getOpenableProjects();
   currentProjectIndex = currentProjectIndex + 1;
@@ -1279,6 +1232,11 @@ function closeProject() {
   document.getElementById("projectPanel").classList.remove("active");
   document.body.style.overflow = "";
   document.getElementById("modalMedia").innerHTML = "";
+
+  if (stillsInterval) {
+    clearInterval(stillsInterval);
+    stillsInterval = null;
+  }
 }
 
 function openAbout() {
