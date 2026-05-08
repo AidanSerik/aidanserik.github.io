@@ -6,9 +6,13 @@
 <title>Aidan Serik — Film Editor</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -29,6 +33,8 @@ video {
   width: 100%;
 }
 
+/* HEADER */
+
 .header {
   position: fixed;
   top: 0;
@@ -43,7 +49,9 @@ video {
   font-size: 14px;
 }
 
-.header-center { text-align: center; }
+.header-center {
+  text-align: center;
+}
 
 .header-right {
   text-align: right;
@@ -53,6 +61,8 @@ video {
   margin-left: 16px;
   cursor: pointer;
 }
+
+/* HOME */
 
 .home {
   height: 100vh;
@@ -83,7 +93,7 @@ video {
 .home-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.24);
+  background: rgba(0,0,0,0.22);
   z-index: 2;
 }
 
@@ -109,8 +119,10 @@ video {
   line-height: 1.4;
 }
 
+/* SELECTED WORKS SCROLL */
+
 .scrolly-project {
-  height: 330vh;
+  height: 260vh;
   position: relative;
   border-bottom: 1px solid #111;
 }
@@ -160,9 +172,9 @@ video {
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 18vw;
-  padding-left: 52vw;
-  padding-right: 30vw;
+  gap: 12vw;
+  padding-left: 54vw;
+  padding-right: 35vw;
   will-change: transform;
 }
 
@@ -173,21 +185,8 @@ video {
   background: #d8d5cc;
   cursor: pointer;
   overflow: hidden;
-}
-
-.visual-card.poster {
-  width: min(38vw, 520px);
-  aspect-ratio: 2 / 3;
-}
-
-.visual-card.preview {
-  width: min(70vw, 980px);
-  aspect-ratio: 16 / 9;
-}
-
-.visual-card.still {
-  width: min(58vw, 820px);
-  aspect-ratio: 16 / 10;
+  width: min(46vw, 660px);
+  aspect-ratio: 1 / 1;
 }
 
 .visual-card img,
@@ -210,18 +209,6 @@ video {
   letter-spacing: 0.11em;
 }
 
-.empty-box {
-  width: 100%;
-  height: 100%;
-  min-height: 260px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
 .open-note {
   position: absolute;
   left: 24px;
@@ -231,6 +218,8 @@ video {
   text-transform: uppercase;
   letter-spacing: 0.12em;
 }
+
+/* WORKS */
 
 .section-page {
   min-height: 100vh;
@@ -281,6 +270,8 @@ video {
   text-align: right;
 }
 
+/* CONTACT */
+
 .contact-big {
   font-size: clamp(50px, 11vw, 170px);
   line-height: 0.82;
@@ -296,6 +287,8 @@ video {
   letter-spacing: -0.055em;
   border-bottom: 1px solid #111;
 }
+
+/* MODALS */
 
 .modal,
 .about-panel {
@@ -395,6 +388,8 @@ video {
   font-size: 14px;
 }
 
+/* STILLS SLIDER */
+
 .stills-slider {
   margin-top: 50px;
   position: relative;
@@ -420,6 +415,18 @@ video {
   object-fit: cover;
 }
 
+.empty-box {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 .slider-controls {
   display: flex;
   justify-content: space-between;
@@ -440,6 +447,8 @@ video {
 .slider-controls button:first-child {
   border-right: 1px solid #111;
 }
+
+/* ABOUT */
 
 .about-grid {
   display: grid;
@@ -462,12 +471,16 @@ video {
   letter-spacing: -0.06em;
 }
 
+/* FOOTER */
+
 .footer {
   padding: 22px 24px;
   display: flex;
   justify-content: space-between;
   font-size: 13px;
 }
+
+/* MOBILE */
 
 @media (max-width: 900px) {
   .header {
@@ -511,9 +524,7 @@ video {
     padding: 0;
   }
 
-  .visual-card.poster,
-  .visual-card.preview,
-  .visual-card.still {
+  .visual-card {
     width: 100%;
   }
 
@@ -639,8 +650,8 @@ const projects = [
     category: "Feature Film",
     role: "Editor",
     year: "2021",
-    poster: "madina-poster.jpg",
-    preview: "madina_preview_02.mp4",
+    poster: "madina_square_poster.jpg",
+    preview: "madina_square_preview.mp4",
     stills: ["madina_still_07.jpg"],
     trailer: "https://mubi.com/en/films/madina/trailer",
     description: "A feature film edited by Aidan Serik.",
@@ -656,8 +667,8 @@ const projects = [
     category: "Documentary Feature",
     role: "Editor",
     year: "2022–Present",
-    poster: "welivehere-poster.jpg",
-    preview: "welivehere-preview.mp4",
+    poster: "welivehere_square_poster.jpg",
+    preview: "welivehere_square_preview.mp4",
     stills: [""],
     trailer: "https://drive.google.com/file/d/1s4EOY2vfLQQCA1C_1TWQrOd6WgA-dzdT/view?usp=drive_link",
     description: "A full-length documentary exploring memory, place and generational fallout in Kazakhstan.",
@@ -673,8 +684,8 @@ const projects = [
     category: "Feature Film",
     role: "Editor",
     year: "2022",
-    poster: "joqtau-poster.jpg",
-    preview: "joqtau-preview.mp4",
+    poster: "joqtau_square_poster.jpg",
+    preview: "joqtau_square_preview.mp4",
     stills: ["joqtau.jpg"],
     trailer: "https://drive.google.com/file/d/1l2ri-6PSz4RQEu_n17IsBr6xmcnSsY1X/view?usp=drive_link",
     description: "A feature film shaped as a poetic meditation on grief, land and legacy.",
@@ -690,8 +701,8 @@ const projects = [
     category: "Commercial / Branded",
     role: "Editor",
     year: "Selected Work",
-    poster: "trippin_poster.png",
-    preview: "trippin-preview.mp4",
+    poster: "trippin_square_poster.jpg",
+    preview: "trippin_square_preview.mp4",
     stills: [
       "trippin_still_01.png",
       "trippin_still_02.png",
@@ -702,18 +713,21 @@ const projects = [
     description: "A branded short-form project built around rhythm, movement and contemporary visual culture.",
     press: []
   },
+
   {
     title: "DYAD",
     section: "Works",
     category: "Short Film",
     role: "Director",
     year: "2023",
-    poster: "dyad-poster.jpg",
-    preview: "dyad-poster.jpg",
+    poster: "dyad_square_poster.jpg",
+    preview: "dyad_square_preview.mp4",
     stills: ["dyad-poster.jpg"],
     trailer: "https://drive.google.com/file/d/1xI83zVJkROkVWfYqE8rzaYOYmKHAUqvh/view?usp=sharing",
     description: "A short film directed by Aidan Serik. Baiqonyr IX Award for Best Editing.",
-    press: [["Manshuq", "https://manshuq.com/career-aidan-serik-09-2023"]]
+    press: [
+      ["Manshuq", "https://manshuq.com/career-aidan-serik-09-2023"]
+    ]
   },
   {
     title: "OT / Fire",
@@ -721,12 +735,14 @@ const projects = [
     category: "Feature Film",
     role: "Editor",
     year: "2020",
-    poster: "ot.jpg",
-    preview: "ot.jpg",
+    poster: "ot_square_poster.jpg",
+    preview: "ot_square_preview.mp4",
     stills: ["ot_still_01.jpg", "ot_still_02.jpg", "ot_still_03.jpg"],
     trailer: "https://youtu.be/LZEonboLtXg?si=pnQKy_xRHZKp791j",
     description: "A social drama with elements of comedy, edited by Aidan Serik.",
-    press: [["Variety", "https://variety.com/2021/film/reviews/fire-review-ot-1235087408/"]]
+    press: [
+      ["Variety", "https://variety.com/2021/film/reviews/fire-review-ot-1235087408/"]
+    ]
   },
   {
     title: "Warm Lake",
@@ -734,8 +750,8 @@ const projects = [
     category: "Short Film",
     role: "Editor",
     year: "2020",
-    poster: "warm-lake.jpg",
-    preview: "warm-lake.jpg",
+    poster: "warmlake_square_poster.jpg",
+    preview: "warmlake_square_preview.mp4",
     stills: ["warm-lake.jpg"],
     trailer: "https://vimeo.com/640904442?fl=pl&fe=sh",
     description: "A short film edited by Aidan Serik.",
@@ -747,12 +763,44 @@ const projects = [
     category: "Short Film",
     role: "Editor",
     year: "2024",
-    poster: "pryaniki-poster.jpg",
-    preview: "pryaniki-poster.jpg",
+    poster: "pryaniki_square_poster.jpg",
+    preview: "pryaniki_square_preview.mp4",
     stills: ["pryaniki-poster.jpg"],
     trailer: "",
     description: "A short film with press coverage across European film publications.",
-    press: [["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"]]
+    press: [
+      ["The Film Verdict", "https://thefilmverdict.com/gingerbread-for-her-dad/"]
+    ]
+  },
+  {
+    title: "Little Love",
+    section: "Works",
+    category: "Short Film",
+    role: "Editor",
+    year: "Selected Work",
+    poster: "littlelove_square_poster.jpg",
+    preview: "littlelove_square_preview.mp4",
+    stills: [
+      "little-love_still_01.jpg",
+      "little-love_still_02.jpg",
+      "little-love_still_03.jpg"
+    ],
+    trailer: "",
+    description: "A selected short-form project from the archive.",
+    press: []
+  },
+  {
+    title: "Let Her Dance",
+    section: "Works",
+    category: "Short Film",
+    role: "Editor",
+    year: "Selected Work",
+    poster: "letherdance_square_poster.jpg",
+    preview: "letherdance_square_preview.mp4",
+    stills: ["letherdance-poster.jpg"],
+    trailer: "",
+    description: "A selected short-form project from the archive.",
+    press: []
   }
 ];
 
@@ -769,10 +817,7 @@ function homeMediaList() {
 
   projects.forEach(function(project) {
     if (project.preview) list.push(project.preview);
-
-    project.stills.forEach(function(still) {
-      if (still) list.push(still);
-    });
+    if (project.poster) list.push(project.poster);
   });
 
   return list;
@@ -812,8 +857,8 @@ function renderHomeSlideshow() {
   }, 2600);
 }
 
-function visualHTML(label, file, type) {
-  let html = '<div class="visual-card ' + type + '">';
+function visualHTML(label, file) {
+  let html = '<div class="visual-card">';
   html += '<div class="visual-label">' + label + '</div>';
 
   if (!file) {
@@ -834,8 +879,6 @@ function renderSelectedScroll() {
 
   projects.forEach(function(project) {
     if (project.section === "Selected") {
-      const firstStill = project.stills[0] || "";
-
       html += '<section class="scrolly-project" data-title="' + project.title + '">';
       html += '<div class="scrolly-sticky">';
       html += '<div class="project-heading">';
@@ -844,9 +887,8 @@ function renderSelectedScroll() {
       html += '</div>';
 
       html += '<div class="scrolly-track">';
-      html += visualHTML("Poster", project.poster, "poster");
-      html += visualHTML("Preview", project.preview, "preview");
-      html += visualHTML("Stills", firstStill, "still");
+      html += visualHTML("Poster", project.poster);
+      html += visualHTML("Preview", project.preview);
       html += '</div>';
 
       html += '<div class="open-note">Click anywhere on project to open</div>';
@@ -876,7 +918,7 @@ function updateHorizontalScroll() {
     if (progress < 0) progress = 0;
     if (progress > 1) progress = 1;
 
-    const maxMove = track.scrollWidth - window.innerWidth + window.innerWidth * 0.18;
+    const maxMove = track.scrollWidth - window.innerWidth + window.innerWidth * 0.12;
     const move = -progress * maxMove;
 
     track.style.transform = "translate3d(" + move + "px, 0, 0)";
@@ -993,15 +1035,25 @@ function renderStillsSlider() {
 
 function nextStill() {
   if (currentStills.length <= 1) return;
+
   currentStillIndex = currentStillIndex + 1;
-  if (currentStillIndex >= currentStills.length) currentStillIndex = 0;
+
+  if (currentStillIndex >= currentStills.length) {
+    currentStillIndex = 0;
+  }
+
   document.getElementById("stillsSliderInner").style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
 }
 
 function prevStill() {
   if (currentStills.length <= 1) return;
+
   currentStillIndex = currentStillIndex - 1;
-  if (currentStillIndex < 0) currentStillIndex = currentStills.length - 1;
+
+  if (currentStillIndex < 0) {
+    currentStillIndex = currentStills.length - 1;
+  }
+
   document.getElementById("stillsSliderInner").style.transform = "translateX(" + (-currentStillIndex * 100) + "%)";
 }
 
